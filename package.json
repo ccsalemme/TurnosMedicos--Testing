@@ -1,0 +1,17 @@
+{
+  "name": "turnos-medicos-mvp",
+  "version": "1.0.0",
+  "description": "MVP de gestion de turnos medicos para clinica (NestJS + React + PostgreSQL)",
+  "scripts": {
+    "install:all": "npm install --workspaces",
+    "dev:backend": "npm --workspace backend run start:dev",
+    "dev:frontend": "npm --workspace frontend run dev",
+    "build": "npm --workspace backend run build; npm --workspace frontend run build",
+    "db:seed": "npm --workspace backend run db:seed"
+  },
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ]
+}
