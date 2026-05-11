@@ -1,8 +1,9 @@
 {
   "name": "turnos-medicos-mvp",
   "version": "1.0.0",
-  "description": "MVP de gestion de turnos medicos para clinica (NestJS + React + PostgreSQL)",
+  "description": "MVP de gestion de turnos medicos para clinica (FastAPI + React + JSON)",
   "scripts": {
+    "install:backend": "python -m pip install -r backend/requirements.txt",
     "install:all": "npm install --workspaces",
     "dev:backend": "npm --workspace backend run start:dev",
     "dev:frontend": "npm --workspace frontend run dev",
