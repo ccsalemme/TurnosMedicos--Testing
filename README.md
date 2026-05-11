@@ -11,8 +11,7 @@ Implementa autenticacion, RBAC, agenda medica, reglas de negocio reales de turno
 
 - Frontend: React + TypeScript + Vite
 - Backend: Node.js + TypeScript + NestJS
-- Base de datos: PostgreSQL
-- ORM: Prisma
+- Persistencia: archivo JSON local
 - Seguridad: JWT + hash bcrypt + validaciones DTO
 
 ## 2. Funcionalidades incluidas
@@ -153,7 +152,6 @@ Con esto se evita:
 
 - Node.js 20+
 - npm 10+
-- PostgreSQL 15+ (solo si usas modo con base de datos)
 
 ## 10. Instalacion
 
@@ -185,59 +183,21 @@ npm.cmd run install:all
 ### Backend
 
 1. Copiar `backend/.env.example` a `backend/.env`.
-2. Modo provisional sin DB: dejar `MOCK_MODE=true`.
-3. Modo con DB real: usar `MOCK_MODE=false` y ajustar `DATABASE_URL`.
-4. Ajustar `JWT_SECRET`, `CORS_ORIGIN`.
+2. Definir `MOCK_DATA_FILE` (opcional, por defecto `backend/data/mock-data.json`).
+3. Ajustar `JWT_SECRET`, `CORS_ORIGIN`.
 
 ### Frontend
 
 1. Copiar `frontend/.env.example` a `frontend/.env`.
 2. Ajustar `VITE_API_BASE_URL` si corresponde.
 
-## 12. Migraciones y seed
+## 12. Persistencia JSON
 
-Este paso aplica solo para modo con base de datos (`MOCK_MODE=false`).
+El backend guarda y lee los datos desde un archivo JSON local.
 
-### Opcion recomendada (Prisma)
-
-```bash
-cd backend
-npm run prisma:generate
-npm run prisma:migrate
-npm run db:seed
-```
-
-### Opcion SQL directa
-
-Si preferis aplicar SQL manual:
-
-```bash
-cd backend
-psql -U postgres -d turnos_medicos -f prisma/migrations/202605040001_init/migration.sql
-```
-
-Luego ejecutar seed:
-
-```bash
-npm run db:seed
-```
-
-### Nota por entorno corporativo
-
-Si `prisma generate` falla por certificados (`self-signed certificate in certificate chain`), configurar CA corporativa para Node.
-Como salida temporal de desarrollo local (no recomendada en produccion):
-
-```powershell
-$env:NODE_TLS_REJECT_UNAUTHORIZED='0'
-npm run prisma:generate
-```
-
-En Git Bash:
-
-```bash
-export NODE_TLS_REJECT_UNAUTHORIZED=0
-npm run prisma:generate
-```
+- Ruta por defecto: `backend/data/mock-data.json`
+- Ruta configurable: variable `MOCK_DATA_FILE`
+- Si el archivo no existe, se inicializa con datos demo y se crea automaticamente.
 
 ## 13. Ejecucion local
 
@@ -258,7 +218,7 @@ npm run dev:frontend
 - Backend: `http://localhost:3000/api/v1`
 - Frontend: `http://localhost:5173`
 
-Con `MOCK_MODE=true`, el backend funciona con usuarios y datos hardcodeados en memoria, sin PostgreSQL ni Prisma.
+Los datos ahora persisten entre reinicios en el archivo JSON configurado.
 
 ## 14. Credenciales demo del seed
 

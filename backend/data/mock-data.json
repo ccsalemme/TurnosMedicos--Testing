@@ -1,0 +1,285 @@
+{
+  "users": [
+    {
+      "id": "usr_admin",
+      "email": "admin@clinica.local",
+      "password": "Admin123!",
+      "role": "ADMIN",
+      "isActive": true,
+      "firstName": "Alicia",
+      "lastName": "Admin",
+      "phone": "+5491100000001"
+    },
+    {
+      "id": "usr_doc1",
+      "email": "doctor1@clinica.local",
+      "password": "Doctor123!",
+      "role": "DOCTOR",
+      "isActive": true,
+      "firstName": "Laura",
+      "lastName": "Medina",
+      "phone": "+5491100000002",
+      "doctorProfile": {
+        "id": "docp_1",
+        "userId": "usr_doc1",
+        "licenseNumber": "MN-12345",
+        "siteId": "site_centro",
+        "bio": "Especialista en cardiologia y clinica general.",
+        "specialties": [
+          "spc_cardiologia",
+          "spc_clinicageneral"
+        ]
+      }
+    },
+    {
+      "id": "usr_doc2",
+      "email": "doctor2@clinica.local",
+      "password": "Doctor123!",
+      "role": "DOCTOR",
+      "isActive": true,
+      "firstName": "Martin",
+      "lastName": "Rios",
+      "phone": "+5491100000003",
+      "doctorProfile": {
+        "id": "docp_2",
+        "userId": "usr_doc2",
+        "licenseNumber": "MN-67890",
+        "siteId": "site_norte",
+        "bio": "Pediatria ambulatoria y seguimiento integral.",
+        "specialties": [
+          "spc_pediatria"
+        ]
+      }
+    },
+    {
+      "id": "usr_doc3",
+      "email": "doctor3@clinica.local",
+      "password": "Doctor123!",
+      "role": "DOCTOR",
+      "isActive": true,
+      "firstName": "Valeria",
+      "lastName": "Costa",
+      "phone": "+5491100000005",
+      "doctorProfile": {
+        "id": "docp_3",
+        "userId": "usr_doc3",
+        "licenseNumber": "MN-44556",
+        "siteId": "site_sur",
+        "bio": "Dermatologia clinica y control preventivo.",
+        "specialties": [
+          "spc_dermatologia"
+        ]
+      }
+    },
+    {
+      "id": "usr_pat1",
+      "email": "paciente@clinica.local",
+      "password": "Paciente123!",
+      "role": "PATIENT",
+      "isActive": true,
+      "firstName": "Sofia",
+      "lastName": "Perez",
+      "phone": "+5491100000004",
+      "patientProfile": {
+        "id": "pat_1",
+        "userId": "usr_pat1",
+        "document": "30111222",
+        "birthDate": "1993-04-15T00:00:00.000Z",
+        "phone": "+5491100000004"
+      }
+    },
+    {
+      "id": "usr_pat2",
+      "email": "paciente2@clinica.local",
+      "password": "Paciente123!",
+      "role": "PATIENT",
+      "isActive": true,
+      "firstName": "Lucas",
+      "lastName": "Gomez",
+      "phone": "+5491100000006",
+      "patientProfile": {
+        "id": "pat_2",
+        "userId": "usr_pat2",
+        "document": "32444555",
+        "birthDate": "1989-11-03T00:00:00.000Z",
+        "phone": "+5491100000006"
+      }
+    },
+    {
+      "id": "usr_pat3",
+      "email": "paciente3@clinica.local",
+      "password": "Paciente123!",
+      "role": "PATIENT",
+      "isActive": true,
+      "firstName": "Carla",
+      "lastName": "Suarez",
+      "phone": "+5491100000007",
+      "patientProfile": {
+        "id": "pat_3",
+        "userId": "usr_pat3",
+        "document": "28999000",
+        "birthDate": "1978-02-21T00:00:00.000Z",
+        "phone": "+5491100000007"
+      }
+    }
+  ],
+  "specialties": [
+    {
+      "id": "spc_cardiologia",
+      "name": "Cardiologia",
+      "description": "Atencion cardiologica integral",
+      "durationMinutes": 30,
+      "isActive": true
+    },
+    {
+      "id": "spc_pediatria",
+      "name": "Pediatria",
+      "description": "Atencion de ninos y adolescentes",
+      "durationMinutes": 20,
+      "isActive": true
+    },
+    {
+      "id": "spc_dermatologia",
+      "name": "Dermatologia",
+      "description": "Atencion de piel y anexos",
+      "durationMinutes": 25,
+      "isActive": true
+    },
+    {
+      "id": "spc_clinicageneral",
+      "name": "Clinica General",
+      "description": "Consultas medicas generales",
+      "durationMinutes": 30,
+      "isActive": true
+    }
+  ],
+  "sites": [
+    {
+      "id": "site_centro",
+      "name": "Sede Centro",
+      "address": "Av. Principal 123",
+      "isActive": true
+    },
+    {
+      "id": "site_norte",
+      "name": "Sede Norte",
+      "address": "Calle Salud 456",
+      "isActive": true
+    },
+    {
+      "id": "site_sur",
+      "name": "Sede Sur",
+      "address": "Bv. Bienestar 789",
+      "isActive": true
+    }
+  ],
+  "availabilities": [
+    {
+      "id": "avl_1",
+      "doctorId": "docp_1",
+      "weekday": 1,
+      "startTime": "09:00",
+      "endTime": "13:00",
+      "isActive": true
+    },
+    {
+      "id": "avl_2",
+      "doctorId": "docp_1",
+      "weekday": 3,
+      "startTime": "14:00",
+      "endTime": "18:00",
+      "isActive": true
+    },
+    {
+      "id": "avl_3",
+      "doctorId": "docp_2",
+      "weekday": 2,
+      "startTime": "08:00",
+      "endTime": "12:00",
+      "isActive": true
+    },
+    {
+      "id": "avl_4",
+      "doctorId": "docp_2",
+      "weekday": 4,
+      "startTime": "10:00",
+      "endTime": "16:00",
+      "isActive": true
+    },
+    {
+      "id": "avl_5",
+      "doctorId": "docp_3",
+      "weekday": 5,
+      "startTime": "09:00",
+      "endTime": "14:00",
+      "isActive": true
+    }
+  ],
+  "blocks": [
+    {
+      "id": "blk_1",
+      "doctorId": "docp_1",
+      "startAt": "2026-05-17T15:00:00.000Z",
+      "endAt": "2026-05-17T17:00:00.000Z",
+      "reason": "Capacitacion"
+    }
+  ],
+  "appointments": [
+    {
+      "id": "apt_1",
+      "patientId": "usr_pat1",
+      "doctorId": "usr_doc1",
+      "specialtyId": "spc_cardiologia",
+      "siteId": "site_centro",
+      "startAt": "2026-05-13T13:00:00.000Z",
+      "endAt": "2026-05-13T13:30:00.000Z",
+      "status": "PENDING",
+      "notes": "Control anual",
+      "createdAt": "2026-05-11T17:27:33.798Z",
+      "createdById": "usr_pat1"
+    },
+    {
+      "id": "apt_2",
+      "patientId": "usr_pat2",
+      "doctorId": "usr_doc2",
+      "specialtyId": "spc_pediatria",
+      "siteId": "site_norte",
+      "startAt": "2026-05-14T14:00:00.000Z",
+      "endAt": "2026-05-14T14:20:00.000Z",
+      "status": "CONFIRMED",
+      "notes": "Consulta pediatrica",
+      "createdAt": "2026-05-11T17:27:33.798Z",
+      "createdById": "usr_pat2",
+      "updatedById": "usr_doc2"
+    },
+    {
+      "id": "apt_3",
+      "patientId": "usr_pat3",
+      "doctorId": "usr_doc3",
+      "specialtyId": "spc_dermatologia",
+      "siteId": "site_sur",
+      "startAt": "2026-05-15T18:00:00.000Z",
+      "endAt": "2026-05-15T18:25:00.000Z",
+      "status": "CANCELED",
+      "cancellationReason": "Cancelado por motivo personal",
+      "createdAt": "2026-05-11T17:27:33.798Z",
+      "createdById": "usr_pat3",
+      "updatedById": "usr_pat3"
+    }
+  ],
+  "settings": [],
+  "audits": [
+    {
+      "id": "adt_04ij0zvg",
+      "action": "SYSTEM_MOCK_BOOTSTRAP",
+      "entity": "SYSTEM",
+      "entityId": "mock_init",
+      "actorId": "usr_admin",
+      "metadata": {
+        "users": 7,
+        "appointments": 3
+      },
+      "createdAt": "2026-05-11T17:27:33.798Z"
+    }
+  ]
+}

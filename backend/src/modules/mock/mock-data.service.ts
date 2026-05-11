@@ -5,6 +5,8 @@ import {
   NotFoundException,
   UnauthorizedException
 } from '@nestjs/common';
+import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
+import path from 'node:path';
 import { JwtService } from '@nestjs/jwt';
 import dayjs from 'dayjs';
 import { AppointmentStatus } from 'src/common/enums/appointment-status.enum';
@@ -104,6 +106,19 @@ export interface MockAudit {
   createdAt: string;
 }
 
+interface MockStore {
+  users: MockUser[];
+  specialties: MockSpecialty[];
+  sites: MockSite[];
+  availabilities: MockAvailability[];
+  blocks: MockBlock[];
+  appointments: MockAppointment[];
+  settings: MockSetting[];
+  audits: MockAudit[];
+}
+
+const DEFAULT_SETTINGS: MockSetting[] = [{ key: 'CANCELLATION_WINDOW_HOURS', value: '24' }];
+
 @Injectable()
 export class MockDataService {
   private readonly users: MockUser[] = [];
@@ -112,13 +127,13 @@ export class MockDataService {
   private readonly availabilities: MockAvailability[] = [];
   private readonly blocks: MockBlock[] = [];
   private readonly appointments: MockAppointment[] = [];
-  private readonly settings: MockSetting[] = [
-    { key: 'CANCELLATION_WINDOW_HOURS', value: '24' }
-  ];
+  private readonly settings: MockSetting[] = [];
   private readonly audits: MockAudit[] = [];
+  private readonly dataFilePath: string;
 
   constructor(private readonly jwtService: JwtService) {
-    this.bootstrapData();
+    this.dataFilePath = process.env.MOCK_DATA_FILE || path.join(process.cwd(), 'data', 'mock-data.json');
+    this.initializeStore();
   }
 
   getAuthUserFromToken(token: string | undefined): AuthUser {
@@ -863,6 +878,77 @@ export class MockDataService {
       }));
   }
 
+  private initializeStore() {
+    const loaded = this.loadStoreFromDisk();
+
+    if (loaded) {
+      this.applyStore(loaded);
+      return;
+    }
+
+    this.bootstrapData();
+    this.persistStore();
+  }
+
+  private loadStoreFromDisk(): MockStore | null {
+    if (!existsSync(this.dataFilePath)) {
+      return null;
+    }
+
+    try {
+      const raw = readFileSync(this.dataFilePath, 'utf-8');
+      const parsed = JSON.parse(raw) as Partial<MockStore>;
+
+      return {
+        users: Array.isArray(parsed.users) ? parsed.users : [],
+        specialties: Array.isArray(parsed.specialties) ? parsed.specialties : [],
+        sites: Array.isArray(parsed.sites) ? parsed.sites : [],
+        availabilities: Array.isArray(parsed.availabilities) ? parsed.availabilities : [],
+        blocks: Array.isArray(parsed.blocks) ? parsed.blocks : [],
+        appointments: Array.isArray(parsed.appointments) ? parsed.appointments : [],
+        settings: Array.isArray(parsed.settings) && parsed.settings.length > 0 ? parsed.settings : [...DEFAULT_SETTINGS],
+        audits: Array.isArray(parsed.audits) ? parsed.audits : []
+      };
+    } catch {
+      return null;
+    }
+  }
+
+  private applyStore(store: MockStore) {
+    this.users.splice(0, this.users.length, ...store.users);
+    this.specialties.splice(0, this.specialties.length, ...store.specialties);
+    this.sites.splice(0, this.sites.length, ...store.sites);
+    this.availabilities.splice(0, this.availabilities.length, ...store.availabilities);
+    this.blocks.splice(0, this.blocks.length, ...store.blocks);
+    this.appointments.splice(0, this.appointments.length, ...store.appointments);
+    this.settings.splice(0, this.settings.length, ...(store.settings.length > 0 ? store.settings : [...DEFAULT_SETTINGS]));
+    this.audits.splice(0, this.audits.length, ...store.audits);
+  }
+
+  private getStoreSnapshot(): MockStore {
+    return {
+      users: this.users,
+      specialties: this.specialties,
+      sites: this.sites,
+      availabilities: this.availabilities,
+      blocks: this.blocks,
+      appointments: this.appointments,
+      settings: this.settings,
+      audits: this.audits
+    };
+  }
+
+  private persistStore() {
+    const dirPath = path.dirname(this.dataFilePath);
+    mkdirSync(dirPath, { recursive: true });
+
+    const tempFilePath = `${this.dataFilePath}.tmp`;
+    const payload = JSON.stringify(this.getStoreSnapshot(), null, 2);
+
+    writeFileSync(tempFilePath, payload, 'utf-8');
+    renameSync(tempFilePath, this.dataFilePath);
+  }
+
   private transitionByDoctor(actor: AuthUser, appointmentId: string, target: AppointmentStatus, allowedCurrent: AppointmentStatus[]) {
     const appointment = this.findAppointment(appointmentId);
 
@@ -1170,6 +1256,8 @@ export class MockDataService {
       metadata,
       createdAt: new Date().toISOString()
     });
+
+    this.persistStore();
   }
 
   private bootstrapData() {

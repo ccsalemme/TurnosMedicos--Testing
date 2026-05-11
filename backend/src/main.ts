@@ -6,7 +6,6 @@ import helmet from 'helmet';
 import { AppModule } from './app.module';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { ResponseInterceptor } from './common/interceptors/response.interceptor';
-import { PrismaService } from './prisma/prisma.service';
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
@@ -31,14 +30,6 @@ async function bootstrap(): Promise<void> {
 
   app.useGlobalFilters(new HttpExceptionFilter());
   app.useGlobalInterceptors(new ResponseInterceptor());
-
-  const mockModeEnabled =
-    String(configService.get<string>('MOCK_MODE', 'false')).toLowerCase() === 'true';
-
-  if (!mockModeEnabled) {
-    const prismaService = app.get(PrismaService);
-    await prismaService.enableShutdownHooks(app);
-  }
 
   const port = configService.get<number>('PORT', 3000);
   await app.listen(port);
