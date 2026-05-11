@@ -571,6 +571,33 @@
       "actorId": "usr_admin",
       "metadata": null,
       "createdAt": "2026-05-11T19:35:45.889469Z"
+    },
+    {
+      "id": "adt_qzsmiwu6",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_hdipk9yc",
+      "actorId": "usr_hdipk9yc",
+      "metadata": null,
+      "createdAt": "2026-05-11T19:40:57.414423Z"
+    },
+    {
+      "id": "adt_lj7vyyiz",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_hdipk9yc",
+      "actorId": "usr_hdipk9yc",
+      "metadata": null,
+      "createdAt": "2026-05-11T19:45:12.197512Z"
+    },
+    {
+      "id": "adt_wxhzoas3",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_admin",
+      "actorId": "usr_admin",
+      "metadata": null,
+      "createdAt": "2026-05-11T19:45:29.836110Z"
     }
   ]
 }
