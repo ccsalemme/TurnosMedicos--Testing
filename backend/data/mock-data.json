@@ -6,9 +6,9 @@
       "password": "Admin123!",
       "role": "ADMIN",
       "isActive": true,
-      "firstName": "Alicia",
-      "lastName": "Admin",
-      "phone": "+5491100000001"
+      "firstName": "Sofia",
+      "lastName": "Perez",
+      "phone": "+5491100000444"
     },
     {
       "id": "usr_doc1",
@@ -121,13 +121,30 @@
         "birthDate": "1978-02-21T00:00:00.000Z",
         "phone": "+5491100000007"
       }
+    },
+    {
+      "id": "usr_hdipk9yc",
+      "email": "csalemme@uade.edu.ar",
+      "password": "Toyotamey_211",
+      "role": "PATIENT",
+      "isActive": true,
+      "firstName": "Christian",
+      "lastName": "Salemme",
+      "phone": "2121212212",
+      "patientProfile": {
+        "id": "pat_7s7d7gp6",
+        "userId": "usr_hdipk9yc",
+        "document": "12212121",
+        "birthDate": "2026-05-07T00:00:00Z",
+        "phone": "2121212212"
+      }
     }
   ],
   "specialties": [
     {
       "id": "spc_cardiologia",
       "name": "Cardiologia",
-      "description": "Atencion cardiologica integral",
+      "description": "Cardiologia General",
       "durationMinutes": 30,
       "isActive": true
     },
@@ -233,10 +250,12 @@
       "siteId": "site_centro",
       "startAt": "2026-05-13T13:00:00.000Z",
       "endAt": "2026-05-13T13:30:00.000Z",
-      "status": "PENDING",
+      "status": "CANCELED",
       "notes": "Control anual",
       "createdAt": "2026-05-11T17:27:33.798Z",
-      "createdById": "usr_pat1"
+      "createdById": "usr_pat1",
+      "cancellationReason": "No puedo asistir",
+      "updatedById": "usr_pat1"
     },
     {
       "id": "apt_2",
@@ -265,9 +284,27 @@
       "createdAt": "2026-05-11T17:27:33.798Z",
       "createdById": "usr_pat3",
       "updatedById": "usr_pat3"
+    },
+    {
+      "id": "apt_d3br34c5",
+      "patientId": "usr_pat1",
+      "doctorId": "usr_doc1",
+      "specialtyId": "spc_cardiologia",
+      "siteId": "site_centro",
+      "startAt": "2026-06-10T14:00:00Z",
+      "endAt": "2026-06-10T14:30:00Z",
+      "status": "PENDING",
+      "notes": "Control",
+      "createdAt": "2026-05-11T19:32:55.133376Z",
+      "createdById": "usr_pat1"
     }
   ],
-  "settings": [],
+  "settings": [
+    {
+      "key": "CANCELLATION_WINDOW_HOURS",
+      "value": "24"
+    }
+  ],
   "audits": [
     {
       "id": "adt_04ij0zvg",
@@ -280,6 +317,260 @@
         "appointments": 3
       },
       "createdAt": "2026-05-11T17:27:33.798Z"
+    },
+    {
+      "id": "adt_okjwp603",
+      "action": "PATIENT_REGISTER",
+      "entity": "USER",
+      "entityId": "usr_hdipk9yc",
+      "actorId": "usr_hdipk9yc",
+      "metadata": {
+        "email": "csalemme@uade.edu.ar"
+      },
+      "createdAt": "2026-05-11T19:03:43.626870Z"
+    },
+    {
+      "id": "adt_evt5nnz2",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_admin",
+      "actorId": "usr_admin",
+      "metadata": null,
+      "createdAt": "2026-05-11T19:09:20.125162Z"
+    },
+    {
+      "id": "adt_iz9r76d0",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_doc1",
+      "actorId": "usr_doc1",
+      "metadata": null,
+      "createdAt": "2026-05-11T19:09:23.601435Z"
+    },
+    {
+      "id": "adt_9dwjo029",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-05-11T19:09:28.053060Z"
+    },
+    {
+      "id": "adt_xbnp6659",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_admin",
+      "actorId": "usr_admin",
+      "metadata": null,
+      "createdAt": "2026-05-11T19:09:45.389254Z"
+    },
+    {
+      "id": "adt_1u900zb1",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-05-11T19:10:02.699803Z"
+    },
+    {
+      "id": "adt_8zktv6z9",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_admin",
+      "actorId": "usr_admin",
+      "metadata": null,
+      "createdAt": "2026-05-11T19:10:22.710715Z"
+    },
+    {
+      "id": "adt_pbilh44l",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_admin",
+      "actorId": "usr_admin",
+      "metadata": null,
+      "createdAt": "2026-05-11T19:10:37.780224Z"
+    },
+    {
+      "id": "adt_gjsa8f58",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_admin",
+      "actorId": "usr_admin",
+      "metadata": null,
+      "createdAt": "2026-05-11T19:16:23.690295Z"
+    },
+    {
+      "id": "adt_3othtejo",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_admin",
+      "actorId": "usr_admin",
+      "metadata": null,
+      "createdAt": "2026-05-11T19:18:56.841923Z"
+    },
+    {
+      "id": "adt_wp7sz9da",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-05-11T19:19:25.705712Z"
+    },
+    {
+      "id": "adt_rlga86zm",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_admin",
+      "actorId": "usr_admin",
+      "metadata": null,
+      "createdAt": "2026-05-11T19:19:39.435905Z"
+    },
+    {
+      "id": "adt_d24qm03h",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_admin",
+      "actorId": "usr_admin",
+      "metadata": null,
+      "createdAt": "2026-05-11T19:19:54.537558Z"
+    },
+    {
+      "id": "adt_syrcp66z",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_doc1",
+      "actorId": "usr_doc1",
+      "metadata": null,
+      "createdAt": "2026-05-11T19:20:26.640257Z"
+    },
+    {
+      "id": "adt_9cfyksnj",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_admin",
+      "actorId": "usr_admin",
+      "metadata": null,
+      "createdAt": "2026-05-11T19:21:28.312057Z"
+    },
+    {
+      "id": "adt_ihbwdpev",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-05-11T19:21:28.329448Z"
+    },
+    {
+      "id": "adt_95nviub5",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_admin",
+      "actorId": "usr_admin",
+      "metadata": null,
+      "createdAt": "2026-05-11T19:26:58.117198Z"
+    },
+    {
+      "id": "adt_3xd4tvaq",
+      "action": "PROFILE_UPDATE",
+      "entity": "USER",
+      "entityId": "usr_admin",
+      "actorId": "usr_admin",
+      "metadata": {
+        "updatedFields": [
+          "firstName",
+          "lastName",
+          "phone"
+        ]
+      },
+      "createdAt": "2026-05-11T19:27:21.175533Z"
+    },
+    {
+      "id": "adt_5vt0tt5e",
+      "action": "SPECIALTY_UPDATE",
+      "entity": "SPECIALTY",
+      "entityId": "spc_cardiologia",
+      "actorId": "usr_admin",
+      "metadata": {
+        "updatedFields": [
+          "description"
+        ]
+      },
+      "createdAt": "2026-05-11T19:28:34.849103Z"
+    },
+    {
+      "id": "adt_2vknwmr2",
+      "action": "SPECIALTY_UPDATE",
+      "entity": "SPECIALTY",
+      "entityId": "spc_cardiologia",
+      "actorId": "usr_admin",
+      "metadata": {
+        "updatedFields": [
+          "description"
+        ]
+      },
+      "createdAt": "2026-05-11T19:29:19.128984Z"
+    },
+    {
+      "id": "adt_icdhhiio",
+      "action": "SPECIALTY_UPDATE",
+      "entity": "SPECIALTY",
+      "entityId": "spc_cardiologia",
+      "actorId": "usr_admin",
+      "metadata": {
+        "updatedFields": [
+          "description"
+        ]
+      },
+      "createdAt": "2026-05-11T19:29:33.556560Z"
+    },
+    {
+      "id": "adt_yn1i6cwx",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-05-11T19:31:37.397595Z"
+    },
+    {
+      "id": "adt_9187kptb",
+      "action": "APPOINTMENT_RESERVE",
+      "entity": "APPOINTMENT",
+      "entityId": "apt_d3br34c5",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-05-11T19:32:55.133393Z"
+    },
+    {
+      "id": "adt_10yedsgs",
+      "action": "APPOINTMENT_CANCEL",
+      "entity": "APPOINTMENT",
+      "entityId": "apt_1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-05-11T19:33:07.263309Z"
+    },
+    {
+      "id": "adt_pdy67t04",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_admin",
+      "actorId": "usr_admin",
+      "metadata": null,
+      "createdAt": "2026-05-11T19:33:42.419990Z"
+    },
+    {
+      "id": "adt_t1nnsata",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_admin",
+      "actorId": "usr_admin",
+      "metadata": null,
+      "createdAt": "2026-05-11T19:35:45.889469Z"
     }
   ]
 }

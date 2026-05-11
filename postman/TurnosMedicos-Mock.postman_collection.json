@@ -23,6 +23,10 @@
       "value": ""
     },
     {
+      "key": "token_current",
+      "value": ""
+    },
+    {
       "key": "doctorUserId",
       "value": "usr_doc1"
     },
@@ -58,7 +62,23 @@
               "raw": "{\n  \"email\": \"admin@clinica.local\",\n  \"password\": \"Admin123!\"\n}"
             },
             "url": "{{baseUrl}}/auth/login"
-          }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const json = pm.response.json();",
+                  "const token = json?.data?.accessToken;",
+                  "if (token) {",
+                  "  pm.collectionVariables.set('token_admin', token);",
+                  "  pm.collectionVariables.set('token_current', token);",
+                  "}"
+                ]
+              }
+            }
+          ]
         },
         {
           "name": "Login Doctor",
@@ -75,7 +95,23 @@
               "raw": "{\n  \"email\": \"doctor1@clinica.local\",\n  \"password\": \"Doctor123!\"\n}"
             },
             "url": "{{baseUrl}}/auth/login"
-          }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const json = pm.response.json();",
+                  "const token = json?.data?.accessToken;",
+                  "if (token) {",
+                  "  pm.collectionVariables.set('token_doctor', token);",
+                  "  pm.collectionVariables.set('token_current', token);",
+                  "}"
+                ]
+              }
+            }
+          ]
         },
         {
           "name": "Login Patient",
@@ -92,7 +128,23 @@
               "raw": "{\n  \"email\": \"paciente@clinica.local\",\n  \"password\": \"Paciente123!\"\n}"
             },
             "url": "{{baseUrl}}/auth/login"
-          }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const json = pm.response.json();",
+                  "const token = json?.data?.accessToken;",
+                  "if (token) {",
+                  "  pm.collectionVariables.set('token_patient', token);",
+                  "  pm.collectionVariables.set('token_current', token);",
+                  "}"
+                ]
+              }
+            }
+          ]
         },
         {
           "name": "Register Patient",
@@ -109,7 +161,23 @@
               "raw": "{\n  \"firstName\": \"Nuevo\",\n  \"lastName\": \"Paciente\",\n  \"email\": \"nuevo.paciente@clinica.local\",\n  \"password\": \"Paciente123!\",\n  \"document\": \"40111222\",\n  \"birthDate\": \"1996-09-20\",\n  \"phone\": \"+5491100000999\"\n}"
             },
             "url": "{{baseUrl}}/auth/register"
-          }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const json = pm.response.json();",
+                  "const token = json?.data?.accessToken;",
+                  "if (token) {",
+                  "  pm.collectionVariables.set('token_patient', token);",
+                  "  pm.collectionVariables.set('token_current', token);",
+                  "}"
+                ]
+              }
+            }
+          ]
         },
         {
           "name": "Me",
@@ -118,7 +186,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer {{token_admin}}"
+                "value": "Bearer {{token_current}}"
               }
             ],
             "url": "{{baseUrl}}/auth/me"
@@ -136,7 +204,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer {{token_patient}}"
+                "value": "Bearer {{token_current}}"
               }
             ],
             "url": "{{baseUrl}}/users/me"
@@ -149,7 +217,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer {{token_patient}}"
+                "value": "Bearer {{token_current}}"
               },
               {
                 "key": "Content-Type",
@@ -418,7 +486,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer {{token_patient}}"
+                "value": "Bearer {{token_current}}"
               }
             ],
             "url": "{{baseUrl}}/appointments/my"
