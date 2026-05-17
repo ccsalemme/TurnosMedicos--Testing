@@ -13,3 +13,8 @@ yarn-error.log*
 __pycache__/
 *.pyc
 backend/.venv/
+
+# Playwright and venv
+.venv/
+playwright-report/
+test-results/

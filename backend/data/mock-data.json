@@ -307,297 +307,594 @@
   ],
   "audits": [
     {
-      "id": "adt_04ij0zvg",
-      "action": "SYSTEM_MOCK_BOOTSTRAP",
-      "entity": "SYSTEM",
-      "entityId": "mock_init",
+      "id": "adt_x7y2w1q8",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_admin",
       "actorId": "usr_admin",
-      "metadata": {
-        "users": 7,
-        "appointments": 3
-      },
-      "createdAt": "2026-05-11T17:27:33.798Z"
+      "metadata": null,
+      "createdAt": "2026-05-01T08:12:11.120Z"
     },
     {
-      "id": "adt_okjwp603",
+      "id": "adt_k4m9p2sd",
       "action": "PATIENT_REGISTER",
       "entity": "USER",
-      "entityId": "usr_hdipk9yc",
-      "actorId": "usr_hdipk9yc",
+      "entityId": "usr_pat4",
+      "actorId": "usr_pat4",
       "metadata": {
-        "email": "csalemme@uade.edu.ar"
+        "email": "martina.lopez@example.com"
       },
-      "createdAt": "2026-05-11T19:03:43.626870Z"
+      "createdAt": "2026-05-01T09:03:44.512Z"
     },
     {
-      "id": "adt_evt5nnz2",
-      "action": "LOGIN",
+      "id": "adt_v6n3c8ta",
+      "action": "PROFILE_UPDATE",
       "entity": "USER",
-      "entityId": "usr_admin",
-      "actorId": "usr_admin",
-      "metadata": null,
-      "createdAt": "2026-05-11T19:09:20.125162Z"
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": {
+        "updatedFields": [
+          "phone"
+        ]
+      },
+      "createdAt": "2026-05-01T10:18:27.904Z"
     },
     {
-      "id": "adt_iz9r76d0",
+      "id": "adt_b2r7l5hz",
+      "action": "SPECIALTY_UPDATE",
+      "entity": "SPECIALTY",
+      "entityId": "spc_cardiologia",
+      "actorId": "usr_admin",
+      "metadata": {
+        "updatedFields": [
+          "description",
+          "durationMinutes"
+        ]
+      },
+      "createdAt": "2026-05-01T11:41:09.338Z"
+    },
+    {
+      "id": "adt_p8q1d6xm",
+      "action": "APPOINTMENT_RESERVE",
+      "entity": "APPOINTMENT",
+      "entityId": "apt_4h2k9v1z",
+      "actorId": "usr_pat1",
+      "metadata": {
+        "doctorId": "usr_doc1",
+        "specialtyId": "spc_cardiologia",
+        "siteId": "ste_central",
+        "startAt": "2026-05-03T14:00:00.000Z"
+      },
+      "createdAt": "2026-05-01T12:26:53.617Z"
+    },
+    {
+      "id": "adt_f9s4j1nc",
       "action": "LOGIN",
       "entity": "USER",
       "entityId": "usr_doc1",
       "actorId": "usr_doc1",
       "metadata": null,
-      "createdAt": "2026-05-11T19:09:23.601435Z"
+      "createdAt": "2026-05-01T15:05:18.043Z"
     },
     {
-      "id": "adt_9dwjo029",
-      "action": "LOGIN",
-      "entity": "USER",
-      "entityId": "usr_pat1",
-      "actorId": "usr_pat1",
-      "metadata": null,
-      "createdAt": "2026-05-11T19:09:28.053060Z"
-    },
-    {
-      "id": "adt_xbnp6659",
-      "action": "LOGIN",
-      "entity": "USER",
-      "entityId": "usr_admin",
-      "actorId": "usr_admin",
-      "metadata": null,
-      "createdAt": "2026-05-11T19:09:45.389254Z"
-    },
-    {
-      "id": "adt_1u900zb1",
-      "action": "LOGIN",
-      "entity": "USER",
-      "entityId": "usr_pat1",
-      "actorId": "usr_pat1",
-      "metadata": null,
-      "createdAt": "2026-05-11T19:10:02.699803Z"
-    },
-    {
-      "id": "adt_8zktv6z9",
-      "action": "LOGIN",
-      "entity": "USER",
-      "entityId": "usr_admin",
-      "actorId": "usr_admin",
-      "metadata": null,
-      "createdAt": "2026-05-11T19:10:22.710715Z"
-    },
-    {
-      "id": "adt_pbilh44l",
-      "action": "LOGIN",
-      "entity": "USER",
-      "entityId": "usr_admin",
-      "actorId": "usr_admin",
-      "metadata": null,
-      "createdAt": "2026-05-11T19:10:37.780224Z"
-    },
-    {
-      "id": "adt_gjsa8f58",
-      "action": "LOGIN",
-      "entity": "USER",
-      "entityId": "usr_admin",
-      "actorId": "usr_admin",
-      "metadata": null,
-      "createdAt": "2026-05-11T19:16:23.690295Z"
-    },
-    {
-      "id": "adt_3othtejo",
-      "action": "LOGIN",
-      "entity": "USER",
-      "entityId": "usr_admin",
-      "actorId": "usr_admin",
-      "metadata": null,
-      "createdAt": "2026-05-11T19:18:56.841923Z"
-    },
-    {
-      "id": "adt_wp7sz9da",
-      "action": "LOGIN",
-      "entity": "USER",
-      "entityId": "usr_pat1",
-      "actorId": "usr_pat1",
-      "metadata": null,
-      "createdAt": "2026-05-11T19:19:25.705712Z"
-    },
-    {
-      "id": "adt_rlga86zm",
-      "action": "LOGIN",
-      "entity": "USER",
-      "entityId": "usr_admin",
-      "actorId": "usr_admin",
-      "metadata": null,
-      "createdAt": "2026-05-11T19:19:39.435905Z"
-    },
-    {
-      "id": "adt_d24qm03h",
-      "action": "LOGIN",
-      "entity": "USER",
-      "entityId": "usr_admin",
-      "actorId": "usr_admin",
-      "metadata": null,
-      "createdAt": "2026-05-11T19:19:54.537558Z"
-    },
-    {
-      "id": "adt_syrcp66z",
-      "action": "LOGIN",
+      "id": "adt_m3x8a2rp",
+      "action": "PROFILE_UPDATE",
       "entity": "USER",
       "entityId": "usr_doc1",
       "actorId": "usr_doc1",
-      "metadata": null,
-      "createdAt": "2026-05-11T19:20:26.640257Z"
+      "metadata": {
+        "updatedFields": [
+          "bio",
+          "phone"
+        ]
+      },
+      "createdAt": "2026-05-02T08:44:31.225Z"
     },
     {
-      "id": "adt_9cfyksnj",
-      "action": "LOGIN",
-      "entity": "USER",
-      "entityId": "usr_admin",
-      "actorId": "usr_admin",
-      "metadata": null,
-      "createdAt": "2026-05-11T19:21:28.312057Z"
-    },
-    {
-      "id": "adt_ihbwdpev",
-      "action": "LOGIN",
-      "entity": "USER",
-      "entityId": "usr_pat1",
+      "id": "adt_q5z7t9lb",
+      "action": "APPOINTMENT_CANCEL",
+      "entity": "APPOINTMENT",
+      "entityId": "apt_4h2k9v1z",
       "actorId": "usr_pat1",
-      "metadata": null,
-      "createdAt": "2026-05-11T19:21:28.329448Z"
+      "metadata": {
+        "reason": "Superposicion de horarios"
+      },
+      "createdAt": "2026-05-02T10:09:14.781Z"
     },
     {
-      "id": "adt_95nviub5",
+      "id": "adt_h1c6n8wy",
+      "action": "SPECIALTY_UPDATE",
+      "entity": "SPECIALTY",
+      "entityId": "spc_pediatria",
+      "actorId": "usr_admin",
+      "metadata": {
+        "updatedFields": [
+          "isActive"
+        ]
+      },
+      "createdAt": "2026-05-02T12:32:40.109Z"
+    },
+    {
+      "id": "adt_r8v2k4fq",
+      "action": "PATIENT_REGISTER",
+      "entity": "USER",
+      "entityId": "usr_pat5",
+      "actorId": "usr_pat5",
+      "metadata": {
+        "email": "diego.fernandez@example.com"
+      },
+      "createdAt": "2026-05-02T16:20:55.610Z"
+    },
+    {
+      "id": "adt_n7p1s5jc",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat2",
+      "actorId": "usr_pat2",
+      "metadata": null,
+      "createdAt": "2026-05-03T07:58:06.291Z"
+    },
+    {
+      "id": "adt_w4d9m2qh",
+      "action": "APPOINTMENT_RESERVE",
+      "entity": "APPOINTMENT",
+      "entityId": "apt_9c3b7x2n",
+      "actorId": "usr_pat2",
+      "metadata": {
+        "doctorId": "usr_doc2",
+        "specialtyId": "spc_dermatologia",
+        "siteId": "ste_norte",
+        "startAt": "2026-05-05T09:30:00.000Z"
+      },
+      "createdAt": "2026-05-03T09:21:37.044Z"
+    },
+    {
+      "id": "adt_c6j8p4za",
+      "action": "PROFILE_UPDATE",
+      "entity": "USER",
+      "entityId": "usr_pat2",
+      "actorId": "usr_pat2",
+      "metadata": {
+        "updatedFields": [
+          "phone",
+          "birthDate"
+        ]
+      },
+      "createdAt": "2026-05-03T11:14:02.918Z"
+    },
+    {
+      "id": "adt_x2f7r9mv",
+      "action": "SPECIALTY_UPDATE",
+      "entity": "SPECIALTY",
+      "entityId": "spc_clinicageneral",
+      "actorId": "usr_admin",
+      "metadata": {
+        "updatedFields": [
+          "description"
+        ]
+      },
+      "createdAt": "2026-05-03T13:45:29.773Z"
+    },
+    {
+      "id": "adt_l5q3n8sd",
+      "action": "APPOINTMENT_RESERVE",
+      "entity": "APPOINTMENT",
+      "entityId": "apt_1j8k4p6c",
+      "actorId": "usr_pat3",
+      "metadata": {
+        "doctorId": "usr_doc3",
+        "specialtyId": "spc_clinicageneral",
+        "siteId": "ste_central",
+        "startAt": "2026-05-06T16:00:00.000Z",
+        "notes": "Control anual"
+      },
+      "createdAt": "2026-05-03T18:02:48.507Z"
+    },
+    {
+      "id": "adt_b9m4t6rx",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_doc2",
+      "actorId": "usr_doc2",
+      "metadata": null,
+      "createdAt": "2026-05-04T08:11:53.135Z"
+    },
+    {
+      "id": "adt_z3p8h1kc",
+      "action": "PROFILE_UPDATE",
+      "entity": "USER",
+      "entityId": "usr_doc2",
+      "actorId": "usr_doc2",
+      "metadata": {
+        "updatedFields": [
+          "bio"
+        ]
+      },
+      "createdAt": "2026-05-04T09:34:19.600Z"
+    },
+    {
+      "id": "adt_s6v2q7dn",
+      "action": "APPOINTMENT_CANCEL",
+      "entity": "APPOINTMENT",
+      "entityId": "apt_9c3b7x2n",
+      "actorId": "usr_pat2",
+      "metadata": {
+        "reason": "Paciente con sintomas febriles"
+      },
+      "createdAt": "2026-05-04T10:48:45.234Z"
+    },
+    {
+      "id": "adt_j1k9x4pf",
+      "action": "SPECIALTY_UPDATE",
+      "entity": "SPECIALTY",
+      "entityId": "spc_dermatologia",
+      "actorId": "usr_admin",
+      "metadata": {
+        "updatedFields": [
+          "durationMinutes",
+          "description"
+        ]
+      },
+      "createdAt": "2026-05-04T14:07:12.880Z"
+    },
+    {
+      "id": "adt_t8n5c2ya",
+      "action": "PATIENT_REGISTER",
+      "entity": "USER",
+      "entityId": "usr_pat6",
+      "actorId": "usr_pat6",
+      "metadata": {
+        "email": "valeria.nunez@example.com"
+      },
+      "createdAt": "2026-05-04T17:26:31.009Z"
+    },
+    {
+      "id": "adt_e4r7m1zk",
       "action": "LOGIN",
       "entity": "USER",
       "entityId": "usr_admin",
       "actorId": "usr_admin",
       "metadata": null,
-      "createdAt": "2026-05-11T19:26:58.117198Z"
+      "createdAt": "2026-05-05T07:49:08.447Z"
     },
     {
-      "id": "adt_3xd4tvaq",
+      "id": "adt_p2d8w6sn",
+      "action": "APPOINTMENT_RESERVE",
+      "entity": "APPOINTMENT",
+      "entityId": "apt_6m2v8r4q",
+      "actorId": "usr_pat1",
+      "metadata": {
+        "doctorId": "usr_doc1",
+        "specialtyId": "spc_cardiologia",
+        "siteId": "ste_sur",
+        "startAt": "2026-05-08T10:00:00.000Z"
+      },
+      "createdAt": "2026-05-05T08:55:21.664Z"
+    },
+    {
+      "id": "adt_h7c1q9xl",
+      "action": "PROFILE_UPDATE",
+      "entity": "USER",
+      "entityId": "usr_pat3",
+      "actorId": "usr_pat3",
+      "metadata": {
+        "updatedFields": [
+          "phone"
+        ]
+      },
+      "createdAt": "2026-05-05T10:16:52.188Z"
+    },
+    {
+      "id": "adt_m6x2r8pa",
+      "action": "SPECIALTY_UPDATE",
+      "entity": "SPECIALTY",
+      "entityId": "spc_pediatria",
+      "actorId": "usr_admin",
+      "metadata": {
+        "updatedFields": [
+          "description",
+          "isActive"
+        ]
+      },
+      "createdAt": "2026-05-05T12:39:04.731Z"
+    },
+    {
+      "id": "adt_v1n7t3cq",
+      "action": "APPOINTMENT_CANCEL",
+      "entity": "APPOINTMENT",
+      "entityId": "apt_1j8k4p6c",
+      "actorId": "usr_pat3",
+      "metadata": {
+        "reason": "Reagendamiento por viaje"
+      },
+      "createdAt": "2026-05-05T15:05:39.950Z"
+    },
+    {
+      "id": "adt_k8p4d2mv",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat4",
+      "actorId": "usr_pat4",
+      "metadata": null,
+      "createdAt": "2026-05-06T08:03:17.402Z"
+    },
+    {
+      "id": "adt_r3q9h6zt",
+      "action": "PROFILE_UPDATE",
+      "entity": "USER",
+      "entityId": "usr_pat4",
+      "actorId": "usr_pat4",
+      "metadata": {
+        "updatedFields": [
+          "email",
+          "phone"
+        ]
+      },
+      "createdAt": "2026-05-06T09:17:48.120Z"
+    },
+    {
+      "id": "adt_n2s5v8jg",
+      "action": "APPOINTMENT_RESERVE",
+      "entity": "APPOINTMENT",
+      "entityId": "apt_7c1m9x4d",
+      "actorId": "usr_pat4",
+      "metadata": {
+        "doctorId": "usr_doc2",
+        "specialtyId": "spc_dermatologia",
+        "siteId": "ste_norte",
+        "startAt": "2026-05-09T11:30:00.000Z"
+      },
+      "createdAt": "2026-05-06T11:41:26.559Z"
+    },
+    {
+      "id": "adt_f5x8c1qr",
+      "action": "SPECIALTY_UPDATE",
+      "entity": "SPECIALTY",
+      "entityId": "spc_cardiologia",
+      "actorId": "usr_admin",
+      "metadata": {
+        "updatedFields": [
+          "durationMinutes"
+        ]
+      },
+      "createdAt": "2026-05-06T13:52:11.774Z"
+    },
+    {
+      "id": "adt_x9m3p7ld",
+      "action": "APPOINTMENT_CANCEL",
+      "entity": "APPOINTMENT",
+      "entityId": "apt_6m2v8r4q",
+      "actorId": "usr_pat1",
+      "metadata": {
+        "reason": "Problema de salud resuelto"
+      },
+      "createdAt": "2026-05-06T16:08:57.991Z"
+    },
+    {
+      "id": "adt_c2v8n4sa",
+      "action": "PATIENT_REGISTER",
+      "entity": "USER",
+      "entityId": "usr_pat7",
+      "actorId": "usr_pat7",
+      "metadata": {
+        "email": "sofia.castro@example.com"
+      },
+      "createdAt": "2026-05-07T08:26:14.336Z"
+    },
+    {
+      "id": "adt_b7d1k5px",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_doc3",
+      "actorId": "usr_doc3",
+      "metadata": null,
+      "createdAt": "2026-05-07T09:08:40.705Z"
+    },
+    {
+      "id": "adt_p6r3t9zh",
+      "action": "PROFILE_UPDATE",
+      "entity": "USER",
+      "entityId": "usr_doc3",
+      "actorId": "usr_doc3",
+      "metadata": {
+        "updatedFields": [
+          "phone",
+          "siteId"
+        ]
+      },
+      "createdAt": "2026-05-07T10:44:33.261Z"
+    },
+    {
+      "id": "adt_v8q2m6jc",
+      "action": "APPOINTMENT_RESERVE",
+      "entity": "APPOINTMENT",
+      "entityId": "apt_3n7x5k2b",
+      "actorId": "usr_pat2",
+      "metadata": {
+        "doctorId": "usr_doc3",
+        "specialtyId": "spc_clinicageneral",
+        "siteId": "ste_central",
+        "startAt": "2026-05-10T09:00:00.000Z"
+      },
+      "createdAt": "2026-05-07T12:12:59.418Z"
+    },
+    {
+      "id": "adt_m9c4x1rp",
+      "action": "SPECIALTY_UPDATE",
+      "entity": "SPECIALTY",
+      "entityId": "spc_clinicageneral",
+      "actorId": "usr_admin",
+      "metadata": {
+        "updatedFields": [
+          "isActive"
+        ]
+      },
+      "createdAt": "2026-05-07T15:23:06.877Z"
+    },
+    {
+      "id": "adt_t1h6n8vk",
+      "action": "APPOINTMENT_CANCEL",
+      "entity": "APPOINTMENT",
+      "entityId": "apt_3n7x5k2b",
+      "actorId": "usr_pat2",
+      "metadata": {
+        "reason": "Falta de disponibilidad del paciente"
+      },
+      "createdAt": "2026-05-07T17:55:41.203Z"
+    },
+    {
+      "id": "adt_d4s7q2mx",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat5",
+      "actorId": "usr_pat5",
+      "metadata": null,
+      "createdAt": "2026-05-08T07:14:28.615Z"
+    },
+    {
+      "id": "adt_k1p8v3nd",
+      "action": "PROFILE_UPDATE",
+      "entity": "USER",
+      "entityId": "usr_pat5",
+      "actorId": "usr_pat5",
+      "metadata": {
+        "updatedFields": [
+          "address"
+        ]
+      },
+      "createdAt": "2026-05-08T08:37:10.492Z"
+    },
+    {
+      "id": "adt_w6m2r9cz",
+      "action": "APPOINTMENT_RESERVE",
+      "entity": "APPOINTMENT",
+      "entityId": "apt_8j4k2n6p",
+      "actorId": "usr_pat5",
+      "metadata": {
+        "doctorId": "usr_doc1",
+        "specialtyId": "spc_cardiologia",
+        "siteId": "ste_central",
+        "startAt": "2026-05-12T15:00:00.000Z",
+        "notes": "Primera consulta"
+      },
+      "createdAt": "2026-05-08T10:02:44.108Z"
+    },
+    {
+      "id": "adt_s9x1c5qp",
+      "action": "SPECIALTY_UPDATE",
+      "entity": "SPECIALTY",
+      "entityId": "spc_dermatologia",
+      "actorId": "usr_admin",
+      "metadata": {
+        "updatedFields": [
+          "description"
+        ]
+      },
+      "createdAt": "2026-05-08T13:18:36.730Z"
+    },
+    {
+      "id": "adt_n4v8t2hr",
+      "action": "APPOINTMENT_CANCEL",
+      "entity": "APPOINTMENT",
+      "entityId": "apt_8j4k2n6p",
+      "actorId": "usr_pat5",
+      "metadata": {
+        "reason": "Mejoria clinica"
+      },
+      "createdAt": "2026-05-08T16:27:59.124Z"
+    },
+    {
+      "id": "adt_x3r7m1kd",
+      "action": "PATIENT_REGISTER",
+      "entity": "USER",
+      "entityId": "usr_pat8",
+      "actorId": "usr_pat8",
+      "metadata": {
+        "email": "mauro.paz@example.com"
+      },
+      "createdAt": "2026-05-09T08:11:03.508Z"
+    },
+    {
+      "id": "adt_b5q9n4sx",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat6",
+      "actorId": "usr_pat6",
+      "metadata": null,
+      "createdAt": "2026-05-09T09:39:18.046Z"
+    },
+    {
+      "id": "adt_c8m2p7vr",
+      "action": "PROFILE_UPDATE",
+      "entity": "USER",
+      "entityId": "usr_pat6",
+      "actorId": "usr_pat6",
+      "metadata": {
+        "updatedFields": [
+          "birthDate"
+        ]
+      },
+      "createdAt": "2026-05-09T11:04:50.991Z"
+    },
+    {
+      "id": "adt_h9d1k6qt",
+      "action": "APPOINTMENT_RESERVE",
+      "entity": "APPOINTMENT",
+      "entityId": "apt_5p2v8r3m",
+      "actorId": "usr_pat6",
+      "metadata": {
+        "doctorId": "usr_doc2",
+        "specialtyId": "spc_dermatologia",
+        "siteId": "ste_sur",
+        "startAt": "2026-05-13T08:30:00.000Z"
+      },
+      "createdAt": "2026-05-09T12:49:27.310Z"
+    },
+    {
+      "id": "adt_p4x6n1cs",
+      "action": "SPECIALTY_UPDATE",
+      "entity": "SPECIALTY",
+      "entityId": "spc_pediatria",
+      "actorId": "usr_admin",
+      "metadata": {
+        "updatedFields": [
+          "durationMinutes"
+        ]
+      },
+      "createdAt": "2026-05-09T14:31:05.602Z"
+    },
+    {
+      "id": "adt_r1v8q3zm",
+      "action": "APPOINTMENT_CANCEL",
+      "entity": "APPOINTMENT",
+      "entityId": "apt_5p2v8r3m",
+      "actorId": "usr_pat6",
+      "metadata": {
+        "reason": "Cambio de turno laboral"
+      },
+      "createdAt": "2026-05-09T17:40:12.818Z"
+    },
+    {
+      "id": "adt_m2c7x9pd",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_admin",
+      "actorId": "usr_admin",
+      "metadata": null,
+      "createdAt": "2026-05-10T07:45:59.471Z"
+    },
+    {
+      "id": "adt_v4n1k8sr",
       "action": "PROFILE_UPDATE",
       "entity": "USER",
       "entityId": "usr_admin",
       "actorId": "usr_admin",
       "metadata": {
         "updatedFields": [
-          "firstName",
-          "lastName",
           "phone"
         ]
       },
-      "createdAt": "2026-05-11T19:27:21.175533Z"
-    },
-    {
-      "id": "adt_5vt0tt5e",
-      "action": "SPECIALTY_UPDATE",
-      "entity": "SPECIALTY",
-      "entityId": "spc_cardiologia",
-      "actorId": "usr_admin",
-      "metadata": {
-        "updatedFields": [
-          "description"
-        ]
-      },
-      "createdAt": "2026-05-11T19:28:34.849103Z"
-    },
-    {
-      "id": "adt_2vknwmr2",
-      "action": "SPECIALTY_UPDATE",
-      "entity": "SPECIALTY",
-      "entityId": "spc_cardiologia",
-      "actorId": "usr_admin",
-      "metadata": {
-        "updatedFields": [
-          "description"
-        ]
-      },
-      "createdAt": "2026-05-11T19:29:19.128984Z"
-    },
-    {
-      "id": "adt_icdhhiio",
-      "action": "SPECIALTY_UPDATE",
-      "entity": "SPECIALTY",
-      "entityId": "spc_cardiologia",
-      "actorId": "usr_admin",
-      "metadata": {
-        "updatedFields": [
-          "description"
-        ]
-      },
-      "createdAt": "2026-05-11T19:29:33.556560Z"
-    },
-    {
-      "id": "adt_yn1i6cwx",
-      "action": "LOGIN",
-      "entity": "USER",
-      "entityId": "usr_pat1",
-      "actorId": "usr_pat1",
-      "metadata": null,
-      "createdAt": "2026-05-11T19:31:37.397595Z"
-    },
-    {
-      "id": "adt_9187kptb",
-      "action": "APPOINTMENT_RESERVE",
-      "entity": "APPOINTMENT",
-      "entityId": "apt_d3br34c5",
-      "actorId": "usr_pat1",
-      "metadata": null,
-      "createdAt": "2026-05-11T19:32:55.133393Z"
-    },
-    {
-      "id": "adt_10yedsgs",
-      "action": "APPOINTMENT_CANCEL",
-      "entity": "APPOINTMENT",
-      "entityId": "apt_1",
-      "actorId": "usr_pat1",
-      "metadata": null,
-      "createdAt": "2026-05-11T19:33:07.263309Z"
-    },
-    {
-      "id": "adt_pdy67t04",
-      "action": "LOGIN",
-      "entity": "USER",
-      "entityId": "usr_admin",
-      "actorId": "usr_admin",
-      "metadata": null,
-      "createdAt": "2026-05-11T19:33:42.419990Z"
-    },
-    {
-      "id": "adt_t1nnsata",
-      "action": "LOGIN",
-      "entity": "USER",
-      "entityId": "usr_admin",
-      "actorId": "usr_admin",
-      "metadata": null,
-      "createdAt": "2026-05-11T19:35:45.889469Z"
-    },
-    {
-      "id": "adt_qzsmiwu6",
-      "action": "LOGIN",
-      "entity": "USER",
-      "entityId": "usr_hdipk9yc",
-      "actorId": "usr_hdipk9yc",
-      "metadata": null,
-      "createdAt": "2026-05-11T19:40:57.414423Z"
-    },
-    {
-      "id": "adt_lj7vyyiz",
-      "action": "LOGIN",
-      "entity": "USER",
-      "entityId": "usr_hdipk9yc",
-      "actorId": "usr_hdipk9yc",
-      "metadata": null,
-      "createdAt": "2026-05-11T19:45:12.197512Z"
-    },
-    {
-      "id": "adt_wxhzoas3",
-      "action": "LOGIN",
-      "entity": "USER",
-      "entityId": "usr_admin",
-      "actorId": "usr_admin",
-      "metadata": null,
-      "createdAt": "2026-05-11T19:45:29.836110Z"
+      "createdAt": "2026-05-10T09:02:16.884Z"
     }
   ]
 }
