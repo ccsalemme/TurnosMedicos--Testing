@@ -94,3 +94,39 @@ npm run db:seed
 - Paciente: `paciente@clinica.local` / `Paciente123!`
 - Paciente: `paciente2@clinica.local` / `Paciente123!`
 - Paciente: `paciente3@clinica.local` / `Paciente123!`
+
+## Deploy publico gratuito (GitHub Pages + Render)
+
+Esta opcion publica la app para usuarios externos:
+- Frontend en GitHub Pages (automatico por GitHub Actions).
+- Backend FastAPI en Render (plan free).
+
+### 1) Publicar backend en Render
+
+1. Subi el repositorio a GitHub.
+2. En Render, crear un nuevo Web Service desde el repo.
+3. Render detecta `render.yaml` y precarga configuracion de build/start.
+4. Definir variables de entorno obligatorias:
+  - `JWT_SECRET`: un secreto fuerte.
+  - `CORS_ORIGIN`: URL publica del frontend (por ejemplo `https://<usuario>.github.io/<repo>`).
+
+URL esperada del backend: `https://<tu-servicio>.onrender.com/api/v1`
+
+### 2) Configurar GitHub Pages para frontend
+
+Ya esta incluido el workflow:
+- `.github/workflows/deploy-frontend-pages.yml`
+
+Pasos:
+1. En GitHub > Settings > Pages, seleccionar `GitHub Actions` como source.
+2. En GitHub > Settings > Secrets and variables > Actions > Variables, crear:
+  - `VITE_API_BASE_URL` = `https://<tu-servicio>.onrender.com/api/v1`
+3. Hacer push a `main` para disparar el deploy.
+
+URL esperada del frontend: `https://<usuario>.github.io/<repo>/`
+
+### 3) Notas importantes
+
+- En Pages se usa hash routing para evitar errores 404 al refrescar rutas.
+- El backend free de Render puede "dormirse" y tardar en responder el primer request.
+- La persistencia actual usa JSON local (`backend/data/mock-data.json`), por lo que no es ideal para produccion real.

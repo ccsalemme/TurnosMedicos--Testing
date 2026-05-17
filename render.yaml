@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: turnos-medicos-api
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    plan: free
+    envVars:
+      - key: JWT_SECRET
+        sync: false
+      - key: JWT_EXPIRES_IN
+        value: 8h
+      - key: MOCK_DATA_FILE
+        value: ./data/mock-data.json
+      - key: DEFAULT_CANCELLATION_WINDOW_HOURS
+        value: 24
+      - key: CORS_ORIGIN
+        sync: false
