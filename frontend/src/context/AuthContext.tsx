@@ -64,15 +64,20 @@ export function AuthProvider({ children }: PropsWithChildren) {
 
   useEffect(() => {
     const bootstrap = async () => {
+      console.log('[AuthContext] Bootstrap - Token actual:', token);
       if (!token) {
+        console.log('[AuthContext] No hay token, saltando bootstrap');
         setLoading(false);
         return;
       }
 
       try {
+        console.log('[AuthContext] Obteniendo perfil del usuario...');
         const profile = await api.me(token);
+        console.log('[AuthContext] Perfil obtenido:', profile);
         setUser(profile);
-      } catch {
+      } catch (err) {
+        console.error('[AuthContext] Error obteniendo perfil:', err);
         persistToken(null);
         setUser(null);
       } finally {
@@ -84,9 +89,13 @@ export function AuthProvider({ children }: PropsWithChildren) {
   }, [token]);
 
   const login = useCallback(async (input: { email: string; password: string }) => {
+    console.log('[AuthContext] Intentando login con email:', input.email);
     const result = await api.login(input);
+    console.log('[AuthContext] Login exitoso, token:', result.accessToken.substring(0, 20) + '...');
+    console.log('[AuthContext] Usuario recibido:', result.user);
     persistToken(result.accessToken);
     setUser(result.user);
+    console.log('[AuthContext] Estado actualizado - Usuario:', result.user);
   }, []);
 
   const registerPatient = useCallback(

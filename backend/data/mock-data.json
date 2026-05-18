@@ -895,6 +895,47 @@
         ]
       },
       "createdAt": "2026-05-10T09:02:16.884Z"
+    },
+    {
+      "id": "adt_w7683pzc",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_hdipk9yc",
+      "actorId": "usr_hdipk9yc",
+      "metadata": null,
+      "createdAt": "2026-05-18T17:11:55.664538Z"
+    },
+    {
+      "id": "adt_zylsr8w8",
+      "action": "PROFILE_UPDATE",
+      "entity": "USER",
+      "entityId": "usr_hdipk9yc",
+      "actorId": "usr_hdipk9yc",
+      "metadata": {
+        "updatedFields": [
+          "firstName",
+          "lastName",
+          "phone",
+          "birthDate"
+        ]
+      },
+      "createdAt": "2026-05-18T18:06:11.569041Z"
+    },
+    {
+      "id": "adt_m44ic256",
+      "action": "PROFILE_UPDATE",
+      "entity": "USER",
+      "entityId": "usr_hdipk9yc",
+      "actorId": "usr_hdipk9yc",
+      "metadata": {
+        "updatedFields": [
+          "firstName",
+          "lastName",
+          "phone",
+          "birthDate"
+        ]
+      },
+      "createdAt": "2026-05-18T18:06:14.459086Z"
     }
   ]
 }

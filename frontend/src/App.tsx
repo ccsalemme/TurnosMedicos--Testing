@@ -10,32 +10,35 @@ import { DoctorDashboard } from './features/doctor/DoctorDashboard';
 import { PatientDashboard } from './features/patient/PatientDashboard';
 import { HomePage } from './features/public/HomePage';
 
-function HomeRedirect() {
+function HomeWrapper() {
   const { user, loading } = useAuth();
+
+  console.log('[HomeWrapper] Usuario:', user);
+  console.log('[HomeWrapper] Loading:', loading);
 
   if (loading) {
     return <PageState message="Cargando..." />;
   }
 
-  if (!user) {
-    return <HomePage />;
+  // Si hay usuario, mostrar HomePage dentro del AppShell
+  if (user) {
+    console.log('[HomeWrapper] Usuario logueado - Mostrando HomePage con AppShell');
+    return (
+      <AppShell>
+        <HomePage />
+      </AppShell>
+    );
   }
 
-  if (user.role === 'ADMIN') {
-    return <Navigate to="/admin" replace />;
-  }
-
-  if (user.role === 'DOCTOR') {
-    return <Navigate to="/doctor" replace />;
-  }
-
-  return <Navigate to="/patient" replace />;
+  // Si no hay usuario, mostrar HomePage sin AppShell
+  console.log('[HomeWrapper] Sin usuario - Mostrando HomePage pública');
+  return <HomePage />;
 }
 
 export default function App() {
   return (
     <Routes>
-      <Route path="/" element={<HomeRedirect />} />
+      <Route path="/" element={<HomeWrapper />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
 

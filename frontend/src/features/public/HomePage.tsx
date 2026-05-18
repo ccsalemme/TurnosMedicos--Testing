@@ -14,36 +14,44 @@ const rolePath: Record<string, string> = {
 export function HomePage() {
   const { user } = useAuth();
 
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-slate-50 to-white">
-      <header className="sticky top-0 z-40 border-b bg-white/90 backdrop-blur-sm">
-        <div className="page-wrap flex h-16 items-center justify-between">
-          <Link to="/" className="flex items-center gap-2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600 text-lg font-bold text-white">M+</div>
-            <span className="text-xl font-semibold text-slate-900">MediCare</span>
-          </Link>
-          <nav className="flex items-center gap-2">
-            <Link to="/login" className="rounded-md px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-blue-600">
-              Ingresar
-            </Link>
-            <Link to="/register" className="rounded-md px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-blue-600">
-              Registro
-            </Link>
-            {user && (
-              <Link
-                to={rolePath[user.role]}
-                className="rounded-md bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700"
-              >
-                Mi panel
-              </Link>
-            )}
-          </nav>
-        </div>
-      </header>
+  console.log('[HomePage] Usuario actual:', user);
+  console.log('[HomePage] Rol del usuario:', user?.role);
+  console.log('[HomePage] Ruta según rol:', user ? rolePath[user.role] : 'No hay usuario');
 
-      <section className="page-wrap grid items-center gap-10 py-14 lg:grid-cols-2 lg:py-20">
+  return (
+    <div className={user ? '' : 'min-h-screen bg-gradient-to-b from-blue-50 via-slate-50 to-white'}>
+      {!user && (
+        <header className="sticky top-0 z-40 border-b bg-white/90 backdrop-blur-sm">
+          <div className="page-wrap flex h-16 items-center justify-between">
+            <Link to="/" className="flex items-center gap-2">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600 text-lg font-bold text-white">M+</div>
+              <span className="text-xl font-semibold text-slate-900">MediCare</span>
+            </Link>
+            <nav className="flex items-center gap-2">
+              <>
+                {console.log('[HomePage Header] Renderizando sin usuario (modo público)')}
+                <Link to="/login" className="rounded-md px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-blue-600">
+                  Ingresar
+                </Link>
+                <Link to="/register" className="rounded-md px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-blue-600">
+                  Registro
+                </Link>
+              </>
+            </nav>
+          </div>
+        </header>
+      )}
+
+      {user && (
+        <header className="rounded-xl border bg-white p-6 shadow-sm mb-6">
+          <h1 className="text-2xl font-semibold text-slate-900">Bienvenido, {user.firstName}!</h1>
+          <p className="mt-1 text-slate-600">Desde aquí puedes acceder a todas las funciones de la plataforma.</p>
+        </header>
+      )}
+
+      <section className={user ? 'grid items-center gap-6 mb-6' : 'page-wrap grid items-center gap-10 py-14 lg:grid-cols-2 lg:py-20'}>
         <div className="space-y-5">
-          <h1 className="text-4xl font-semibold tracking-tight text-slate-900 md:text-5xl">
+          <h1 className={user ? 'text-2xl font-semibold tracking-tight text-slate-900' : 'text-4xl font-semibold tracking-tight text-slate-900 md:text-5xl'}>
             Calidad medica y gestion digital en una sola plataforma
           </h1>
           <p className="text-lg leading-relaxed text-slate-600">
@@ -52,11 +60,26 @@ export function HomePage() {
           </p>
           <div className="flex flex-wrap gap-3">
             {user ? (
-              <Button asChild size="lg">
-                <Link to={rolePath[user.role]}>Ir a mi panel</Link>
-              </Button>
+              <>
+                {console.log('[HomePage Botones] Renderizando botones para usuario logueado')}
+                {console.log('[HomePage Botones] Ruta destino:', rolePath[user.role])}
+                {console.log('[HomePage Botones] Texto del botón:', user.role === 'PATIENT' ? 'Ir a Mis Turnos' : user.role === 'DOCTOR' ? 'Ir a Mi Agenda' : 'Ir a Panel Admin')}
+                <Button asChild size="lg">
+                  <Link to={rolePath[user.role]}>
+                    <Calendar className="h-5 w-5" />
+                    {user.role === 'PATIENT' ? 'Ir a Mis Turnos' : user.role === 'DOCTOR' ? 'Ir a Mi Agenda' : 'Ir a Panel Admin'}
+                  </Link>
+                </Button>
+                <Button asChild variant="outline" size="lg">
+                  <Link to={rolePath[user.role]}>
+                    <FileText className="h-5 w-5" />
+                    Gestionar
+                  </Link>
+                </Button>
+              </>
             ) : (
               <>
+                {console.log('[HomePage Botones] Renderizando botones modo público')}
                 <Button asChild size="lg">
                   <Link to="/register">
                     <Calendar className="h-5 w-5" />
@@ -74,16 +97,18 @@ export function HomePage() {
           </div>
         </div>
 
-        <div className="relative">
-          <ImageWithFallback
-            src="https://images.unsplash.com/photo-1758691463198-dc663b8a64e4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtZWRpY2FsJTIwZG9jdG9yJTIwY29uc3VsdGF0aW9ufGVufDF8fHx8MTc3MjExNzgzM3ww&ixlib=rb-4.1.0&q=80&w=1080"
-            alt="Consulta medica"
-            className="h-auto w-full rounded-2xl border border-blue-100 shadow-xl"
-          />
-        </div>
+        {!user && (
+          <div className="relative">
+            <ImageWithFallback
+              src="https://images.unsplash.com/photo-1758691463198-dc663b8a64e4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtZWRpY2FsJTIwZG9jdG9yJTIwY29uc3VsdGF0aW9ufGVufDF8fHx8MTc3MjExNzgzM3ww&ixlib=rb-4.1.0&q=80&w=1080"
+              alt="Consulta medica"
+              className="h-auto w-full rounded-2xl border border-blue-100 shadow-xl"
+            />
+          </div>
+        )}
       </section>
 
-      <section className="page-wrap grid gap-4 pb-14 md:grid-cols-2 lg:grid-cols-3">
+      <section className={user ? 'grid gap-4 md:grid-cols-2 lg:grid-cols-3' : 'page-wrap grid gap-4 pb-14 md:grid-cols-2 lg:grid-cols-3'}>
         <Card className="shadow-sm transition-shadow hover:shadow-md">
           <CardHeader>
             <div className="mb-2 w-fit rounded-lg bg-blue-100 p-2 text-blue-600">

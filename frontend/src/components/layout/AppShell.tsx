@@ -16,6 +16,9 @@ export function AppShell({ children }: PropsWithChildren) {
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  console.log('[AppShell] Usuario actual:', user);
+  console.log('[AppShell] Location actual:', location.pathname);
+
   const links =
     user?.role === 'ADMIN'
       ? [
@@ -31,6 +34,8 @@ export function AppShell({ children }: PropsWithChildren) {
             { path: '/', label: 'Inicio', icon: Home },
             { path: '/patient', label: 'Mis Turnos', icon: Calendar }
           ];
+
+  console.log('[AppShell] Links generados:', links);
 
   const onLogout = () => {
     logout();
@@ -53,6 +58,9 @@ export function AppShell({ children }: PropsWithChildren) {
               <Link
                 key={`${path}-${label}`}
                 to={path}
+                onClick={() => {
+                  console.log('[AppShell] Click en tab:', label, 'hacia ruta:', path);
+                }}
                 className={`inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors ${
                   isActive(path)
                     ? 'bg-blue-100 text-blue-700'
@@ -101,7 +109,10 @@ export function AppShell({ children }: PropsWithChildren) {
                   <Link
                     key={`${path}-${label}-mobile`}
                     to={path}
-                    onClick={() => setMobileMenuOpen(false)}
+                    onClick={() => {
+                      console.log('[AppShell Mobile] Click en tab:', label, 'hacia ruta:', path);
+                      setMobileMenuOpen(false);
+                    }}
                     className={`inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium ${
                       isActive(path)
                         ? 'bg-blue-100 text-blue-700'
