@@ -77,15 +77,15 @@
       "password": "Paciente123!",
       "role": "PATIENT",
       "isActive": true,
-      "firstName": "Sofia",
+      "firstName": "PacienteEditado",
       "lastName": "Perez",
-      "phone": "+5491100000004",
+      "phone": "1122334455",
       "patientProfile": {
         "id": "pat_1",
         "userId": "usr_pat1",
         "document": "30111222",
-        "birthDate": "1993-04-15T00:00:00.000Z",
-        "phone": "+5491100000004"
+        "birthDate": "1993-04-15T00:00:00Z",
+        "phone": "1122334455"
       }
     },
     {
@@ -936,6 +936,288 @@
         ]
       },
       "createdAt": "2026-05-18T18:06:14.459086Z"
+    },
+    {
+      "id": "adt_b6woyjob",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-01T00:31:15.226187Z"
+    },
+    {
+      "id": "adt_3eut20h7",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-01T00:32:23.730697Z"
+    },
+    {
+      "id": "adt_64b8j06m",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-01T00:33:52.025215Z"
+    },
+    {
+      "id": "adt_me9j54o6",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-01T00:35:08.683324Z"
+    },
+    {
+      "id": "adt_02km1we2",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-01T00:36:35.118210Z"
+    },
+    {
+      "id": "adt_b14fjh20",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-01T00:39:18.648786Z"
+    },
+    {
+      "id": "adt_ejpjk9gg",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-01T01:44:54.986417Z"
+    },
+    {
+      "id": "adt_nfjmfy9u",
+      "action": "PROFILE_UPDATE",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": {
+        "updatedFields": [
+          "firstName",
+          "lastName",
+          "phone",
+          "birthDate"
+        ]
+      },
+      "createdAt": "2026-06-01T01:44:59.875948Z"
+    },
+    {
+      "id": "adt_ugbijz99",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-01T01:56:42.029141Z"
+    },
+    {
+      "id": "adt_6sgbxgb6",
+      "action": "PROFILE_UPDATE",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": {
+        "updatedFields": [
+          "firstName",
+          "lastName",
+          "phone",
+          "birthDate"
+        ]
+      },
+      "createdAt": "2026-06-01T01:56:46.778557Z"
+    },
+    {
+      "id": "adt_n5giz6wg",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-01T02:06:17.031319Z"
+    },
+    {
+      "id": "adt_57thwklc",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_doc1",
+      "actorId": "usr_doc1",
+      "metadata": null,
+      "createdAt": "2026-06-01T02:06:28.628414Z"
+    },
+    {
+      "id": "adt_uo2fbb9j",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_admin",
+      "actorId": "usr_admin",
+      "metadata": null,
+      "createdAt": "2026-06-01T02:06:39.654913Z"
+    },
+    {
+      "id": "adt_pi56foie",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-01T02:07:00.701232Z"
+    },
+    {
+      "id": "adt_uqxh9xo7",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-01T02:07:34.115123Z"
+    },
+    {
+      "id": "adt_c2rbewq8",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_doc1",
+      "actorId": "usr_doc1",
+      "metadata": null,
+      "createdAt": "2026-06-01T02:07:47.256133Z"
+    },
+    {
+      "id": "adt_pgmhu7zb",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_admin",
+      "actorId": "usr_admin",
+      "metadata": null,
+      "createdAt": "2026-06-01T02:08:00.438950Z"
+    },
+    {
+      "id": "adt_k8l5yhfr",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-01T02:08:26.573764Z"
+    },
+    {
+      "id": "adt_ubhmbhbd",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-01T02:11:18.898582Z"
+    },
+    {
+      "id": "adt_rd91pl2b",
+      "action": "PROFILE_UPDATE",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": {
+        "updatedFields": [
+          "firstName",
+          "lastName",
+          "phone",
+          "birthDate"
+        ]
+      },
+      "createdAt": "2026-06-01T02:11:23.633342Z"
+    },
+    {
+      "id": "adt_lebogt77",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-01T02:11:35.916555Z"
+    },
+    {
+      "id": "adt_wpnijz26",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-01T02:13:05.645681Z"
+    },
+    {
+      "id": "adt_vlmq59td",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-01T02:13:24.044712Z"
+    },
+    {
+      "id": "adt_1c32h6ox",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-01T02:13:41.806140Z"
+    },
+    {
+      "id": "adt_fmzy8f8b",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-01T02:13:55.030420Z"
+    },
+    {
+      "id": "adt_znr1vhvp",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-01T02:14:07.643667Z"
+    },
+    {
+      "id": "adt_sghjb4tg",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-01T02:14:26.311391Z"
+    },
+    {
+      "id": "adt_w8gilg0k",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-01T02:14:42.311910Z"
+    },
+    {
+      "id": "adt_ztlvhq2y",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-01T02:14:54.776192Z"
     }
   ]
 }
