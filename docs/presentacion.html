@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TurnosMédicos — Presentación Final TPO</title>
+  <meta name="description" content="Presentación final del TPO de Testing: Sistema de Gestión de Turnos Médicos">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #05070f;
+      --surface: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.08);
+      --accent: #6366f1;
+      --accent2: #8b5cf6;
+      --accent3: #06b6d4;
+      --green: #10b981;
+      --red: #ef4444;
+      --yellow: #f59e0b;
+      --text: #f1f5f9;
+      --muted: #64748b;
+    }
+
+    html, body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    /* ─── THIINGS ICONS ─── */
+    .thiing-icon {
+      width: 1.25em; height: 1.25em;
+      vertical-align: middle;
+      object-fit: contain;
+      display: inline-block;
+    }
+    .cover-logo .thiing-icon { width: 3.5rem; height: 3.5rem; margin: 0; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.4)); }
+    .feature-icon .thiing-icon { width: 2.2rem; height: 2.2rem; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2)); }
+    .tool-icon .thiing-icon { width: 2.8rem; height: 2.8rem; margin-bottom: 0.5rem; filter: drop-shadow(0 6px 12px rgba(0,0,0,0.3)); }
+    .ss-icon .thiing-icon { width: 3rem; height: 3rem; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); }
+    .table-icon { width: 1.3rem; height: 1.3rem; vertical-align: text-bottom; margin-right: 0.4rem; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
+
+    /* ─── PROGRESS BAR ─── */
+    #progress-bar {
+      position: fixed; top: 0; left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent3));
+      width: 0%; z-index: 1000;
+      transition: width 0.45s ease;
+      box-shadow: 0 0 12px var(--accent);
+    }
+
+    /* ─── SLIDES ─── */
+    #deck { width: 100vw; height: 100vh; position: relative; overflow: hidden; }
+
+    .slide {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      padding: 3.5rem 5.5rem;
+      pointer-events: none;
+      /* default hidden state */
+      opacity: 0;
+      transform: translateX(80px) scale(0.97);
+    }
+    .slide.active { 
+      pointer-events: auto;
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+
+    /* grid bg */
+    .slide::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(99,102,241,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99,102,241,0.035) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    /* ─── ORBS ─── */
+    .orb {
+      position: absolute; border-radius: 50%;
+      filter: blur(100px); pointer-events: none;
+      animation: float 8s ease-in-out infinite;
+    }
+    .orb-1 { width:500px;height:500px;background:radial-gradient(circle,rgba(99,102,241,0.18),transparent 70%);top:-10%;left:-10%;animation-delay:0s; }
+    .orb-2 { width:400px;height:400px;background:radial-gradient(circle,rgba(139,92,246,0.15),transparent 70%);bottom:-5%;right:-5%;animation-delay:-4s; }
+    .orb-3 { width:300px;height:300px;background:radial-gradient(circle,rgba(6,182,212,0.12),transparent 70%);top:40%;right:15%;animation-delay:-2s; }
+    @keyframes float { 0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-28px) scale(1.04);} }
+
+    /* ─── GLASS ─── */
+    .glass {
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.09);
+      border-radius:20px;
+      backdrop-filter:blur(20px);
+      -webkit-backdrop-filter:blur(20px);
+    }
+
+    /* ─── TYPOGRAPHY ─── */
+    .slide-label {
+      font-size:0.72rem;font-weight:600;letter-spacing:0.2em;
+      text-transform:uppercase;color:var(--accent);
+      margin-bottom:0.9rem;display:flex;align-items:center;gap:0.5rem;
+    }
+    .slide-label::before {
+      content:'';display:block;width:22px;height:2px;
+      background:var(--accent);border-radius:2px;
+    }
+
+    h1 {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:clamp(2.4rem,4.5vw,4.2rem);font-weight:700;line-height:1.1;
+      background:linear-gradient(135deg,#fff 0%,rgba(255,255,255,0.55) 100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+    h2 {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:clamp(1.7rem,2.8vw,2.6rem);font-weight:700;line-height:1.2;
+      background:linear-gradient(135deg,#fff 0%,rgba(255,255,255,0.65) 100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+      margin-bottom:1.8rem;
+    }
+    p.lead { font-size:1.05rem;color:rgba(255,255,255,0.55);line-height:1.7;max-width:680px; }
+
+    /* ─── BADGE ─── */
+    .badge {
+      display:inline-flex;align-items:center;gap:0.4rem;
+      padding:0.28rem 0.75rem;border-radius:999px;
+      font-size:0.7rem;font-weight:600;letter-spacing:0.04em;border:1px solid;
+    }
+    .badge-purple{background:rgba(99,102,241,0.14);border-color:rgba(99,102,241,0.38);color:#a5b4fc;}
+    .badge-cyan{background:rgba(6,182,212,0.14);border-color:rgba(6,182,212,0.38);color:#67e8f9;}
+    .badge-green{background:rgba(16,185,129,0.14);border-color:rgba(16,185,129,0.38);color:#6ee7b7;}
+    .badge-yellow{background:rgba(245,158,11,0.14);border-color:rgba(245,158,11,0.38);color:#fcd34d;}
+    .badge-red{background:rgba(239,68,68,0.14);border-color:rgba(239,68,68,0.38);color:#fca5a5;}
+
+    /* ─── GRIDS ─── */
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem;width:100%;max-width:980px;}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;width:100%;max-width:1050px;}
+    .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;width:100%;max-width:1050px;}
+
+    /* ─── STAT CARD ─── */
+    .stat-card {
+      padding:1.4rem;border-radius:16px;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.08);
+      position:relative;overflow:hidden;
+      transition:border-color 0.25s,background 0.25s;
+    }
+    .stat-card:hover{background:rgba(255,255,255,0.07);border-color:rgba(99,102,241,0.28);}
+    .stat-card::before{
+      content:'';position:absolute;top:0;left:0;right:0;height:2px;
+      background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:0.55;
+    }
+    .stat-num{
+      font-family:'Space Grotesk',sans-serif;font-size:2.4rem;font-weight:700;
+      background:linear-gradient(135deg,var(--accent),var(--accent3));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+    .stat-label{font-size:0.74rem;color:var(--muted);margin-top:0.25rem;font-weight:500;text-transform:uppercase;letter-spacing:0.08em;}
+    .stat-sub{font-size:0.8rem;color:rgba(255,255,255,0.45);margin-top:0.45rem;}
+
+    /* ─── TABLE ─── */
+    .data-table{width:100%;border-collapse:collapse;font-size:0.82rem;}
+    .data-table th{text-align:left;padding:0.55rem 1rem;color:var(--muted);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;border-bottom:1px solid var(--border);}
+    .data-table td{padding:0.6rem 1rem;border-bottom:1px solid rgba(255,255,255,0.035);color:rgba(255,255,255,0.8);}
+    .data-table tr:last-child td{border-bottom:none;}
+    .data-table tr:hover td{background:rgba(255,255,255,0.03);}
+    .table-wrapper{width:100%;max-width:880px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
+
+    /* ─── RF LIST ─── */
+    .rf-list{display:flex;flex-direction:column;gap:0.7rem;width:100%;max-width:900px;}
+    .rf-item{
+      display:flex;align-items:center;gap:1.1rem;
+      padding:0.8rem 1.1rem;border-radius:12px;
+      background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);
+      transition:all 0.2s;
+    }
+    .rf-item:hover{background:rgba(99,102,241,0.07);border-color:rgba(99,102,241,0.2);transform:translateX(4px);}
+    .rf-id{font-family:'Space Grotesk',sans-serif;font-size:0.68rem;font-weight:700;color:var(--accent);background:rgba(99,102,241,0.12);padding:0.2rem 0.5rem;border-radius:6px;white-space:nowrap;}
+    .rf-title{font-weight:600;font-size:0.88rem;}
+    .rf-desc{font-size:0.76rem;color:var(--muted);}
+    .rf-cov{margin-left:auto;}
+
+    /* ─── TOOL CARD ─── */
+    .tool-card{padding:1.4rem;border-radius:16px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);text-align:center;}
+    .tool-icon{display:block;}
+    .tool-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1rem;margin-bottom:0.3rem;}
+    .tool-count{font-size:1.7rem;font-weight:800;font-family:'Space Grotesk',sans-serif;background:linear-gradient(135deg,var(--accent),var(--accent3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .tool-desc{font-size:0.76rem;color:var(--muted);margin-top:0.25rem;}
+
+    /* ─── BUG ITEM ─── */
+    .bug-item{display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:1rem;padding:0.85rem 1.1rem;border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);}
+    .bug-id{font-size:0.68rem;font-weight:700;color:var(--red);font-family:'Space Grotesk',sans-serif;}
+    .bug-desc{font-size:0.82rem;color:rgba(255,255,255,0.8);}
+    .bug-status{font-size:0.7rem;padding:0.2rem 0.55rem;border-radius:999px;font-weight:600;white-space:nowrap;}
+    .status-fixed{background:rgba(16,185,129,0.15);color:#6ee7b7;}
+    .status-open{background:rgba(245,158,11,0.15);color:#fcd34d;}
+
+    /* ─── ARCH ─── */
+    .arch{display:flex;flex-direction:column;align-items:center;gap:0;width:100%;max-width:680px;}
+    .arch-layer{width:100%;padding:0.95rem 1.4rem;border-radius:14px;text-align:center;}
+    .arch-layer-name{font-weight:700;font-size:0.92rem;}
+    .arch-layer-detail{font-size:0.76rem;color:var(--muted);margin-top:0.15rem;}
+    .arch-arrow{font-size:1.1rem;color:var(--muted);margin:0.25rem 0;animation:pulse 2s ease-in-out infinite;}
+    @keyframes pulse{0%,100%{opacity:0.35;}50%{opacity:1;}}
+
+    /* ─── COVERAGE BARS ─── */
+    .cov-bar-wrap{width:100%;display:flex;flex-direction:column;gap:0.75rem;max-width:780px;}
+    .cov-row{display:flex;align-items:center;gap:1rem;}
+    .cov-label{font-size:0.8rem;font-weight:600;width:75px;flex-shrink:0;}
+    .cov-track{flex:1;height:7px;background:rgba(255,255,255,0.06);border-radius:999px;overflow:hidden;}
+    .cov-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent3));width:0%;transition:width 1.4s cubic-bezier(0.4,0,0.2,1);box-shadow:0 0 8px rgba(99,102,241,0.4);}
+    .cov-pct{font-size:0.78rem;font-weight:700;color:var(--accent);width:38px;text-align:right;}
+
+    /* ─── SCREENSHOT PLACEHOLDER ─── */
+    .ss-placeholder {
+      position: relative;
+      border-radius: 14px;
+      border: 1px dashed rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.025);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      transition: border-color 0.2s, background 0.2s;
+      cursor: default;
+    }
+    .ss-placeholder:hover{border-color:rgba(99,102,241,0.4);background:rgba(99,102,241,0.05);}
+    /* Diagonal X lines */
+    .ss-placeholder::before,
+    .ss-placeholder::after {
+      content: '';
+      position: absolute;
+      background: rgba(255,255,255,0.06);
+      border-radius: 2px;
+    }
+    .ss-placeholder::before {
+      width: 140%;height: 1px;
+      transform: rotate(var(--rot-a, 25deg));
+      top: 50%; left: -20%;
+    }
+    .ss-placeholder::after {
+      width: 140%;height: 1px;
+      transform: rotate(var(--rot-b, -25deg));
+      top: 50%; left: -20%;
+    }
+    .ss-label {
+      position: relative; z-index: 1;
+      font-size: 0.78rem; font-weight: 600;
+      color: rgba(255,255,255,0.45);
+      text-align: center; padding: 0 1rem;
+      line-height: 1.4;
+    }
+    .ss-sub {
+      position: relative; z-index: 1;
+      font-size: 0.67rem; color: var(--muted);
+      text-align: center; padding: 0 1rem;
+    }
+    /* corner marks */
+    .ss-corner {
+      position: absolute; width: 16px; height: 16px;
+      border-color: rgba(99,102,241,0.35);
+      border-style: solid;
+    }
+    .ss-corner.tl { top: 10px; left: 10px; border-width: 2px 0 0 2px; border-radius: 3px 0 0 0; }
+    .ss-corner.tr { top: 10px; right: 10px; border-width: 2px 2px 0 0; border-radius: 0 3px 0 0; }
+    .ss-corner.bl { bottom: 10px; left: 10px; border-width: 0 0 2px 2px; border-radius: 0 0 0 3px; }
+    .ss-corner.br { bottom: 10px; right: 10px; border-width: 0 2px 2px 0; border-radius: 0 0 3px 0; }
+
+    .ss-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; width: 100%; max-width: 1000px; }
+    .ss-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; width: 100%; max-width: 1050px; }
+
+    /* ─── COVER ─── */
+    #s1 { background:radial-gradient(ellipse at 20% 50%,rgba(99,102,241,0.15) 0%,transparent 60%),radial-gradient(ellipse at 80% 50%,rgba(139,92,246,0.1) 0%,transparent 60%); }
+    .cover-logo{width:80px;height:80px;border-radius:24px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;margin:0 auto 1.8rem;box-shadow:0 0 38px rgba(99,102,241,0.2);}
+    .team-grid{display:flex;flex-wrap:wrap;gap:0.7rem;justify-content:center;}
+    .team-chip{padding:0.35rem 0.85rem;border-radius:999px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);font-size:0.75rem;color:rgba(255,255,255,0.65);}
+    .team-chip span{color:rgba(255,255,255,0.35);margin-right:0.3rem;font-size:0.67rem;}
+
+    /* ─── APP FEATURES (slide 2) ─── */
+    .feature-card{padding:1.1rem 1.3rem;border-radius:14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);display:flex;gap:1.2rem;align-items:flex-start;transition:all 0.2s;}
+    .feature-card:hover{background:rgba(99,102,241,0.07);border-color:rgba(99,102,241,0.25);transform:translateY(-2px);}
+    .feature-icon{flex-shrink:0;margin-top:0.1rem;}
+    .feature-title{font-weight:700;font-size:0.88rem;margin-bottom:0.3rem;}
+    .feature-desc{font-size:0.76rem;color:var(--muted);line-height:1.5;}
+
+    /* ─── NAV ─── */
+    #nav{
+      position:fixed;bottom:1.8rem;left:50%;transform:translateX(-50%);
+      display:flex;align-items:center;gap:0.9rem;
+      background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);
+      backdrop-filter:blur(20px);border-radius:999px;
+      padding:0.55rem 1.1rem;z-index:999;
+    }
+    .nav-btn{width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,0.14);background:rgba(255,255,255,0.05);color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.95rem;transition:all 0.2s;}
+    .nav-btn:hover:not(:disabled){background:var(--accent);border-color:var(--accent);box-shadow:0 0 12px rgba(99,102,241,0.45);}
+    .nav-btn:disabled{opacity:0.28;cursor:not-allowed;}
+    #slide-counter{font-size:0.78rem;color:var(--muted);min-width:55px;text-align:center;font-weight:600;}
+
+    /* ─── DOTS ─── */
+    #dots{position:fixed;right:1.6rem;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:0.45rem;z-index:999;}
+    .dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.18);cursor:pointer;transition:all 0.3s;}
+    .dot.active{background:var(--accent);box-shadow:0 0 8px var(--accent);transform:scale(1.6);}
+
+    /* ─── META ─── */
+    #slide-num{position:fixed;top:1.4rem;left:1.8rem;font-size:0.7rem;color:var(--muted);font-family:'Space Grotesk',sans-serif;font-weight:600;}
+    #kbd-hint{position:fixed;top:1.4rem;right:1.8rem;font-size:0.68rem;color:var(--muted);background:rgba(255,255,255,0.04);border:1px solid var(--border);padding:0.35rem 0.7rem;border-radius:7px;backdrop-filter:blur(10px);}
+
+    @media (prefers-reduced-motion: reduce) {
+      .orb{animation:none;}
+      .arch-arrow{animation:none;}
+      .cov-fill{transition:none;}
+    }
+  </style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+<div id="slide-num">01 / 14</div>
+<div id="kbd-hint">← → teclado · scroll · swipe</div>
+
+<div id="dots">
+  <!-- 14 dots generated by JS -->
+</div>
+
+<div id="deck">
+
+  <!-- ══ 1 — PORTADA ══ -->
+  <section class="slide active" id="s1">
+    <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
+    <div style="text-align:center;max-width:860px">
+      <div class="cover-logo">
+        <img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-rW3KN717rl4aTnOGRIuS82n0gSwwLQ.png" class="thiing-icon" alt="Hospital">
+      </div>
+      <div class="slide-label" style="justify-content:center">TPO — Técnicas y Herramientas de Testing</div>
+      <h1 style="margin-bottom:1.2rem">Sistema de Gestión<br>de Turnos Médicos</h1>
+      <p style="font-size:0.85rem;color:rgba(255,255,255,0.38);margin-bottom:2.2rem;letter-spacing:0.12em;text-transform:uppercase">Presentación Final · Junio 2026</p>
+      <div class="team-grid">
+        <div class="team-chip"><span>PO</span> Lara Vitale</div>
+        <div class="team-chip"><span>PM</span> Francisco Jarusz</div>
+        <div class="team-chip"><span>QA</span> Pilar García</div>
+        <div class="team-chip"><span>QA</span> Manuel Figuerero</div>
+        <div class="team-chip"><span>DEV</span> Christian Salemme</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 2 — LA APLICACIÓN ══ -->
+  <section class="slide" id="s2">
+    <div class="orb orb-1"></div><div class="orb orb-3"></div>
+    <div style="max-width:980px;width:100%">
+      <div class="slide-label">Lo que construimos</div>
+      <h2>La Aplicación</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.85rem">
+        <div class="feature-card">
+          <div class="feature-icon"><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-bvJNHPc0tIkrnBQsWtfPI7Q1YIE9xO.png" class="thiing-icon" alt="Auth"></div>
+          <div><div class="feature-title">Autenticación con roles</div><div class="feature-desc">Registro de pacientes, login para 3 roles distintos (Paciente, Médico, Admin) con JWT y control de acceso por endpoint.</div></div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-ij7GEZhfmzLNlLgDJVhkST8FIm5rJV.png" class="thiing-icon" alt="Reserva"></div>
+          <div><div class="feature-title">Reserva de turnos</div><div class="feature-desc">Selección de especialidad → médico → fecha/hora → notas. Validación de fechas futuras y flujo de estados completo.</div></div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-YM427q0rp7oBdrNFxZLbdSyYBZNTjA.png" class="thiing-icon" alt="Doctor"></div>
+          <div><div class="feature-title">Panel del Médico</div><div class="feature-desc">Vista de agenda propia, confirmación de turnos, registro de completados y no-shows. Gestión de disponibilidad semanal.</div></div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-E6UN0DhtLJwxusfI6hIZaLplYkWH2W.png" class="thiing-icon" alt="Admin"></div>
+          <div><div class="feature-title">Panel de Administrador</div><div class="feature-desc">Dashboard con métricas, gestión completa de médicos, especialidades, sedes, usuarios y log de auditoría.</div></div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-dae1lHATNY8hkh3GxeAnScrtd34Ii5.png" class="thiing-icon" alt="Perfil"></div>
+          <div><div class="feature-title">Perfil de paciente</div><div class="feature-desc">Edición de datos personales, historial de turnos con filtros, cancelación (ventana 24h) y reprogramación.</div></div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-UsyTZyMk2er8VfZu1T68Z4BbnfHYL1.png" class="thiing-icon" alt="API"></div>
+          <div><div class="feature-title">API REST documentada</div><div class="feature-desc">25+ endpoints organizados en módulos, respuesta estándar JSON, manejo de errores y logging completo de requests.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 3 — ARQUITECTURA ══ -->
+  <section class="slide" id="s3">
+    <div class="orb orb-1"></div><div class="orb orb-3"></div>
+    <div style="display:flex;gap:4rem;align-items:center;max-width:1000px;width:100%">
+      <div style="flex:1">
+        <div class="slide-label">Stack técnico</div>
+        <h2>Arquitectura</h2>
+        <p class="lead" style="margin-bottom:1.4rem">Sistema full-stack con separación clara de capas y API REST documentada.</p>
+        <div style="display:flex;flex-direction:column;gap:0.55rem">
+          <div class="badge badge-cyan" style="width:fit-content;font-size:0.76rem;padding:0.4rem 0.9rem">🌐 React + Vite · localhost:5173</div>
+          <div class="badge badge-purple" style="width:fit-content;font-size:0.76rem;padding:0.4rem 0.9rem">⚙️ FastAPI Python · /api/v1</div>
+          <div class="badge badge-green" style="width:fit-content;font-size:0.76rem;padding:0.4rem 0.9rem">💾 JSON local · mock-data.json</div>
+        </div>
+        <div style="margin-top:1.3rem;display:flex;gap:0.6rem;flex-wrap:wrap">
+          <span class="badge badge-yellow">PATIENT</span>
+          <span class="badge badge-purple">DOCTOR</span>
+          <span class="badge badge-cyan">ADMIN</span>
+        </div>
+      </div>
+      <div style="flex:1">
+        <div class="arch">
+          <div class="arch-layer glass" style="border-color:rgba(6,182,212,0.3);background:rgba(6,182,212,0.06)">
+            <div class="arch-layer-name" style="color:#67e8f9">
+              <img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-UsyTZyMk2er8VfZu1T68Z4BbnfHYL1.png" class="thiing-icon" alt="Frontend">
+              Frontend
+            </div>
+            <div class="arch-layer-detail">React + Vite · puerto 5173</div>
+          </div>
+          <div class="arch-arrow">↕ HTTP / REST / JWT</div>
+          <div class="arch-layer glass" style="border-color:rgba(99,102,241,0.3);background:rgba(99,102,241,0.06)">
+            <div class="arch-layer-name" style="color:#a5b4fc">
+              <img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-E6UN0DhtLJwxusfI6hIZaLplYkWH2W.png" class="thiing-icon" alt="Backend">
+              Backend
+            </div>
+            <div class="arch-layer-detail">FastAPI Python · /api/v1 · puerto 3000</div>
+          </div>
+          <div class="arch-arrow">↕ I/O archivo</div>
+          <div class="arch-layer glass" style="border-color:rgba(16,185,129,0.3);background:rgba(16,185,129,0.06)">
+            <div class="arch-layer-name" style="color:#6ee7b7">💾 Persistencia</div>
+            <div class="arch-layer-detail">JSON local · mock-data.json</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 4 — REQUERIMIENTOS ══ -->
+  <section class="slide" id="s4">
+    <div class="orb orb-2"></div>
+    <div style="max-width:920px;width:100%">
+      <div class="slide-label">Entregable #1</div>
+      <h2>Requerimientos Funcionales</h2>
+      <div class="rf-list">
+        <div class="rf-item"><div class="rf-id">RF-01</div><div><div class="rf-title">Autenticación y Autorización</div><div class="rf-desc">Registro, login, logout, JWT, control de roles por endpoint</div></div><span class="rf-cov badge badge-green">100%</span></div>
+        <div class="rf-item"><div class="rf-id">RF-02</div><div><div class="rf-title">Gestión de Perfil</div><div class="rf-desc">Ver y editar datos del paciente, filtros de especialidades y médicos</div></div><span class="rf-cov badge badge-green">100%</span></div>
+        <div class="rf-item"><div class="rf-id">RF-03</div><div><div class="rf-title">Reserva de Turnos</div><div class="rf-desc">Especialidad → Médico → Fecha/Hora → Notas. Validación fecha futura</div></div><span class="rf-cov badge badge-green">100%</span></div>
+        <div class="rf-item"><div class="rf-id">RF-04</div><div><div class="rf-title">Gestión de Turnos</div><div class="rf-desc">Cancelar (ventana 24h), reprogramar, historial con filtros</div></div><span class="rf-cov badge badge-yellow">75%</span></div>
+        <div class="rf-item"><div class="rf-id">RF-05</div><div><div class="rf-title">Panel del Médico</div><div class="rf-desc">Confirmar, completar, no-show, disponibilidad semanal y bloqueos</div></div><span class="rf-cov badge badge-yellow">50%</span></div>
+        <div class="rf-item"><div class="rf-id">RF-06</div><div><div class="rf-title">Panel de Administrador</div><div class="rf-desc">Usuarios, médicos, especialidades, sedes, dashboard, auditoría</div></div><span class="rf-cov badge badge-green">83%</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 5 — PLAN DE PRUEBAS ══ -->
+  <section class="slide" id="s5">
+    <div class="orb orb-1"></div><div class="orb orb-3"></div>
+    <div style="max-width:920px;width:100%">
+      <div class="slide-label">Entregable #2</div>
+      <h2>Plan de Pruebas</h2>
+      <div class="grid-4" style="margin-bottom:1.4rem">
+        <div class="tool-card"><span class="tool-icon"><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-JLGCwuVRfvOMwVMpimP9wXFiu6Nw4x.png" class="thiing-icon" alt="Robot"></span><div class="tool-name">Selenium</div><div class="tool-count">12</div><div class="tool-desc">Tests automatizados</div></div>
+        <div class="tool-card"><span class="tool-icon"><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-UsyTZyMk2er8VfZu1T68Z4BbnfHYL1.png" class="thiing-icon" alt="Laptop"></span><div class="tool-name">Postman</div><div class="tool-count">24+</div><div class="tool-desc">Requests verificadas</div></div>
+        <div class="tool-card"><span class="tool-icon"><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-Tu0liR9bpDlPqjqWsJOwGAB7UoCnPg.png" class="thiing-icon" alt="Eye"></span><div class="tool-name">Manual</div><div class="tool-count">4</div><div class="tool-desc">Casos críticos</div></div>
+        <div class="tool-card"><span class="tool-icon"><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-GClCrIcEoGpc5hw6WOgnjy6Xh0NLzw.png" class="thiing-icon" alt="Warning"></span><div class="tool-name">JMeter</div><div class="tool-count">4</div><div class="tool-desc">Escenarios de carga</div></div>
+      </div>
+      <div style="display:flex;gap:0.7rem;flex-wrap:wrap">
+        <div class="badge badge-purple">✓ Criterios entrada/salida definidos</div>
+        <div class="badge badge-cyan">✓ Ambiente local documentado</div>
+        <div class="badge badge-green">✓ Datos de prueba con reset automático</div>
+        <div class="badge badge-yellow">✓ Riesgos y mitigaciones identificados</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 6 — SCREENSHOTS VISTAS DE LA APP ══ -->
+  <section class="slide" id="s6">
+    <div class="orb orb-2"></div>
+    <div style="max-width:1050px;width:100%">
+      <div class="slide-label">Capturas de la aplicación</div>
+      <h2>Vistas del sistema</h2>
+      <div class="ss-grid-3">
+        <div class="ss-placeholder" style="height:195px;--rot-a:18deg;--rot-b:-18deg">
+          <div class="ss-corner tl"></div><div class="ss-corner tr"></div>
+          <div class="ss-corner bl"></div><div class="ss-corner br"></div>
+          <div class="ss-icon"><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-bvJNHPc0tIkrnBQsWtfPI7Q1YIE9xO.png" class="thiing-icon" alt="Safe"></div>
+          <div class="ss-label">Pantalla de Login</div>
+          <div class="ss-sub">Formulario de ingreso con validación</div>
+        </div>
+        <div class="ss-placeholder" style="height:195px;--rot-a:18deg;--rot-b:-18deg">
+          <div class="ss-corner tl"></div><div class="ss-corner tr"></div>
+          <div class="ss-corner bl"></div><div class="ss-corner br"></div>
+          <div class="ss-icon"><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-dae1lHATNY8hkh3GxeAnScrtd34Ii5.png" class="thiing-icon" alt="User"></div>
+          <div class="ss-label">Registro de Paciente</div>
+          <div class="ss-sub">Formulario con datos personales</div>
+        </div>
+        <div class="ss-placeholder" style="height:195px;--rot-a:18deg;--rot-b:-18deg">
+          <div class="ss-corner tl"></div><div class="ss-corner tr"></div>
+          <div class="ss-corner bl"></div><div class="ss-corner br"></div>
+          <div class="ss-icon"><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-ij7GEZhfmzLNlLgDJVhkST8FIm5rJV.png" class="thiing-icon" alt="Calendar"></div>
+          <div class="ss-label">Panel del Paciente</div>
+          <div class="ss-sub">Reserva de turno y listado de citas</div>
+        </div>
+        <div class="ss-placeholder" style="height:195px;--rot-a:18deg;--rot-b:-18deg">
+          <div class="ss-corner tl"></div><div class="ss-corner tr"></div>
+          <div class="ss-corner bl"></div><div class="ss-corner br"></div>
+          <div class="ss-icon"><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-YM427q0rp7oBdrNFxZLbdSyYBZNTjA.png" class="thiing-icon" alt="Doctor"></div>
+          <div class="ss-label">Panel del Médico</div>
+          <div class="ss-sub">Agenda y gestión de turnos propios</div>
+        </div>
+        <div class="ss-placeholder" style="height:195px;--rot-a:18deg;--rot-b:-18deg">
+          <div class="ss-corner tl"></div><div class="ss-corner tr"></div>
+          <div class="ss-corner bl"></div><div class="ss-corner br"></div>
+          <div class="ss-icon"><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-E6UN0DhtLJwxusfI6hIZaLplYkWH2W.png" class="thiing-icon" alt="Server"></div>
+          <div class="ss-label">Dashboard Admin</div>
+          <div class="ss-sub">Métricas, tablero, gestión de usuarios</div>
+        </div>
+        <div class="ss-placeholder" style="height:195px;--rot-a:18deg;--rot-b:-18deg">
+          <div class="ss-corner tl"></div><div class="ss-corner tr"></div>
+          <div class="ss-corner bl"></div><div class="ss-corner br"></div>
+          <div class="ss-icon"><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-UsyTZyMk2er8VfZu1T68Z4BbnfHYL1.png" class="thiing-icon" alt="Postman"></div>
+          <div class="ss-label">Colección Postman</div>
+          <div class="ss-sub">Tests de endpoints de la API REST</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 7 — CASOS DE PRUEBA ══ -->
+  <section class="slide" id="s7">
+    <div class="orb orb-2"></div>
+    <div style="max-width:920px;width:100%">
+      <div class="slide-label">Entregable #4</div>
+      <h2>Casos de Prueba</h2>
+      <div class="table-wrapper">
+        <table class="data-table">
+          <thead>
+            <tr><th>ID</th><th>Caso de prueba</th><th>Tipo</th><th>Herramienta</th><th>Estado</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="badge badge-purple">CP-01.1</span></td><td>Registro exitoso de paciente</td><td>Positivo</td><td><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-JLGCwuVRfvOMwVMpimP9wXFiu6Nw4x.png" class="thiing-icon table-icon" alt=""> Selenium</td><td><span class="badge badge-green">✓ Auto</span></td></tr>
+            <tr><td><span class="badge badge-purple">CP-01.5</span></td><td>Login con credenciales inválidas</td><td>Negativo</td><td><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-JLGCwuVRfvOMwVMpimP9wXFiu6Nw4x.png" class="thiing-icon table-icon" alt=""> Selenium</td><td><span class="badge badge-green">✓ Auto</span></td></tr>
+            <tr><td><span class="badge badge-purple">CP-02.1</span></td><td>Ver y editar perfil de paciente</td><td>Positivo</td><td><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-JLGCwuVRfvOMwVMpimP9wXFiu6Nw4x.png" class="thiing-icon table-icon" alt=""> Selenium</td><td><span class="badge badge-green">✓ Auto</span></td></tr>
+            <tr><td><span class="badge badge-purple">CP-03.1</span></td><td>Reservar turno exitosamente</td><td>Positivo</td><td><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-JLGCwuVRfvOMwVMpimP9wXFiu6Nw4x.png" class="thiing-icon table-icon" alt=""> Selenium</td><td><span class="badge badge-green">✓ Auto</span></td></tr>
+            <tr><td><span class="badge badge-purple">CP-03.2</span></td><td>Reservar turno en fecha pasada</td><td>Negativo</td><td><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-JLGCwuVRfvOMwVMpimP9wXFiu6Nw4x.png" class="thiing-icon table-icon" alt=""> Selenium</td><td><span class="badge badge-green">✓ Auto</span></td></tr>
+            <tr><td><span class="badge badge-purple">CP-04.3</span></td><td>Cancelar fuera de ventana (24h)</td><td>Negativo</td><td><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-Tu0liR9bpDlPqjqWsJOwGAB7UoCnPg.png" class="thiing-icon table-icon" alt=""> Manual</td><td><span class="badge badge-yellow">⏳ Pendiente</span></td></tr>
+            <tr><td><span class="badge badge-purple">CP-06.2</span></td><td>Paciente sin acceso admin (403)</td><td>Seguridad</td><td><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-UsyTZyMk2er8VfZu1T68Z4BbnfHYL1.png" class="thiing-icon table-icon" alt=""> Postman</td><td><span class="badge badge-green">✓ Auto</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:0.9rem;font-size:0.78rem;color:var(--muted)">17 casos documentados · 13 automatizados (76%) · 4 manuales</p>
+    </div>
+  </section>
+
+  <!-- ══ 8 — SELENIUM ══ -->
+  <section class="slide" id="s8">
+    <div class="orb orb-1"></div><div class="orb orb-3"></div>
+    <div style="max-width:920px;width:100%">
+      <div class="slide-label">Entregable #8</div>
+      <h2>Automatización con Selenium</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-bottom:1.2rem">
+        <div>
+          <div class="grid-3" style="margin-bottom:1rem">
+            <div class="stat-card"><div class="stat-num">6</div><div class="stat-label">test_auth.py</div><div class="stat-sub">RF-01</div></div>
+            <div class="stat-card"><div class="stat-num">2</div><div class="stat-label">test_perfil.py</div><div class="stat-sub">RF-02</div></div>
+            <div class="stat-card"><div class="stat-num">4</div><div class="stat-label">test_turnos.py</div><div class="stat-sub">RF-03/04</div></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:0.5rem">
+            <div class="badge badge-green" style="width:fit-content">🔧 BUG-01 corregido: función duplicada eliminada</div>
+            <div class="badge badge-yellow" style="width:fit-content">⚠️ BUG-02/03: selectores y sleeps (baja sev.)</div>
+          </div>
+        </div>
+        <div>
+          <div class="glass" style="padding:1.1rem 1.4rem;border-radius:14px;font-family:monospace;font-size:0.8rem;color:#a5b4fc;line-height:1.9">
+            <span style="color:var(--muted)"># Suite completa</span><br>
+            <span style="color:#6ee7b7">python</span> -m pytest tests/ <span style="color:#fcd34d">-v</span><br><br>
+            <span style="color:var(--muted)"># Un módulo</span><br>
+            <span style="color:#6ee7b7">python</span> -m pytest tests/test_auth.py<br><br>
+            <span style="color:var(--muted)"># Un test específico</span><br>
+            <span style="color:#6ee7b7">python</span> -m pytest tests/test_auth.py<span style="color:#fcd34d">::test_login_paciente</span>
+          </div>
+        </div>
+      </div>
+      <!-- Screenshot placeholder -->
+      <div class="ss-placeholder" style="height:100px;--rot-a:4deg;--rot-b:-4deg">
+        <div class="ss-corner tl"></div><div class="ss-corner tr"></div>
+        <div class="ss-corner bl"></div><div class="ss-corner br"></div>
+        <div class="ss-label">Screenshot: Output de pytest — 12 passed in X.XXs</div>
+        <div class="ss-sub">Captura del terminal con los resultados de la suite completa</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 9 — POSTMAN ══ -->
+  <section class="slide" id="s9">
+    <div class="orb orb-2"></div>
+    <div style="max-width:920px;width:100%">
+      <div class="slide-label">Entregable #7</div>
+      <h2>Pruebas de Endpoints — Postman</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.4rem">
+        <div>
+          <div class="table-wrapper">
+            <table class="data-table">
+              <thead><tr><th>Módulo</th><th>Requests</th><th>Verificado</th></tr></thead>
+              <tbody>
+                <tr><td><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-bvJNHPc0tIkrnBQsWtfPI7Q1YIE9xO.png" class="thiing-icon table-icon" alt=""> Autenticación</td><td>6</td><td><span class="badge badge-green">✓</span></td></tr>
+                <tr><td><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-dae1lHATNY8hkh3GxeAnScrtd34Ii5.png" class="thiing-icon table-icon" alt=""> Perfil</td><td>2</td><td><span class="badge badge-green">✓</span></td></tr>
+                <tr><td><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-ij7GEZhfmzLNlLgDJVhkST8FIm5rJV.png" class="thiing-icon table-icon" alt=""> Turnos Paciente</td><td>5</td><td><span class="badge badge-green">✓</span></td></tr>
+                <tr><td><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-YM427q0rp7oBdrNFxZLbdSyYBZNTjA.png" class="thiing-icon table-icon" alt=""> Panel Médico</td><td>4</td><td><span class="badge badge-green">✓</span></td></tr>
+                <tr><td><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-E6UN0DhtLJwxusfI6hIZaLplYkWH2W.png" class="thiing-icon table-icon" alt=""> Admin</td><td>4</td><td><span class="badge badge-green">✓</span></td></tr>
+                <tr><td><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-GClCrIcEoGpc5hw6WOgnjy6Xh0NLzw.png" class="thiing-icon table-icon" alt=""> Seguridad</td><td>3</td><td><span class="badge badge-green">✓</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="margin-top:0.7rem;font-size:0.75rem;color:var(--muted)">Nuevos endpoints: /audit · /admin/settings · /availability/slots</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:1rem">
+          <div class="glass" style="padding:1rem 1.3rem;border-radius:14px;font-family:monospace;font-size:0.76rem;color:#a5b4fc;line-height:1.8">
+            <span style="color:var(--muted)"># Newman CLI</span><br>
+            npx newman run <span style="color:#fcd34d">postman/</span><br>
+            &nbsp;&nbsp;TurnosMedicos-Mock.json \<br>
+            &nbsp;&nbsp;--reporters cli,json
+          </div>
+          <div class="ss-placeholder" style="flex:1;min-height:90px;--rot-a:5deg;--rot-b:-5deg">
+            <div class="ss-corner tl"></div><div class="ss-corner tr"></div>
+            <div class="ss-corner bl"></div><div class="ss-corner br"></div>
+            <div class="ss-label">Screenshot: Colección Postman abierta</div>
+            <div class="ss-sub">Vista de las requests organizadas por módulo</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 10 — JMETER ══ -->
+  <section class="slide" id="s10">
+    <div class="orb orb-1"></div><div class="orb orb-3"></div>
+    <div style="max-width:920px;width:100%">
+      <div class="slide-label">Entregable #9 — No funcionales</div>
+      <h2>Pruebas de Carga — JMeter</h2>
+      <div class="table-wrapper" style="margin-bottom:1.2rem">
+        <table class="data-table">
+          <thead><tr><th>Escenario</th><th>Endpoint</th><th>Usuarios</th><th>Criterio</th><th>Estado</th></tr></thead>
+          <tbody>
+            <tr><td>E1 — Login masivo</td><td>POST /auth/login</td><td>50</td><td>&lt; 500ms</td><td><span class="badge badge-yellow">⏳ Ejecutar</span></td></tr>
+            <tr><td>E2 — Consulta turnos</td><td>GET /appointments/my</td><td>100</td><td>&lt; 1000ms</td><td><span class="badge badge-yellow">⏳ Ejecutar</span></td></tr>
+            <tr><td>E3 — Reservas simult.</td><td>POST /appointments/reserve</td><td>20</td><td>&lt; 5% error</td><td><span class="badge badge-yellow">⏳ Ejecutar</span></td></tr>
+            <tr><td>E4 — Carga general</td><td>Mix endpoints</td><td>30</td><td>&gt; 10 req/s</td><td><span class="badge badge-yellow">⏳ Ejecutar</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="display:grid;grid-template-columns:3fr 2fr;gap:1rem">
+        <div style="display:flex;gap:0.8rem">
+          <div class="stat-card" style="flex:1"><div class="stat-num">500ms</div><div class="stat-label">Login · límite</div></div>
+          <div class="stat-card" style="flex:1"><div class="stat-num">&lt;1%</div><div class="stat-label">Error máx.</div></div>
+          <div class="stat-card" style="flex:1"><div class="stat-num">50</div><div class="stat-label">Usuarios</div></div>
+        </div>
+        <div class="ss-placeholder" style="--rot-a:5deg;--rot-b:-5deg;min-height:80px">
+          <div class="ss-corner tl"></div><div class="ss-corner tr"></div>
+          <div class="ss-corner bl"></div><div class="ss-corner br"></div>
+          <div class="ss-label">Screenshot: Reporte HTML de JMeter</div>
+          <div class="ss-sub">Gráficos de tiempo de respuesta</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 11 — DEFECTOS ══ -->
+  <section class="slide" id="s11">
+    <div class="orb orb-2"></div>
+    <div style="max-width:840px;width:100%">
+      <div class="slide-label">Entregable #6</div>
+      <h2>Registro de Defectos</h2>
+      <div style="display:flex;flex-direction:column;gap:0.75rem;margin-bottom:1.4rem">
+        <div class="bug-item">
+          <div class="bug-id"><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-1bODthAQUpFbEz5AsixDrFI14kjC7T.png" class="thiing-icon table-icon" alt=""> BUG-01</div>
+          <div><div class="bug-desc">Función <code style="background:rgba(255,255,255,0.08);padding:0.1rem 0.4rem;border-radius:4px;font-size:0.78rem">test_reprogramar_turno</code> definida dos veces en test_turnos.py</div><div style="font-size:0.72rem;color:var(--muted);margin-top:0.15rem">Selenium · Media</div></div>
+          <span class="badge badge-yellow">Media</span>
+          <div class="bug-status status-fixed">✓ Corregido</div>
+        </div>
+        <div class="bug-item">
+          <div class="bug-id"><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-1bODthAQUpFbEz5AsixDrFI14kjC7T.png" class="thiing-icon table-icon" alt=""> BUG-02</div>
+          <div><div class="bug-desc">XPath busca "Cerrar sesion" sin tilde — puede fallar si el botón usa "ó"</div><div style="font-size:0.72rem;color:var(--muted);margin-top:0.15rem">Selenium · Baja</div></div>
+          <span class="badge badge-green">Baja</span>
+          <div class="bug-status status-open">⏳ Abierto</div>
+        </div>
+        <div class="bug-item">
+          <div class="bug-id"><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-1bODthAQUpFbEz5AsixDrFI14kjC7T.png" class="thiing-icon table-icon" alt=""> BUG-03</div>
+          <div><div class="bug-desc"><code style="background:rgba(255,255,255,0.08);padding:0.1rem 0.4rem;border-radius:4px;font-size:0.78rem">time.sleep()</code> fijo en lugar de esperas explícitas de Selenium</div><div style="font-size:0.72rem;color:var(--muted);margin-top:0.15rem">Automatización · Baja</div></div>
+          <span class="badge badge-green">Baja</span>
+          <div class="bug-status status-open">⏳ Abierto</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:1rem">
+        <div class="stat-card" style="flex:1;border-color:rgba(239,68,68,0.2)"><div class="stat-num" style="background:linear-gradient(135deg,#ef4444,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">0</div><div class="stat-label">Críticos abiertos</div></div>
+        <div class="stat-card" style="flex:1;border-color:rgba(16,185,129,0.2)"><div class="stat-num" style="background:linear-gradient(135deg,#10b981,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">1</div><div class="stat-label">Corregidos</div></div>
+        <div class="stat-card" style="flex:1"><div class="stat-num">2</div><div class="stat-label">Abiertos (baja sev.)</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 12 — COBERTURA ══ -->
+  <section class="slide" id="s12">
+    <div class="orb orb-1"></div><div class="orb orb-3"></div>
+    <div style="max-width:880px;width:100%">
+      <div class="slide-label">Entregable #3 — Trazabilidad</div>
+      <h2>Cobertura de Requerimientos</h2>
+      <div class="cov-bar-wrap" style="margin-bottom:1.8rem" id="cov-bars">
+        <div class="cov-row"><div class="cov-label">RF-01</div><div class="cov-track"><div class="cov-fill" data-w="100%"></div></div><div class="cov-pct">100%</div></div>
+        <div class="cov-row"><div class="cov-label">RF-02</div><div class="cov-track"><div class="cov-fill" data-w="100%"></div></div><div class="cov-pct">100%</div></div>
+        <div class="cov-row"><div class="cov-label">RF-03</div><div class="cov-track"><div class="cov-fill" data-w="100%"></div></div><div class="cov-pct">100%</div></div>
+        <div class="cov-row"><div class="cov-label">RF-04</div><div class="cov-track"><div class="cov-fill" data-w="75%" style="background:linear-gradient(90deg,var(--yellow),var(--accent))"></div></div><div class="cov-pct">75%</div></div>
+        <div class="cov-row"><div class="cov-label">RF-05</div><div class="cov-track"><div class="cov-fill" data-w="50%" style="background:linear-gradient(90deg,var(--yellow),var(--accent))"></div></div><div class="cov-pct">50%</div></div>
+        <div class="cov-row"><div class="cov-label">RF-06</div><div class="cov-track"><div class="cov-fill" data-w="83%"></div></div><div class="cov-pct">83%</div></div>
+      </div>
+      <div class="grid-4">
+        <div class="stat-card"><div class="stat-num">87%</div><div class="stat-label">Cobertura total</div></div>
+        <div class="stat-card"><div class="stat-num">12</div><div class="stat-label">Tests Selenium</div></div>
+        <div class="stat-card"><div class="stat-num">24+</div><div class="stat-label">API verificadas</div></div>
+        <div class="stat-card"><div class="stat-num">4</div><div class="stat-label">Manuales</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 13 — RETROSPECTIVA ══ -->
+  <section class="slide" id="s13">
+    <div class="orb orb-2"></div>
+    <div style="max-width:920px;width:100%">
+      <div class="slide-label">Entregable #12</div>
+      <h2>Retrospectiva del Equipo</h2>
+      <div class="grid-3">
+        <div class="stat-card" style="border-color:rgba(16,185,129,0.25)">
+          <div style="margin-bottom:0.7rem"><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-HiChF8iNxEQpjV9vKH44UoEduGznyr.png" class="thiing-icon" alt="Check"></div>
+          <div style="font-weight:700;color:#6ee7b7;margin-bottom:0.7rem;font-size:0.88rem">Lo que funcionó bien</div>
+          <ul style="font-size:0.75rem;color:rgba(255,255,255,0.55);line-height:1.85;padding-left:1rem">
+            <li>Selenium cubrió los flujos críticos</li>
+            <li>Postman verificó toda la API</li>
+            <li>Roles separados facilitaron el testing</li>
+            <li>Sistema de logging ayudó al debug</li>
+          </ul>
+        </div>
+        <div class="stat-card" style="border-color:rgba(245,158,11,0.25)">
+          <div style="margin-bottom:0.7rem"><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-GClCrIcEoGpc5hw6WOgnjy6Xh0NLzw.png" class="thiing-icon" alt="Warning"></div>
+          <div style="font-weight:700;color:#fcd34d;margin-bottom:0.7rem;font-size:0.88rem">Dificultades</div>
+          <ul style="font-size:0.75rem;color:rgba(255,255,255,0.55);line-height:1.85;padding-left:1rem">
+            <li>sleep() fijo → falsos positivos</li>
+            <li>Función duplicada en Selenium</li>
+            <li>JMeter tomó más tiempo de lo esperado</li>
+            <li>Estado del JSON entre tests</li>
+          </ul>
+        </div>
+        <div class="stat-card" style="border-color:rgba(99,102,241,0.25)">
+          <div style="margin-bottom:0.7rem"><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-Tu0liR9bpDlPqjqWsJOwGAB7UoCnPg.png" class="thiing-icon" alt="Eye"></div>
+          <div style="font-weight:700;color:#a5b4fc;margin-bottom:0.7rem;font-size:0.88rem">Aprendizajes</div>
+          <ul style="font-size:0.75rem;color:rgba(255,255,255,0.55);line-height:1.85;padding-left:1rem">
+            <li>WebDriverWait &gt;&gt; time.sleep()</li>
+            <li>Seed de datos antes de cada suite</li>
+            <li>Trazabilidad desde el inicio</li>
+            <li>Revisar tests como código en PRs</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 14 — CONCLUSIONES ══ -->
+  <section class="slide" id="s14">
+    <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
+    <div style="max-width:860px;width:100%;text-align:center">
+      <div class="slide-label" style="justify-content:center">Cierre</div>
+      <h2>Conclusiones</h2>
+      <div style="display:flex;flex-direction:column;gap:0.7rem;margin-bottom:1.8rem;text-align:left">
+        <div class="rf-item" style="border-color:rgba(16,185,129,0.2)"><div><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-HiChF8iNxEQpjV9vKH44UoEduGznyr.png" class="thiing-icon table-icon" alt="Check"></div><div>El sistema cumple con todos los requerimientos funcionales principales</div></div>
+        <div class="rf-item" style="border-color:rgba(16,185,129,0.2)"><div><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-HiChF8iNxEQpjV9vKH44UoEduGznyr.png" class="thiing-icon table-icon" alt="Check"></div><div><strong>87% de cobertura</strong> de requerimientos por casos de prueba documentados</div></div>
+        <div class="rf-item" style="border-color:rgba(16,185,129,0.2)"><div><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-HiChF8iNxEQpjV9vKH44UoEduGznyr.png" class="thiing-icon table-icon" alt="Check"></div><div><strong>0 defectos críticos</strong> abiertos al cierre — 1 corregido, 2 de baja severidad abiertos</div></div>
+        <div class="rf-item" style="border-color:rgba(16,185,129,0.2)"><div><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-HiChF8iNxEQpjV9vKH44UoEduGznyr.png" class="thiing-icon table-icon" alt="Check"></div><div>Automatización Selenium garantiza regresión rápida ante cambios futuros</div></div>
+      </div>
+      <div style="display:flex;gap:0.7rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem">
+        <span class="badge badge-cyan">Migrar a PostgreSQL</span>
+        <span class="badge badge-purple">CI/CD con GitHub Actions</span>
+        <span class="badge badge-green">WebDriverWait en todos los tests</span>
+        <span class="badge badge-yellow">Tests del panel del médico</span>
+      </div>
+      <div style="font-size:1.8rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-family:'Space Grotesk',sans-serif;display:flex;align-items:center;justify-content:center;gap:0.5rem;">
+        ¡Gracias! <img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-rW3KN717rl4aTnOGRIuS82n0gSwwLQ.png" class="thiing-icon" alt="Hospital" style="width:2.2rem;height:2.2rem">
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- NAV BAR -->
+<div id="nav">
+  <button class="nav-btn" id="btn-prev" onclick="prev()">←</button>
+  <span id="slide-counter">01 / 14</span>
+  <button class="nav-btn" id="btn-next" onclick="next()">→</button>
+</div>
+
+<script>
+  const TOTAL = 14;
+  let cur = 0;
+  let animating = false;
+  let covDone = false;
+
+  const slides = document.querySelectorAll('.slide');
+
+  /* ── Build dots ── */
+  const dotsEl = document.getElementById('dots');
+  for (let i = 0; i < TOTAL; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    dotsEl.appendChild(d);
+  }
+  const dots = dotsEl.querySelectorAll('.dot');
+
+  /* ── Init ensures no initial buggy animation ── */
+  slides.forEach((s, i) => {
+    if (i !== 0) {
+      s.style.opacity = '0';
+      s.style.transform = 'translateX(80px) scale(0.97)';
+      s.classList.remove('active');
+    }
+  });
+
+  /* ── Core navigation ── */
+  function goTo(idx) {
+    if (idx === cur || idx < 0 || idx >= TOTAL || animating) return;
+    animating = true;
+
+    const dir = idx > cur ? 1 : -1;   // 1 = forward, -1 = backward
+    const leaving = cur;
+    cur = idx;
+
+    const lv = slides[leaving];
+    const en = slides[cur];
+
+    // 1. Snap entering slide to its start position (off-screen, no transition)
+    en.style.transition = 'none';
+    en.style.opacity = '0';
+    en.style.transform = `translateX(${dir * 80}px) scale(0.97)`;
+    en.classList.add('active');
+
+    // 2. Force reflow so the browser registers the start state
+    en.offsetHeight; // eslint-disable-line no-unused-expressions
+
+    const ease = 'cubic-bezier(0.4, 0, 0.2, 1)';
+    const dur  = '0.48s';
+
+    // 3. Animate leaving slide OUT
+    lv.style.transition = `opacity ${dur} ${ease}, transform ${dur} ${ease}`;
+    lv.style.opacity = '0';
+    lv.style.transform = `translateX(${dir * -80}px) scale(0.97)`;
+
+    // 4. Animate entering slide IN
+    en.style.transition = `opacity ${dur} ${ease}, transform ${dur} ${ease}`;
+    en.style.opacity = '1';
+    en.style.transform = 'translateX(0) scale(1)';
+
+    // 5. Cleanup after animation
+    setTimeout(() => {
+      lv.classList.remove('active');
+      lv.style.transition = 'none';
+      lv.style.opacity = '0';
+      lv.style.transform = 'translateX(80px) scale(0.97)';
+      // Remove inline styles from entered so CSS class rules take over cleanly
+      en.style.transition = '';
+      en.style.opacity = '';
+      en.style.transform = '';
+      animating = false;
+      updateUI();
+    }, 500);
+
+    // UI update immediately (don't wait for animation end)
+    updateUI(true);
+
+    // Coverage bars animation on slide 12 (index 11)
+    if (cur === 11 && !covDone) {
+      covDone = true;
+      setTimeout(() => {
+        document.querySelectorAll('.cov-fill').forEach(b => { 
+          if(b.dataset.w) b.style.width = b.dataset.w; 
+        });
+      }, 250);
+    }
+  }
+
+  function updateUI(immediate) {
+    const pct = ((cur + 1) / TOTAL) * 100;
+    document.getElementById('progress-bar').style.width = pct + '%';
+    const label = `${String(cur + 1).padStart(2, '0')} / ${String(TOTAL).padStart(2, '0')}`;
+    document.getElementById('slide-counter').textContent = label;
+    document.getElementById('slide-num').textContent = label;
+    document.getElementById('btn-prev').disabled = cur === 0;
+    document.getElementById('btn-next').disabled = cur === TOTAL - 1;
+    dots.forEach((d, i) => d.classList.toggle('active', i === cur));
+  }
+
+  function next() { goTo(cur + 1); }
+  function prev() { goTo(cur - 1); }
+
+  /* ── Keyboard ── */
+  document.addEventListener('keydown', e => {
+    if (['ArrowRight', 'ArrowDown', ' '].includes(e.key)) { e.preventDefault(); next(); }
+    if (['ArrowLeft', 'ArrowUp'].includes(e.key)) { e.preventDefault(); prev(); }
+    if (e.key === 'Home') goTo(0);
+    if (e.key === 'End') goTo(TOTAL - 1);
+  });
+
+  /* ── Touch / swipe ── */
+  let tx = 0;
+  document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+  document.addEventListener('touchend', e => {
+    const d = tx - e.changedTouches[0].clientX;
+    if (Math.abs(d) > 45) d > 0 ? next() : prev();
+  });
+
+  /* ── Mouse wheel ── */
+  let wLock = false;
+  document.addEventListener('wheel', e => {
+    if (wLock) return;
+    wLock = true;
+    e.deltaY > 0 ? next() : prev();
+    setTimeout(() => { wLock = false; }, 850);
+  }, { passive: true });
+
+  updateUI();
+</script>
+</body>
+</html>
