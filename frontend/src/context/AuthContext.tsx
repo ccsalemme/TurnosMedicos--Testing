@@ -8,6 +8,7 @@ import {
   useState
 } from 'react';
 import { api } from '../lib/api';
+import { logger } from '../lib/logger';
 import { User } from '../types/domain';
 
 const TOKEN_KEY = 'tm_access_token';
@@ -64,20 +65,20 @@ export function AuthProvider({ children }: PropsWithChildren) {
 
   useEffect(() => {
     const bootstrap = async () => {
-      console.log('[AuthContext] Bootstrap - Token actual:', token);
+      logger.debug('AuthContext bootstrap iniciado', { hasToken: !!token });
       if (!token) {
-        console.log('[AuthContext] No hay token, saltando bootstrap');
+        logger.debug('No hay token, saltando bootstrap');
         setLoading(false);
         return;
       }
 
       try {
-        console.log('[AuthContext] Obteniendo perfil del usuario...');
+        logger.info('Obteniendo perfil del usuario autenticado');
         const profile = await api.me(token);
-        console.log('[AuthContext] Perfil obtenido:', profile);
+        logger.logAuthEvent('Usuario autenticado', profile.id);
         setUser(profile);
       } catch (err) {
-        console.error('[AuthContext] Error obteniendo perfil:', err);
+        logger.error('Error obteniendo perfil del usuario', err instanceof Error ? err : undefined);
         persistToken(null);
         setUser(null);
       } finally {
@@ -89,13 +90,21 @@ export function AuthProvider({ children }: PropsWithChildren) {
   }, [token]);
 
   const login = useCallback(async (input: { email: string; password: string }) => {
-    console.log('[AuthContext] Intentando login con email:', input.email);
-    const result = await api.login(input);
-    console.log('[AuthContext] Login exitoso, token:', result.accessToken.substring(0, 20) + '...');
-    console.log('[AuthContext] Usuario recibido:', result.user);
-    persistToken(result.accessToken);
-    setUser(result.user);
-    console.log('[AuthContext] Estado actualizado - Usuario:', result.user);
+    logger.info('Intentando login', { email: input.email });
+    try {
+      const result = await api.login(input);
+      logger.logAuthEvent('Login exitoso', result.user.id);
+      logger.info('Usuario autenticado', { 
+        userId: result.user.id, 
+        role: result.user.role,
+        email: result.user.email 
+      });
+      persistToken(result.accessToken);
+      setUser(result.user);
+    } catch (error) {
+      logger.error('Error en login', error instanceof Error ? error : undefined, { email: input.email });
+      throw error;
+    }
   }, []);
 
   const registerPatient = useCallback(
@@ -108,9 +117,17 @@ export function AuthProvider({ children }: PropsWithChildren) {
       birthDate: string;
       phone: string;
     }) => {
-      const result = await api.registerPatient(input);
-      persistToken(result.accessToken);
-      setUser(result.user);
+      logger.info('Registrando nuevo paciente', { email: input.email });
+      try {
+        const result = await api.registerPatient(input);
+        logger.logAuthEvent('Registro exitoso', result.user.id);
+        logger.info('Paciente registrado', { userId: result.user.id, email: result.user.email });
+        persistToken(result.accessToken);
+        setUser(result.user);
+      } catch (error) {
+        logger.error('Error en registro', error instanceof Error ? error : undefined, { email: input.email });
+        throw error;
+      }
     },
     []
   );
@@ -123,19 +140,29 @@ export function AuthProvider({ children }: PropsWithChildren) {
       birthDate?: string;
     }) => {
       if (!token) {
+        logger.warn('Intento de actualizar perfil sin token');
         return;
       }
 
-      const updated = await api.updateMyProfile(token, input);
-      setUser(updated);
+      logger.info('Actualizando perfil de usuario', { fields: Object.keys(input) });
+      try {
+        const updated = await api.updateMyProfile(token, input);
+        logger.info('Perfil actualizado exitosamente', { userId: updated.id });
+        setUser(updated);
+      } catch (error) {
+        logger.error('Error actualizando perfil', error instanceof Error ? error : undefined);
+        throw error;
+      }
     },
     [token]
   );
 
   const logout = useCallback(() => {
+    logger.logAuthEvent('Logout', user?.id);
+    logger.info('Usuario cerrando sesión');
     persistToken(null);
     setUser(null);
-  }, []);
+  }, [user]);
 
   const value = useMemo<AuthContextValue>(
     () => ({

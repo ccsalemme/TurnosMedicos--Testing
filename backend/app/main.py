@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import time
+
 from fastapi import APIRouter, FastAPI, Query, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
@@ -7,6 +9,7 @@ from fastapi.responses import JSONResponse
 
 from .config import get_settings
 from .errors import ApiException
+from .logger import app_logger, log_error, log_request, log_response
 from .schemas import (
     AppointmentStatus,
     CancelAppointmentIn,
@@ -39,6 +42,16 @@ store = MockDataStore(
 )
 
 app = FastAPI(title='Turnos Medicos API (Python)', version='1.0.0')
+
+# Logging de inicio
+app_logger.info("=" * 80)
+app_logger.info("Iniciando aplicación Turnos Médicos API")
+app_logger.info(f"Puerto: {settings.port}")
+app_logger.info(f"Archivo de datos: {settings.mock_data_file}")
+app_logger.info(f"CORS Origins: {settings.cors_origins}")
+app_logger.info("=" * 80)
+
+# Middleware de CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=['http://localhost:5173', 'http://localhost:5174', 'http://localhost:3000'] + (settings.cors_origins or []),
@@ -46,6 +59,38 @@ app.add_middleware(
     allow_methods=['*'],
     allow_headers=['*']
 )
+
+
+# Middleware de logging para requests/responses
+@app.middleware("http")
+async def log_requests(request: Request, call_next):
+    """Middleware para logging de todas las requests y responses."""
+    start_time = time.time()
+    
+    # Extraer user_id si existe el token
+    user_id = None
+    try:
+        auth_header = request.headers.get('authorization')
+        if auth_header and auth_header.startswith('Bearer '):
+            token = auth_header[7:]
+            user = store.get_auth_user_from_token(token)
+            user_id = str(user.get('id'))
+    except Exception:
+        pass  # Si falla la autenticación, continuamos sin user_id
+    
+    # Log del request
+    log_request(app_logger, request.method, request.url.path, user_id)
+    
+    # Procesar request
+    response = await call_next(request)
+    
+    # Calcular duración
+    duration_ms = (time.time() - start_time) * 1000
+    
+    # Log del response
+    log_response(app_logger, request.url.path, response.status_code, duration_ms)
+    
+    return response
 
 router = APIRouter(prefix='/api/v1')
 
@@ -85,6 +130,12 @@ def require_auth(request: Request, roles: list[Role] | None = None) -> dict[str,
 
 @app.exception_handler(ApiException)
 async def api_exception_handler(request: Request, exc: ApiException) -> JSONResponse:
+    log_error(app_logger, exc, {
+        'path': request.url.path,
+        'method': request.method,
+        'status': exc.status,
+        'details': exc.details
+    })
     return JSONResponse(
         status_code=exc.status,
         content=error_response(request, exc.status, exc.message, exc.details)
@@ -93,6 +144,7 @@ async def api_exception_handler(request: Request, exc: ApiException) -> JSONResp
 
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request: Request, exc: RequestValidationError) -> JSONResponse:
+    app_logger.warning(f"Error de validación en {request.method} {request.url.path}: {exc.errors()}")
     return JSONResponse(
         status_code=400,
         content=error_response(request, 400, 'Error en la solicitud', exc.errors())
@@ -100,7 +152,11 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
 
 
 @app.exception_handler(Exception)
-async def generic_exception_handler(request: Request, _: Exception) -> JSONResponse:
+async def generic_exception_handler(request: Request, exc: Exception) -> JSONResponse:
+    log_error(app_logger, exc, {
+        'path': request.url.path,
+        'method': request.method
+    })
     return JSONResponse(
         status_code=500,
         content=error_response(request, 500, 'Error interno del servidor', None)

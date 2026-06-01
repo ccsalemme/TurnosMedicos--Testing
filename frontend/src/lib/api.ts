@@ -12,6 +12,7 @@ import {
   User,
   UserRole
 } from '../types/domain';
+import { logger } from './logger';
 
 const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL as string | undefined) || 'http://localhost:3000/api/v1';
 
@@ -50,26 +51,51 @@ const toQueryString = (params?: Record<string, string | undefined>) => {
 };
 
 async function request<T>(path: string, options: RequestOptions = {}): Promise<T> {
-  const response = await fetch(`${API_BASE_URL}${path}`, {
-    method: options.method ?? 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      ...(options.token ? { Authorization: `Bearer ${options.token}` } : {})
-    },
-    body: options.body ? JSON.stringify(options.body) : undefined
-  });
+  const method = options.method ?? 'GET';
+  const url = `${API_BASE_URL}${path}`;
+  const startTime = performance.now();
+  
+  // Log del request
+  logger.logApiRequest(method, path, options.body);
+  
+  try {
+    const response = await fetch(url, {
+      method,
+      headers: {
+        'Content-Type': 'application/json',
+        ...(options.token ? { Authorization: `Bearer ${options.token}` } : {})
+      },
+      body: options.body ? JSON.stringify(options.body) : undefined
+    });
 
-  const payload = (await response.json().catch(() => null)) as ApiEnvelope<T> | null;
+    const duration = performance.now() - startTime;
+    const payload = (await response.json().catch(() => null)) as ApiEnvelope<T> | null;
 
-  if (!response.ok || !payload?.success) {
-    throw new ApiError(
-      payload?.error?.message ?? 'No se pudo completar la operacion',
-      payload?.error?.status ?? response.status,
-      payload?.error?.details
-    );
+    if (!response.ok || !payload?.success) {
+      const error = new ApiError(
+        payload?.error?.message ?? 'No se pudo completar la operacion',
+        payload?.error?.status ?? response.status,
+        payload?.error?.details
+      );
+      
+      // Log del error
+      logger.logApiError(method, path, error);
+      throw error;
+    }
+
+    // Log de respuesta exitosa
+    logger.logApiResponse(method, path, response.status, duration);
+    return payload.data;
+  } catch (error) {
+    const duration = performance.now() - startTime;
+    
+    // Log de error de red u otro error
+    if (!(error instanceof ApiError)) {
+      logger.logApiError(method, path, error);
+    }
+    
+    throw error;
   }
-
-  return payload.data;
 }
 
 export const api = {

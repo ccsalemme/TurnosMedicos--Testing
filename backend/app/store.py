@@ -13,6 +13,7 @@ from typing import Any
 import jwt
 
 from .errors import BadRequest, Forbidden, NotFound, Unauthorized
+from .logger import app_logger, log_operation
 from .schemas import AppointmentStatus, Role
 
 TAG_REGEX = re.compile(r'<[^>]*>')
@@ -168,8 +169,11 @@ class MockDataStore:
         with self._lock:
             dto = sanitize_payload(input_data)
             email = dto['email'].lower()
+            
+            app_logger.info(f"Intentando registrar nuevo paciente: {email}")
 
             if any(user.get('email') == email for user in self.users):
+                app_logger.warning(f"Intento de registro con email duplicado: {email}")
                 raise BadRequest('El email ya esta registrado')
 
             if any(user.get('patientProfile', {}).get('document') == dto['document'] for user in self.users):
@@ -198,21 +202,28 @@ class MockDataStore:
 
             self.users.append(user)
             self.record_audit('PATIENT_REGISTER', 'USER', user['id'], user['id'], {'email': user['email']})
+            app_logger.info(f"Paciente registrado exitosamente: {email} (ID: {user_id})")
             return self.build_auth_response(user)
 
     def login(self, input_data: dict[str, Any]) -> dict[str, Any]:
         with self._lock:
             dto = sanitize_payload(input_data)
             email = dto['email'].lower()
+            
+            app_logger.info(f"Intento de login: {email}")
+            
             user = next((item for item in self.users if item.get('email') == email), None)
 
             if not user or user.get('password') != dto['password']:
+                app_logger.warning(f"Login fallido para: {email} - Credenciales inválidas")
                 raise Unauthorized('Credenciales invalidas')
 
             if not user.get('isActive'):
+                app_logger.warning(f"Login fallido para: {email} - Usuario inactivo")
                 raise Unauthorized('Usuario inactivo')
 
             self.record_audit('LOGIN', 'USER', user['id'], user['id'])
+            app_logger.info(f"Login exitoso: {email} (Role: {user.get('role')}, ID: {user['id']})")
             return self.build_auth_response(user)
 
     def me(self, user_id: str) -> dict[str, Any]:
@@ -527,9 +538,12 @@ class MockDataStore:
         with self._lock:
             self.ensure_role(actor, [Role.PATIENT])
             dto = sanitize_payload(input_data)
+            
+            app_logger.info(f"Paciente {actor['id']} ({actor['email']}) intentando reservar turno")
 
             doctor = self.find_user(dto['doctorId'])
             if doctor.get('role') != Role.DOCTOR.value or not doctor.get('doctorProfile') or not doctor.get('isActive'):
+                app_logger.warning(f"Intento de reserva con médico inválido: {dto['doctorId']}")
                 raise NotFound('Medico no encontrado')
 
             specialty = self.find_specialty(dto['specialtyId'])
@@ -562,6 +576,7 @@ class MockDataStore:
 
             self.appointments.append(appointment)
             self.record_audit('APPOINTMENT_RESERVE', 'APPOINTMENT', appointment['id'], actor['id'])
+            app_logger.info(f"Turno reservado exitosamente: {appointment['id']} | Paciente: {actor['id']} | Doctor: {doctor['id']} | Fecha: {appointment['startAt']}")
             return self.to_public_appointment(appointment)
 
     def get_my_appointments(self, actor: dict[str, Any], query: dict[str, Any]) -> list[dict[str, Any]]:
@@ -581,11 +596,14 @@ class MockDataStore:
         with self._lock:
             dto = sanitize_payload(input_data)
             appointment = self.find_appointment(appointment_id)
+            
+            app_logger.info(f"Usuario {actor['id']} ({actor['role']}) intentando cancelar turno: {appointment_id}")
 
             is_owner = appointment['patientId'] == actor['id']
             is_admin = actor.get('role') == Role.ADMIN.value
 
             if not is_owner and not is_admin:
+                app_logger.warning(f"Usuario {actor['id']} sin autorización para cancelar turno {appointment_id}")
                 raise Forbidden('No autorizado para cancelar este turno')
 
             if appointment['status'] not in ACTIVE_BOOKING_STATUSES:
@@ -607,6 +625,7 @@ class MockDataStore:
             appointment['updatedById'] = actor['id']
 
             self.record_audit('APPOINTMENT_CANCEL', 'APPOINTMENT', appointment['id'], actor['id'])
+            app_logger.info(f"Turno cancelado exitosamente: {appointment_id} | Por usuario: {actor['id']} | Razón: {dto.get('reason', 'No especificada')}")
             return self.to_public_appointment(appointment)
 
     def reschedule_appointment(self, actor: dict[str, Any], appointment_id: str, input_data: dict[str, Any]) -> dict[str, Any]:

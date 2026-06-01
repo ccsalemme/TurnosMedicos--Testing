@@ -10,6 +10,7 @@ import { Label } from '../../components/ui/label';
 import { Textarea } from '../../components/ui/textarea';
 import { useAuth } from '../../context/AuthContext';
 import { ApiError, api } from '../../lib/api';
+import { logger } from '../../lib/logger';
 import { Appointment, Doctor, Specialty } from '../../types/domain';
 
 const toInputDateTime = (value: string) => dayjs(value).format('YYYY-MM-DDTHH:mm');
@@ -67,6 +68,7 @@ export function PatientDashboard() {
 
     setLoading(true);
     setError(null);
+    logger.info('Cargando datos del dashboard de paciente');
 
     try {
       const [specialtyData, doctorData, appointmentData] = await Promise.all([
@@ -78,7 +80,13 @@ export function PatientDashboard() {
       setSpecialties(specialtyData);
       setDoctors(doctorData);
       setAppointments(appointmentData);
+      logger.info('Datos cargados exitosamente', { 
+        specialties: specialtyData.length, 
+        doctors: doctorData.length, 
+        appointments: appointmentData.length 
+      });
     } catch (err) {
+      logger.error('Error cargando datos del dashboard', err instanceof Error ? err : undefined);
       setError(err instanceof ApiError ? err.message : 'No se pudo cargar el panel');
     } finally {
       setLoading(false);
@@ -112,6 +120,12 @@ export function PatientDashboard() {
 
     setSubmitting(true);
     setError(null);
+    
+    logger.logUserAction('Reservar turno', {
+      specialtyId: booking.specialtyId,
+      doctorId: booking.doctorId,
+      startAt: booking.startAt
+    });
 
     try {
       await api.reserveAppointment(token, {
@@ -121,10 +135,12 @@ export function PatientDashboard() {
         startAt: new Date(booking.startAt).toISOString(),
         notes: booking.notes || undefined
       });
-
+      
+      logger.info('Turno reservado exitosamente');
       setBooking((prev) => ({ ...prev, startAt: '', notes: '' }));
       await loadData();
     } catch (err) {
+      logger.error('Error reservando turno', err instanceof Error ? err : undefined);
       setError(err instanceof ApiError ? err.message : 'No se pudo reservar el turno');
     } finally {
       setSubmitting(false);
@@ -137,11 +153,15 @@ export function PatientDashboard() {
     }
 
     const reason = window.prompt('Motivo de cancelacion (opcional):') ?? undefined;
+    
+    logger.logUserAction('Cancelar turno', { appointmentId, reason });
 
     try {
       await api.cancelAppointment(token, appointmentId, reason);
+      logger.info('Turno cancelado exitosamente', { appointmentId });
       await loadData();
     } catch (err) {
+      logger.error('Error cancelando turno', err instanceof Error ? err : undefined, { appointmentId });
       setError(err instanceof ApiError ? err.message : 'No se pudo cancelar el turno');
     }
   };
@@ -156,11 +176,15 @@ export function PatientDashboard() {
       setError('Seleccione una nueva fecha y hora para reprogramar.');
       return;
     }
+    
+    logger.logUserAction('Reprogramar turno', { appointmentId, newStart });
 
     try {
       await api.rescheduleAppointment(token, appointmentId, new Date(newStart).toISOString());
+      logger.info('Turno reprogramado exitosamente', { appointmentId, newStart });
       await loadData();
     } catch (err) {
+      logger.error('Error reprogramando turno', err instanceof Error ? err : undefined, { appointmentId });
       setError(err instanceof ApiError ? err.message : 'No se pudo reprogramar el turno');
     }
   };
