@@ -26,9 +26,13 @@ test.describe('RF-03 y RF-04: Reserva y Gestión de Turnos', () => {
     // Seleccionar primer doctor disponible
     await doctorSelect.selectOption({ index: 1 });
 
-    // Poner una fecha futura (mañana a las 10:00)
-    const futureDate = dayjs().add(1, 'day').hour(10).minute(0).format('YYYY-MM-DDTHH:mm');
-    await startAtInput.fill(futureDate);
+    // Poner una fecha futura en la que el médico esté disponible (próximo miércoles a las 12:00 local, que es 15:00 UTC y cae en la franja de 14:00-18:00 UTC)
+    let futureDate = dayjs().hour(12).minute(0).second(0);
+    while (futureDate.day() !== 3 || futureDate.isBefore(dayjs().add(1, 'hour'))) {
+      futureDate = futureDate.add(1, 'day');
+    }
+    const futureDateStr = futureDate.format('YYYY-MM-DDTHH:mm');
+    await startAtInput.fill(futureDateStr);
     
     await notesInput.fill('Consulta de rutina test');
 
@@ -38,10 +42,12 @@ test.describe('RF-03 y RF-04: Reserva y Gestión de Turnos', () => {
     // Esperamos a que no este cargando/reservando
     await expect(reserveButton).toBeEnabled();
 
-    // Debe mostrarse en el historial con estado PENDIENTE o similar (dependiendo del idioma de StatusBadge)
-    const appointmentsList = page.locator('.rounded-lg.border.bg-white.p-4');
-    await expect(appointmentsList.first()).toBeVisible();
-    await expect(appointmentsList.first()).toContainText('PENDIENTE', { ignoreCase: true });
+    // Debe mostrarse en el historial con estado PENDIENTE
+    const expectedDateText = futureDate.format('DD/MM/YYYY 12:00');
+    const newAppointment = page.locator('.rounded-lg.border.bg-white.p-4', { hasText: expectedDateText })
+      .filter({ hasText: 'PENDIENTE' });
+    await expect(newAppointment).toBeVisible();
+    await expect(newAppointment).toContainText('PENDIENTE', { ignoreCase: true });
   });
 
   test('RF-04.4: Impedir programar turno en un horario pasado', async ({ page }) => {
@@ -66,18 +72,41 @@ test.describe('RF-03 y RF-04: Reserva y Gestión de Turnos', () => {
   });
 
   test('RF-04.2: Cancelar un turno', async ({ page }) => {
-    // Si no hay turnos, este test asume que el anterior generó uno.
-    const firstAppointment = page.locator('.rounded-lg.border.bg-white.p-4').first();
-    await expect(firstAppointment).toBeVisible();
+    // 1. Reservar un turno primero en un horario diferente (13:00 local) para asegurar que existe uno pendiente
+    const specialtySelect = page.locator('#booking-specialty');
+    const doctorSelect = page.locator('#booking-doctor');
+    const startAtInput = page.locator('#booking-start-at');
+    const reserveButton = page.locator('button:has-text("Reservar turno")');
+
+    await specialtySelect.selectOption({ index: 1 });
+    await doctorSelect.selectOption({ index: 1 });
+
+    let futureDate = dayjs().hour(13).minute(0).second(0);
+    while (futureDate.day() !== 3 || futureDate.isBefore(dayjs().add(1, 'hour'))) {
+      futureDate = futureDate.add(1, 'day');
+    }
+    const futureDateStr = futureDate.format('YYYY-MM-DDTHH:mm');
+    await startAtInput.fill(futureDateStr);
+    await reserveButton.click();
+    await expect(reserveButton).toBeEnabled();
+
+    // 2. Ahora que está reservado, procedemos a cancelarlo
+    const dateText = futureDate.format('DD/MM/YYYY 13:00');
+    const manageableAppointment = page.locator('.rounded-lg.border.bg-white.p-4', {
+      hasText: dateText
+    }).filter({ has: page.locator('button:has-text("Cancelar")') }).first();
+    await expect(manageableAppointment).toBeVisible();
 
     // Mock window.prompt para la cancelación
     page.on('dialog', dialog => dialog.accept('Test de cancelación'));
 
-    const cancelButton = firstAppointment.locator('button:has-text("Cancelar")');
+    const cancelButton = manageableAppointment.locator('button:has-text("Cancelar")');
     await cancelButton.click();
 
-    // Verificar que desaparece la opción de gestionar (ya que cambia de estado a CANCELADO)
-    // o que el estado cambia
-    await expect(firstAppointment).toContainText('CANCELADO', { ignoreCase: true });
+    // Buscar la tarjeta por su fecha y verificar que cambia de estado a CANCELADO
+    const cancelledCard = page.locator('.rounded-lg.border.bg-white.p-4', {
+      hasText: dateText
+    }).first();
+    await expect(cancelledCard).toContainText('CANCELADO', { ignoreCase: true });
   });
 });

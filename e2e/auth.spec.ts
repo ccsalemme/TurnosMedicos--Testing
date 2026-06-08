@@ -9,10 +9,11 @@ test.describe('RF-01: Autenticación y Registro', () => {
     await page.goto('/register');
     
     const uniqueEmail = `test_patient_${Date.now()}@clinica.local`;
+    const uniqueDoc = `${Math.floor(10000000 + Math.random() * 90000000)}`;
 
     await page.fill('#firstName', 'Juan');
     await page.fill('#lastName', 'Test');
-    await page.fill('#document', '12345678');
+    await page.fill('#document', uniqueDoc);
     await page.fill('#birthDate', '1990-01-01');
     await page.fill('#phone', '1122334455');
     await page.fill('#email', uniqueEmail);

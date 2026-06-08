@@ -138,6 +138,176 @@
         "birthDate": "2026-05-07T00:00:00Z",
         "phone": "2121212212"
       }
+    },
+    {
+      "id": "usr_pchk5x8q",
+      "email": "test_patient_1780938619006@clinica.local",
+      "password": "TestPass123!",
+      "role": "PATIENT",
+      "isActive": true,
+      "firstName": "Juan",
+      "lastName": "Test",
+      "phone": "1122334455",
+      "patientProfile": {
+        "id": "pat_qj64xlen",
+        "userId": "usr_pchk5x8q",
+        "document": "12345678",
+        "birthDate": "1990-01-01T00:00:00Z",
+        "phone": "1122334455"
+      }
+    },
+    {
+      "id": "usr_r4wyhskr",
+      "email": "test_patient_1780939470433@clinica.local",
+      "password": "TestPass123!",
+      "role": "PATIENT",
+      "isActive": true,
+      "firstName": "Juan",
+      "lastName": "Test",
+      "phone": "1122334455",
+      "patientProfile": {
+        "id": "pat_zk2vxdmi",
+        "userId": "usr_r4wyhskr",
+        "document": "55969084",
+        "birthDate": "1990-01-01T00:00:00Z",
+        "phone": "1122334455"
+      }
+    },
+    {
+      "id": "usr_0j0w6cmh",
+      "email": "test_patient_1780939524976@clinica.local",
+      "password": "TestPass123!",
+      "role": "PATIENT",
+      "isActive": true,
+      "firstName": "Juan",
+      "lastName": "Test",
+      "phone": "1122334455",
+      "patientProfile": {
+        "id": "pat_bufsh3mx",
+        "userId": "usr_0j0w6cmh",
+        "document": "61923125",
+        "birthDate": "1990-01-01T00:00:00Z",
+        "phone": "1122334455"
+      }
+    },
+    {
+      "id": "usr_1df8mcll",
+      "email": "test_patient_1780939589839@clinica.local",
+      "password": "TestPass123!",
+      "role": "PATIENT",
+      "isActive": true,
+      "firstName": "Juan",
+      "lastName": "Test",
+      "phone": "1122334455",
+      "patientProfile": {
+        "id": "pat_f63b2l8l",
+        "userId": "usr_1df8mcll",
+        "document": "58574650",
+        "birthDate": "1990-01-01T00:00:00Z",
+        "phone": "1122334455"
+      }
+    },
+    {
+      "id": "usr_zcwc75v3",
+      "email": "test_patient_1780939620719@clinica.local",
+      "password": "TestPass123!",
+      "role": "PATIENT",
+      "isActive": true,
+      "firstName": "Juan",
+      "lastName": "Test",
+      "phone": "1122334455",
+      "patientProfile": {
+        "id": "pat_xr96ibsc",
+        "userId": "usr_zcwc75v3",
+        "document": "98232244",
+        "birthDate": "1990-01-01T00:00:00Z",
+        "phone": "1122334455"
+      }
+    },
+    {
+      "id": "usr_f096qqaq",
+      "email": "test_patient_1780939726247@clinica.local",
+      "password": "TestPass123!",
+      "role": "PATIENT",
+      "isActive": true,
+      "firstName": "Juan",
+      "lastName": "Test",
+      "phone": "1122334455",
+      "patientProfile": {
+        "id": "pat_fgz4alj5",
+        "userId": "usr_f096qqaq",
+        "document": "12721316",
+        "birthDate": "1990-01-01T00:00:00Z",
+        "phone": "1122334455"
+      }
+    },
+    {
+      "id": "usr_vyowf2l4",
+      "email": "test_patient_1780939792501@clinica.local",
+      "password": "TestPass123!",
+      "role": "PATIENT",
+      "isActive": true,
+      "firstName": "Juan",
+      "lastName": "Test",
+      "phone": "1122334455",
+      "patientProfile": {
+        "id": "pat_oof362wz",
+        "userId": "usr_vyowf2l4",
+        "document": "28497651",
+        "birthDate": "1990-01-01T00:00:00Z",
+        "phone": "1122334455"
+      }
+    },
+    {
+      "id": "usr_lorew2gc",
+      "email": "test_patient_1780939847768@clinica.local",
+      "password": "TestPass123!",
+      "role": "PATIENT",
+      "isActive": true,
+      "firstName": "Juan",
+      "lastName": "Test",
+      "phone": "1122334455",
+      "patientProfile": {
+        "id": "pat_6zckcdz0",
+        "userId": "usr_lorew2gc",
+        "document": "54786868",
+        "birthDate": "1990-01-01T00:00:00Z",
+        "phone": "1122334455"
+      }
+    },
+    {
+      "id": "usr_xapgo5mi",
+      "email": "test_patient_1780939883436@clinica.local",
+      "password": "TestPass123!",
+      "role": "PATIENT",
+      "isActive": true,
+      "firstName": "Juan",
+      "lastName": "Test",
+      "phone": "1122334455",
+      "patientProfile": {
+        "id": "pat_cz1o55jd",
+        "userId": "usr_xapgo5mi",
+        "document": "56152397",
+        "birthDate": "1990-01-01T00:00:00Z",
+        "phone": "1122334455"
+      }
+    },
+    {
+      "id": "usr_e2fxfgk3",
+      "email": "test_patient_1780939997205@clinica.local",
+      "password": "TestPass123!",
+      "role": "PATIENT",
+      "isActive": true,
+      "firstName": "Juan",
+      "lastName": "Test",
+      "phone": "1122334455",
+      "patientProfile": {
+        "id": "pat_wq740y2t",
+        "userId": "usr_e2fxfgk3",
+        "document": "59248612",
+        "birthDate": "1990-01-01T00:00:00Z",
+        "phone": "1122334455"
+      }
     }
   ],
   "specialties": [
@@ -986,10 +1156,115 @@
       "siteId": "site_centro",
       "startAt": "2026-06-10T14:00:00Z",
       "endAt": "2026-06-10T14:30:00Z",
-      "status": "PENDING",
+      "status": "CANCELED",
       "notes": "Control",
       "createdAt": "2026-05-11T19:32:55.133376Z",
+      "createdById": "usr_pat1",
+      "cancellationReason": "Test de cancelaci\u00f3n",
+      "updatedById": "usr_pat1"
+    },
+    {
+      "id": "apt_t8wmd5mu",
+      "patientId": "usr_pat1",
+      "doctorId": "usr_doc1",
+      "specialtyId": "spc_cardiologia",
+      "siteId": "site_centro",
+      "startAt": "2026-06-10T15:00:00Z",
+      "endAt": "2026-06-10T15:30:00Z",
+      "status": "CANCELED",
+      "notes": "Consulta de rutina test",
+      "createdAt": "2026-06-08T17:26:59.170753Z",
+      "createdById": "usr_pat1",
+      "cancellationReason": "Test de cancelaci\u00f3n",
+      "updatedById": "usr_pat1"
+    },
+    {
+      "id": "apt_wy0fhgwz",
+      "patientId": "usr_pat1",
+      "doctorId": "usr_doc1",
+      "specialtyId": "spc_cardiologia",
+      "siteId": "site_centro",
+      "startAt": "2026-06-10T15:00:00Z",
+      "endAt": "2026-06-10T15:30:00Z",
+      "status": "CANCELED",
+      "notes": "Consulta de rutina test",
+      "createdAt": "2026-06-08T17:28:43.387835Z",
+      "createdById": "usr_pat1",
+      "cancellationReason": "Test de cancelaci\u00f3n",
+      "updatedById": "usr_pat1"
+    },
+    {
+      "id": "apt_ojg9sgs0",
+      "patientId": "usr_pat1",
+      "doctorId": "usr_doc1",
+      "specialtyId": "spc_cardiologia",
+      "siteId": "site_centro",
+      "startAt": "2026-06-10T15:00:00Z",
+      "endAt": "2026-06-10T15:30:00Z",
+      "status": "PENDING",
+      "notes": "Consulta de rutina test",
+      "createdAt": "2026-06-08T17:29:07.796442Z",
       "createdById": "usr_pat1"
+    },
+    {
+      "id": "apt_jwqd5suh",
+      "patientId": "usr_pat1",
+      "doctorId": "usr_doc1",
+      "specialtyId": "spc_cardiologia",
+      "siteId": "site_centro",
+      "startAt": "2026-06-10T16:00:00Z",
+      "endAt": "2026-06-10T16:30:00Z",
+      "status": "CANCELED",
+      "notes": null,
+      "createdAt": "2026-06-08T17:29:51.952231Z",
+      "createdById": "usr_pat1",
+      "cancellationReason": "Test de cancelaci\u00f3n",
+      "updatedById": "usr_pat1"
+    },
+    {
+      "id": "apt_vh7ityxu",
+      "patientId": "usr_pat1",
+      "doctorId": "usr_doc1",
+      "specialtyId": "spc_cardiologia",
+      "siteId": "site_centro",
+      "startAt": "2026-06-10T16:00:00Z",
+      "endAt": "2026-06-10T16:30:00Z",
+      "status": "CANCELED",
+      "notes": null,
+      "createdAt": "2026-06-08T17:30:46.739548Z",
+      "createdById": "usr_pat1",
+      "cancellationReason": "Test de cancelaci\u00f3n",
+      "updatedById": "usr_pat1"
+    },
+    {
+      "id": "apt_rasea282",
+      "patientId": "usr_pat1",
+      "doctorId": "usr_doc1",
+      "specialtyId": "spc_cardiologia",
+      "siteId": "site_centro",
+      "startAt": "2026-06-10T16:00:00Z",
+      "endAt": "2026-06-10T16:30:00Z",
+      "status": "CANCELED",
+      "notes": null,
+      "createdAt": "2026-06-08T17:31:22.946923Z",
+      "createdById": "usr_pat1",
+      "cancellationReason": "Test de cancelaci\u00f3n",
+      "updatedById": "usr_pat1"
+    },
+    {
+      "id": "apt_piirz3r4",
+      "patientId": "usr_pat1",
+      "doctorId": "usr_doc1",
+      "specialtyId": "spc_cardiologia",
+      "siteId": "site_centro",
+      "startAt": "2026-06-10T16:00:00Z",
+      "endAt": "2026-06-10T16:30:00Z",
+      "status": "CANCELED",
+      "notes": null,
+      "createdAt": "2026-06-08T17:33:16.570983Z",
+      "createdById": "usr_pat1",
+      "cancellationReason": "Test de cancelaci\u00f3n",
+      "updatedById": "usr_pat1"
     }
   ],
   "settings": [
@@ -97559,6 +97834,1349 @@
       "actorId": "usr_pat1",
       "metadata": null,
       "createdAt": "2026-06-01T17:46:20.015752Z"
+    },
+    {
+      "id": "adt_gg9p4uqg",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:10:01.731773Z"
+    },
+    {
+      "id": "adt_zf227ziq",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:10:07.550048Z"
+    },
+    {
+      "id": "adt_x6obzkwl",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:10:13.224252Z"
+    },
+    {
+      "id": "adt_ppafompe",
+      "action": "PATIENT_REGISTER",
+      "entity": "USER",
+      "entityId": "usr_pchk5x8q",
+      "actorId": "usr_pchk5x8q",
+      "metadata": {
+        "email": "test_patient_1780938619006@clinica.local"
+      },
+      "createdAt": "2026-06-08T17:10:19.099015Z"
+    },
+    {
+      "id": "adt_xt9bwc6r",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_admin",
+      "actorId": "usr_admin",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:10:19.490486Z"
+    },
+    {
+      "id": "adt_0r16373y",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_doc1",
+      "actorId": "usr_doc1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:10:25.132557Z"
+    },
+    {
+      "id": "adt_07oskpii",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:10:30.832397Z"
+    },
+    {
+      "id": "adt_059j9m57",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:10:53.332646Z"
+    },
+    {
+      "id": "adt_5czzcozl",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:10:59.174881Z"
+    },
+    {
+      "id": "adt_xxuqd1z7",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:11:04.857903Z"
+    },
+    {
+      "id": "adt_60ajdwpz",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_admin",
+      "actorId": "usr_admin",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:11:16.373069Z"
+    },
+    {
+      "id": "adt_37lrq3ld",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_doc1",
+      "actorId": "usr_doc1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:11:22.058235Z"
+    },
+    {
+      "id": "adt_w9fn288n",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:11:27.932782Z"
+    },
+    {
+      "id": "adt_xqlmisyq",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:11:33.607648Z"
+    },
+    {
+      "id": "adt_meh3l9qt",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:11:39.416843Z"
+    },
+    {
+      "id": "adt_oj3k2l7j",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:11:45.299908Z"
+    },
+    {
+      "id": "adt_t3kchfmn",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:20:55.058632Z"
+    },
+    {
+      "id": "adt_c8d6w8sp",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:21:00.918141Z"
+    },
+    {
+      "id": "adt_rtwi9x1y",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:21:06.575925Z"
+    },
+    {
+      "id": "adt_ppg91lbr",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_admin",
+      "actorId": "usr_admin",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:21:18.038522Z"
+    },
+    {
+      "id": "adt_yx178as1",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_doc1",
+      "actorId": "usr_doc1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:21:23.731901Z"
+    },
+    {
+      "id": "adt_iwjmwtgy",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:21:29.582655Z"
+    },
+    {
+      "id": "adt_srug1odk",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:21:35.212994Z"
+    },
+    {
+      "id": "adt_j8pvgrhl",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:21:40.940538Z"
+    },
+    {
+      "id": "adt_igehtjlb",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:21:46.623183Z"
+    },
+    {
+      "id": "adt_nvwalr9y",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:23:53.576111Z"
+    },
+    {
+      "id": "adt_blsn967t",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:23:59.536740Z"
+    },
+    {
+      "id": "adt_mdspnghu",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:24:00.190596Z"
+    },
+    {
+      "id": "adt_fl6upuwh",
+      "action": "PATIENT_REGISTER",
+      "entity": "USER",
+      "entityId": "usr_r4wyhskr",
+      "actorId": "usr_r4wyhskr",
+      "metadata": {
+        "email": "test_patient_1780939470433@clinica.local"
+      },
+      "createdAt": "2026-06-08T17:24:30.523867Z"
+    },
+    {
+      "id": "adt_enxy2o2u",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_admin",
+      "actorId": "usr_admin",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:24:31.090252Z"
+    },
+    {
+      "id": "adt_mnvnus9r",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_doc1",
+      "actorId": "usr_doc1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:24:31.674107Z"
+    },
+    {
+      "id": "adt_6fwm9vq7",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:24:32.223479Z"
+    },
+    {
+      "id": "adt_eriswf9t",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:24:32.607611Z"
+    },
+    {
+      "id": "adt_6wrujy5k",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:24:33.189926Z"
+    },
+    {
+      "id": "adt_a04u2nlg",
+      "action": "PROFILE_UPDATE",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": {
+        "updatedFields": [
+          "firstName",
+          "lastName",
+          "phone",
+          "birthDate"
+        ]
+      },
+      "createdAt": "2026-06-08T17:24:33.297421Z"
+    },
+    {
+      "id": "adt_8nl38akd",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:24:33.840195Z"
+    },
+    {
+      "id": "adt_t0cl9gnk",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:25:12.635413Z"
+    },
+    {
+      "id": "adt_ppodxuae",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:25:18.641211Z"
+    },
+    {
+      "id": "adt_b8w6h19w",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:25:19.127157Z"
+    },
+    {
+      "id": "adt_6itam1v0",
+      "action": "APPOINTMENT_CANCEL",
+      "entity": "APPOINTMENT",
+      "entityId": "apt_d3br34c5",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:25:19.237691Z"
+    },
+    {
+      "id": "adt_ccldkbkc",
+      "action": "PATIENT_REGISTER",
+      "entity": "USER",
+      "entityId": "usr_0j0w6cmh",
+      "actorId": "usr_0j0w6cmh",
+      "metadata": {
+        "email": "test_patient_1780939524976@clinica.local"
+      },
+      "createdAt": "2026-06-08T17:25:25.061812Z"
+    },
+    {
+      "id": "adt_hh8ugb3z",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_admin",
+      "actorId": "usr_admin",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:25:25.451839Z"
+    },
+    {
+      "id": "adt_c4cwt535",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_doc1",
+      "actorId": "usr_doc1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:25:25.969921Z"
+    },
+    {
+      "id": "adt_po911i5b",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:25:26.510431Z"
+    },
+    {
+      "id": "adt_gd9psvdr",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:25:26.876547Z"
+    },
+    {
+      "id": "adt_b2c4146g",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:25:27.486632Z"
+    },
+    {
+      "id": "adt_q33x60g7",
+      "action": "PROFILE_UPDATE",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": {
+        "updatedFields": [
+          "firstName",
+          "lastName",
+          "phone",
+          "birthDate"
+        ]
+      },
+      "createdAt": "2026-06-08T17:25:27.592141Z"
+    },
+    {
+      "id": "adt_3pp777ye",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:25:27.964784Z"
+    },
+    {
+      "id": "adt_vx96pils",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:26:17.758966Z"
+    },
+    {
+      "id": "adt_6qqrf8qw",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:26:23.539921Z"
+    },
+    {
+      "id": "adt_nhdo57u3",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:26:23.997378Z"
+    },
+    {
+      "id": "adt_per8idhx",
+      "action": "PATIENT_REGISTER",
+      "entity": "USER",
+      "entityId": "usr_1df8mcll",
+      "actorId": "usr_1df8mcll",
+      "metadata": {
+        "email": "test_patient_1780939589839@clinica.local"
+      },
+      "createdAt": "2026-06-08T17:26:29.923511Z"
+    },
+    {
+      "id": "adt_9yvjbk4f",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_admin",
+      "actorId": "usr_admin",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:26:30.514150Z"
+    },
+    {
+      "id": "adt_e60fnkro",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_doc1",
+      "actorId": "usr_doc1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:26:30.905383Z"
+    },
+    {
+      "id": "adt_wq5dn1q5",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:26:31.263573Z"
+    },
+    {
+      "id": "adt_hde39tpx",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:26:31.638579Z"
+    },
+    {
+      "id": "adt_u9jhmr4x",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:26:32.088885Z"
+    },
+    {
+      "id": "adt_xs4gcd3h",
+      "action": "PROFILE_UPDATE",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": {
+        "updatedFields": [
+          "firstName",
+          "lastName",
+          "phone",
+          "birthDate"
+        ]
+      },
+      "createdAt": "2026-06-08T17:26:32.197111Z"
+    },
+    {
+      "id": "adt_7zhcub6e",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:26:32.763294Z"
+    },
+    {
+      "id": "adt_4wa1sh6f",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:26:59.047565Z"
+    },
+    {
+      "id": "adt_tvpk8tb7",
+      "action": "APPOINTMENT_RESERVE",
+      "entity": "APPOINTMENT",
+      "entityId": "apt_t8wmd5mu",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:26:59.170757Z"
+    },
+    {
+      "id": "adt_g8i2ei40",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:26:59.546644Z"
+    },
+    {
+      "id": "adt_fd90g3vq",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:27:00.121643Z"
+    },
+    {
+      "id": "adt_dwxxoqgv",
+      "action": "APPOINTMENT_CANCEL",
+      "entity": "APPOINTMENT",
+      "entityId": "apt_t8wmd5mu",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:27:00.222918Z"
+    },
+    {
+      "id": "adt_xrpovtx5",
+      "action": "PATIENT_REGISTER",
+      "entity": "USER",
+      "entityId": "usr_zcwc75v3",
+      "actorId": "usr_zcwc75v3",
+      "metadata": {
+        "email": "test_patient_1780939620719@clinica.local"
+      },
+      "createdAt": "2026-06-08T17:27:00.805188Z"
+    },
+    {
+      "id": "adt_kkthfcgk",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_admin",
+      "actorId": "usr_admin",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:27:01.355181Z"
+    },
+    {
+      "id": "adt_bq8ofhqg",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_doc1",
+      "actorId": "usr_doc1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:27:01.938398Z"
+    },
+    {
+      "id": "adt_5iqkypyq",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:27:02.321602Z"
+    },
+    {
+      "id": "adt_xwoerp0q",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:27:02.688141Z"
+    },
+    {
+      "id": "adt_ar7s3ual",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:27:03.263245Z"
+    },
+    {
+      "id": "adt_j1vcxz9k",
+      "action": "PROFILE_UPDATE",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": {
+        "updatedFields": [
+          "firstName",
+          "lastName",
+          "phone",
+          "birthDate"
+        ]
+      },
+      "createdAt": "2026-06-08T17:27:03.369628Z"
+    },
+    {
+      "id": "adt_hkbtwktr",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:27:03.729890Z"
+    },
+    {
+      "id": "adt_8bk0xtic",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:28:43.249564Z"
+    },
+    {
+      "id": "adt_383fivi5",
+      "action": "APPOINTMENT_RESERVE",
+      "entity": "APPOINTMENT",
+      "entityId": "apt_wy0fhgwz",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:28:43.387839Z"
+    },
+    {
+      "id": "adt_jrbafoh5",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:28:44.465515Z"
+    },
+    {
+      "id": "adt_6d0wdajz",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:28:45.203427Z"
+    },
+    {
+      "id": "adt_8g9kuax4",
+      "action": "APPOINTMENT_CANCEL",
+      "entity": "APPOINTMENT",
+      "entityId": "apt_wy0fhgwz",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:28:45.317562Z"
+    },
+    {
+      "id": "adt_d3huule4",
+      "action": "PATIENT_REGISTER",
+      "entity": "USER",
+      "entityId": "usr_f096qqaq",
+      "actorId": "usr_f096qqaq",
+      "metadata": {
+        "email": "test_patient_1780939726247@clinica.local"
+      },
+      "createdAt": "2026-06-08T17:28:46.355890Z"
+    },
+    {
+      "id": "adt_e8skbzuu",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_admin",
+      "actorId": "usr_admin",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:28:47.087434Z"
+    },
+    {
+      "id": "adt_ttwbrg4d",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_doc1",
+      "actorId": "usr_doc1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:28:47.854581Z"
+    },
+    {
+      "id": "adt_z1syppif",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:28:48.437368Z"
+    },
+    {
+      "id": "adt_th3fwfqn",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:28:49.087562Z"
+    },
+    {
+      "id": "adt_dgfeqckc",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:28:49.703981Z"
+    },
+    {
+      "id": "adt_6ki8oakj",
+      "action": "PROFILE_UPDATE",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": {
+        "updatedFields": [
+          "firstName",
+          "lastName",
+          "phone",
+          "birthDate"
+        ]
+      },
+      "createdAt": "2026-06-08T17:28:49.819841Z"
+    },
+    {
+      "id": "adt_onrzjoeq",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:28:50.512736Z"
+    },
+    {
+      "id": "adt_setmzx27",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:28:55.655775Z"
+    },
+    {
+      "id": "adt_0qwk4zdm",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:29:07.654722Z"
+    },
+    {
+      "id": "adt_b9qihx9q",
+      "action": "APPOINTMENT_RESERVE",
+      "entity": "APPOINTMENT",
+      "entityId": "apt_ojg9sgs0",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:29:07.796446Z"
+    },
+    {
+      "id": "adt_m3uefmc1",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:29:50.715140Z"
+    },
+    {
+      "id": "adt_f7ejn8f2",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:29:51.220403Z"
+    },
+    {
+      "id": "adt_b693myii",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:29:51.844889Z"
+    },
+    {
+      "id": "adt_vvbj7du7",
+      "action": "APPOINTMENT_RESERVE",
+      "entity": "APPOINTMENT",
+      "entityId": "apt_jwqd5suh",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:29:51.952235Z"
+    },
+    {
+      "id": "adt_k8b68r5t",
+      "action": "APPOINTMENT_CANCEL",
+      "entity": "APPOINTMENT",
+      "entityId": "apt_jwqd5suh",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:29:52.054373Z"
+    },
+    {
+      "id": "adt_rjjcjhdz",
+      "action": "PATIENT_REGISTER",
+      "entity": "USER",
+      "entityId": "usr_vyowf2l4",
+      "actorId": "usr_vyowf2l4",
+      "metadata": {
+        "email": "test_patient_1780939792501@clinica.local"
+      },
+      "createdAt": "2026-06-08T17:29:52.570845Z"
+    },
+    {
+      "id": "adt_iwc9en6e",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_admin",
+      "actorId": "usr_admin",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:29:52.961231Z"
+    },
+    {
+      "id": "adt_c8c9vyc9",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_doc1",
+      "actorId": "usr_doc1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:29:53.382885Z"
+    },
+    {
+      "id": "adt_runpbth1",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:29:53.953710Z"
+    },
+    {
+      "id": "adt_a60905lx",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:29:54.319700Z"
+    },
+    {
+      "id": "adt_pqt1lh4g",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:29:54.719430Z"
+    },
+    {
+      "id": "adt_4l8ixm26",
+      "action": "PROFILE_UPDATE",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": {
+        "updatedFields": [
+          "firstName",
+          "lastName",
+          "phone",
+          "birthDate"
+        ]
+      },
+      "createdAt": "2026-06-08T17:29:54.826982Z"
+    },
+    {
+      "id": "adt_30g59xrr",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:29:55.194542Z"
+    },
+    {
+      "id": "adt_dwh4hec2",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:30:45.123913Z"
+    },
+    {
+      "id": "adt_arltcnjp",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:30:45.881033Z"
+    },
+    {
+      "id": "adt_afdz6dgw",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:30:46.615927Z"
+    },
+    {
+      "id": "adt_g6qpq9zc",
+      "action": "APPOINTMENT_RESERVE",
+      "entity": "APPOINTMENT",
+      "entityId": "apt_vh7ityxu",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:30:46.739552Z"
+    },
+    {
+      "id": "adt_l0k7pca0",
+      "action": "APPOINTMENT_CANCEL",
+      "entity": "APPOINTMENT",
+      "entityId": "apt_vh7ityxu",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:30:46.841307Z"
+    },
+    {
+      "id": "adt_okjcnc8j",
+      "action": "PATIENT_REGISTER",
+      "entity": "USER",
+      "entityId": "usr_lorew2gc",
+      "actorId": "usr_lorew2gc",
+      "metadata": {
+        "email": "test_patient_1780939847768@clinica.local"
+      },
+      "createdAt": "2026-06-08T17:30:47.866751Z"
+    },
+    {
+      "id": "adt_oqpcx517",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_admin",
+      "actorId": "usr_admin",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:30:48.398860Z"
+    },
+    {
+      "id": "adt_nh6wtrey",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_doc1",
+      "actorId": "usr_doc1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:30:49.073582Z"
+    },
+    {
+      "id": "adt_wervx886",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:30:49.623452Z"
+    },
+    {
+      "id": "adt_eu9daw6k",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:30:50.148480Z"
+    },
+    {
+      "id": "adt_5z0jal26",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:30:50.748618Z"
+    },
+    {
+      "id": "adt_0ntoq27a",
+      "action": "PROFILE_UPDATE",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": {
+        "updatedFields": [
+          "firstName",
+          "lastName",
+          "phone",
+          "birthDate"
+        ]
+      },
+      "createdAt": "2026-06-08T17:30:50.872934Z"
+    },
+    {
+      "id": "adt_uhwtmojd",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:30:51.514734Z"
+    },
+    {
+      "id": "adt_bd7kx3rx",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:31:21.882801Z"
+    },
+    {
+      "id": "adt_rvodkt68",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:31:22.348361Z"
+    },
+    {
+      "id": "adt_26qsr7fm",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:31:22.831058Z"
+    },
+    {
+      "id": "adt_df04309r",
+      "action": "APPOINTMENT_RESERVE",
+      "entity": "APPOINTMENT",
+      "entityId": "apt_rasea282",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:31:22.946927Z"
+    },
+    {
+      "id": "adt_pft9fhrl",
+      "action": "APPOINTMENT_CANCEL",
+      "entity": "APPOINTMENT",
+      "entityId": "apt_rasea282",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:31:23.049024Z"
+    },
+    {
+      "id": "adt_5hp08x3s",
+      "action": "PATIENT_REGISTER",
+      "entity": "USER",
+      "entityId": "usr_xapgo5mi",
+      "actorId": "usr_xapgo5mi",
+      "metadata": {
+        "email": "test_patient_1780939883436@clinica.local"
+      },
+      "createdAt": "2026-06-08T17:31:23.514788Z"
+    },
+    {
+      "id": "adt_9ubyfaih",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_admin",
+      "actorId": "usr_admin",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:31:23.872696Z"
+    },
+    {
+      "id": "adt_ftdxj9qx",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_doc1",
+      "actorId": "usr_doc1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:31:24.348241Z"
+    },
+    {
+      "id": "adt_z48jl5la",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:31:24.747790Z"
+    },
+    {
+      "id": "adt_ku0c5lrk",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:31:25.281497Z"
+    },
+    {
+      "id": "adt_2409trkz",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:31:25.697582Z"
+    },
+    {
+      "id": "adt_zm7yrhg4",
+      "action": "PROFILE_UPDATE",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": {
+        "updatedFields": [
+          "firstName",
+          "lastName",
+          "phone",
+          "birthDate"
+        ]
+      },
+      "createdAt": "2026-06-08T17:31:25.805045Z"
+    },
+    {
+      "id": "adt_l947r5qh",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:31:26.331121Z"
+    },
+    {
+      "id": "adt_ojz24q4q",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:33:14.940051Z"
+    },
+    {
+      "id": "adt_bq2yds34",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:33:15.697074Z"
+    },
+    {
+      "id": "adt_irayglhn",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:33:16.446957Z"
+    },
+    {
+      "id": "adt_v62rjz64",
+      "action": "APPOINTMENT_RESERVE",
+      "entity": "APPOINTMENT",
+      "entityId": "apt_piirz3r4",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:33:16.570986Z"
+    },
+    {
+      "id": "adt_gcaix7un",
+      "action": "APPOINTMENT_CANCEL",
+      "entity": "APPOINTMENT",
+      "entityId": "apt_piirz3r4",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:33:16.672181Z"
+    },
+    {
+      "id": "adt_6kbhxdpz",
+      "action": "PATIENT_REGISTER",
+      "entity": "USER",
+      "entityId": "usr_e2fxfgk3",
+      "actorId": "usr_e2fxfgk3",
+      "metadata": {
+        "email": "test_patient_1780939997205@clinica.local"
+      },
+      "createdAt": "2026-06-08T17:33:17.289472Z"
+    },
+    {
+      "id": "adt_1hf9i5wu",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_admin",
+      "actorId": "usr_admin",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:33:17.963829Z"
+    },
+    {
+      "id": "adt_6upgx111",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_doc1",
+      "actorId": "usr_doc1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:33:18.655696Z"
+    },
+    {
+      "id": "adt_ti7xr10n",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:33:19.347083Z"
+    },
+    {
+      "id": "adt_w51ipsbu",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:33:19.980312Z"
+    },
+    {
+      "id": "adt_6nk4ta75",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:33:20.755277Z"
+    },
+    {
+      "id": "adt_ibn45fbw",
+      "action": "PROFILE_UPDATE",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": {
+        "updatedFields": [
+          "firstName",
+          "lastName",
+          "phone",
+          "birthDate"
+        ]
+      },
+      "createdAt": "2026-06-08T17:33:20.871167Z"
+    },
+    {
+      "id": "adt_psq4djly",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-08T17:33:21.547102Z"
     }
   ]
 }

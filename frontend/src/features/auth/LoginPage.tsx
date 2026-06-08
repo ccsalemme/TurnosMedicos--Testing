@@ -44,7 +44,6 @@ export function LoginPage() {
 
     try {
       await login(form);
-      navigate('/', { replace: true });
     } catch (err) {
       setError(err instanceof ApiError ? err.message : 'No se pudo iniciar sesion');
     } finally {
