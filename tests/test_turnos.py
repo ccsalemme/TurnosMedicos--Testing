@@ -9,52 +9,80 @@ from selenium.webdriver.support import expected_conditions as EC
 from datetime import datetime, timedelta
 import time
 
+
+def _report_result(caso, ok, detalle=None):
+    estado = "PASÓ" if ok else "FALLÓ"
+    if detalle:
+        print(f"Resultado: {estado} - {caso}: {detalle}")
+    else:
+        print(f"Resultado: {estado} - {caso}")
+
+
+def _set_datetime_input(driver, element, value: str) -> None:
+    driver.execute_script(
+        """
+        const input = arguments[0];
+        input.value = arguments[1];
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+        input.dispatchEvent(new Event('change', { bubbles: true }));
+        """,
+        element,
+        value,
+    )
+
+
+def _book_active_appointment(driver, wait, start_dt: datetime, notes: str = "Consulta de rutina test"):
+    login(driver, "paciente@clinica.local", "Paciente123!")
+    driver.get(f"{BASE_URL}/patient")
+
+    specialty_select = wait.until(EC.presence_of_element_located((By.ID, "booking-specialty")))
+    Select(specialty_select).select_by_index(1)
+    time.sleep(1)
+
+    doctor_select = wait.until(EC.presence_of_element_located((By.ID, "booking-doctor")))
+    Select(doctor_select).select_by_index(1)
+
+    start_at_input = wait.until(EC.presence_of_element_located((By.ID, "booking-start-at")))
+    _set_datetime_input(driver, start_at_input, start_dt.strftime("%Y-%m-%dT%H:%M"))
+
+    notes_input = wait.until(EC.presence_of_element_located((By.ID, "booking-notes")))
+    notes_input.clear()
+    notes_input.send_keys(notes)
+
+    driver.find_element(By.XPATH, "//button[contains(., 'Reservar turno')]").click()
+    wait.until(
+        lambda d: any(
+            start_dt.strftime("%d/%m/%Y") in card.text and "PENDIENTE" in card.text.upper()
+            for card in d.find_elements(By.CSS_SELECTOR, ".rounded-lg.border.bg-white.p-4")
+        )
+    )
+    return start_dt
+
+
+# RF-03.1: Verifica que un paciente pueda reservar un turno desde la interfaz.
+# RF-03.3: Verifica que el turno reservado quede en estado PENDIENTE.
 def test_reservar_turno():
     driver = crear_driver()
     wait = WebDriverWait(driver, 10)
     try:
-        print("RF-03.1 y RF-04.1: Reservar turno y verlo en estado PENDIENTE")
-        login(driver, "paciente@clinica.local", "Paciente123!")
-        driver.get(f"{BASE_URL}/patient")
-
-        specialty_select = wait.until(EC.presence_of_element_located((By.ID, "booking-specialty")))
-        Select(specialty_select).select_by_index(1)
-        time.sleep(1)
-
-        doctor_select = wait.until(EC.presence_of_element_located((By.ID, "booking-doctor")))
-        Select(doctor_select).select_by_index(1)
-
+        print("RF-03.1 / RF-03.3: Reserva de turno y validación de estado PENDIENTE")
         fecha_futura = (datetime.now() + timedelta(days=1)).replace(hour=10, minute=0, second=0)
-        fecha_str = fecha_futura.strftime("%Y-%m-%dT%H:%M")
-        start_at = driver.find_element(By.ID, "booking-start-at")
-        driver.execute_script("arguments[0].value = arguments[1]", start_at, fecha_str)
-
-        notes = driver.find_element(By.ID, "booking-notes")
-        notes.clear()
-        notes.send_keys("Consulta de rutina test")
-
-        driver.find_element(By.XPATH, "//button[contains(text(), 'Reservar turno')]").click()
-        time.sleep(3)
-
-        turnos = driver.find_elements(By.CSS_SELECTOR, ".rounded-lg.border.bg-white.p-4")
-        assert len(turnos) > 0, "No aparecio ningun turno en la lista"
-
-        texto = turnos[0].text.upper()
-        assert "PENDIENTE" in texto, f"El turno no aparece como PENDIENTE, se obtuvo: {texto}"
-        print("OK - Turno reservado y aparece como PENDIENTE")
+        _book_active_appointment(driver, wait, fecha_futura)
+        _report_result("Reserva de turno", True, "Turno reservado y aparece como PENDIENTE")
 
     except AssertionError as e:
-        print(f"Test fallido: {e}")
+        _report_result("Reserva de turno", False, str(e))
     except Exception as e:
-        print(f"Error inesperado: {e}")
+        _report_result("Reserva de turno", False, f"Error inesperado: {e}")
     finally:
         driver.quit()
 
+# RF-03.2: Verifica que no se permita reservar un turno con fecha pasada.
 def test_reservar_turno_fecha_pasada():
     driver = crear_driver()
     wait = WebDriverWait(driver, 10)
     try:
-        print("RF-04.4: Impedir reservar turno en fecha pasada")
+        print("RF-03.2: Se impide reservar turno en fecha pasada")
         login(driver, "paciente@clinica.local", "Paciente123!")
         driver.get(f"{BASE_URL}/patient")
 
@@ -68,86 +96,81 @@ def test_reservar_turno_fecha_pasada():
         fecha_pasada = (datetime.now() - timedelta(days=1)).replace(hour=10, minute=0, second=0)
         fecha_str = fecha_pasada.strftime("%Y-%m-%dT%H:%M")
         start_at = driver.find_element(By.ID, "booking-start-at")
-        driver.execute_script("arguments[0].value = arguments[1]", start_at, fecha_str)
+        _set_datetime_input(driver, start_at, fecha_str)
 
-        driver.find_element(By.XPATH, "//button[contains(text(), 'Reservar turno')]").click()
-        time.sleep(2)
+        driver.find_element(By.XPATH, "//button[contains(., 'Reservar turno')]").click()
 
-        error = driver.find_elements(By.CSS_SELECTOR, ".bg-red-50")
-        assert len(error) > 0, "No aparecio mensaje de error"
-        assert "futuro" in error[0].text.lower(), f"Mensaje de error inesperado: {error[0].text}"
-        print("OK - Se mostro el error de fecha pasada correctamente")
+        wait.until(
+            lambda d: any(
+                "futuro" in element.text.lower()
+                for element in d.find_elements(By.CSS_SELECTOR, "p, div, span")
+                if element.is_displayed()
+            )
+        )
+        _report_result("Reserva en fecha pasada", True, "Se mostró el error de fecha pasada")
 
     except AssertionError as e:
-        print(f"Test fallido: {e}")
+        _report_result("Reserva en fecha pasada", False, str(e))
     except Exception as e:
-        print(f"Error inesperado: {e}")
+        _report_result("Reserva en fecha pasada", False, f"Error inesperado: {e}")
     finally:
         driver.quit()
 
+# RF-04.2: Verifica que un paciente pueda cancelar un turno desde su panel.
 def test_cancelar_turno():
     driver = crear_driver()
     wait = WebDriverWait(driver, 10)
     try:
-        print("RF-04.2: Cancelar un turno")
-        login(driver, "paciente@clinica.local", "Paciente123!")
-        driver.get(f"{BASE_URL}/patient")
+        print("RF-04.2: Cancelación de turno desde la interfaz")
+        fecha_futura = (datetime.now() + timedelta(days=2)).replace(hour=12, minute=0, second=0)
+        _book_active_appointment(driver, wait, fecha_futura, "Turno para cancelar")
 
-        turnos = wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, ".rounded-lg.border.bg-white.p-4")))
-        assert len(turnos) > 0, "No hay turnos para cancelar"
-
-        primer_turno = turnos[0]
-        cancelar = primer_turno.find_element(By.XPATH, ".//button[contains(text(), 'Cancelar')]")
-
+        cancelar = wait.until(
+            EC.presence_of_element_located((By.XPATH, "//div[contains(., 'Turno para cancelar')]//button[contains(., 'Cancelar')]"))
+        )
+        card = cancelar.find_element(By.XPATH, "./ancestor::div[contains(@class, 'rounded-lg')][1]")
         driver.execute_script("window.prompt = function() { return 'Test de cancelacion'; }")
         cancelar.click()
-        time.sleep(2)
 
-        primer_turno_actualizado = driver.find_elements(By.CSS_SELECTOR, ".rounded-lg.border.bg-white.p-4")[0]
-        texto = primer_turno_actualizado.text.upper()
-        assert "CANCELADO" in texto, f"El turno no aparece como CANCELADO, se obtuvo: {texto}"
-        print("OK - Turno cancelado correctamente")
+        wait.until(lambda d: "CANCELADO" in card.text.upper())
+        _report_result("Cancelación de turno", True, "El turno quedó cancelado")
 
     except AssertionError as e:
-        print(f"Test fallido: {e}")
+        _report_result("Cancelación de turno", False, str(e))
     except Exception as e:
-        print(f"Error inesperado: {e}")
+        _report_result("Cancelación de turno", False, f"Error inesperado: {e}")
     finally:
         driver.quit()
 
+# RF-04.3: Verifica que un paciente pueda reprogramar un turno existente.
 def test_reprogramar_turno():
     driver = crear_driver()
     wait = WebDriverWait(driver, 10)
     try:
-        print("RF-04.3: Reprogramar un turno")
-        login(driver, "paciente@clinica.local", "Paciente123!")
-        driver.get(f"{BASE_URL}/patient")
+        print("RF-04.3: Reprogramación de turno")
+        fecha_futura = (datetime.now() + timedelta(days=3)).replace(hour=11, minute=0, second=0)
+        _book_active_appointment(driver, wait, fecha_futura, "Turno para reprogramar")
 
-        turnos = wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, ".rounded-lg.border.bg-white.p-4")))
-        assert len(turnos) > 0, "No hay turnos para reprogramar"
+        reprogramar = wait.until(
+            EC.presence_of_element_located((By.XPATH, "//div[contains(., 'Turno para reprogramar')]//button[contains(., 'Reprogramar')]"))
+        )
+        card = reprogramar.find_element(By.XPATH, "./ancestor::div[contains(@class, 'rounded-lg')][1]")
 
-        primer_turno = turnos[0]
-        reprogramar = primer_turno.find_element(By.XPATH, ".//button[contains(text(), 'Reprogramar')]")
-        reprogramar.click()
-        time.sleep(2)
-
-        nueva_fecha = (datetime.now() + timedelta(days=3)).replace(hour=11, minute=0, second=0)
+        nueva_fecha = (datetime.now() + timedelta(days=4)).replace(hour=13, minute=0, second=0)
         nueva_fecha_str = nueva_fecha.strftime("%Y-%m-%dT%H:%M")
 
-        start_at = wait.until(EC.presence_of_element_located((By.ID, "booking-start-at")))
-        driver.execute_script("arguments[0].value = arguments[1]", start_at, nueva_fecha_str)
+        input_datetime = card.find_element(By.XPATH, ".//input[@type='datetime-local']")
+        _set_datetime_input(driver, input_datetime, nueva_fecha_str)
 
-        driver.find_element(By.XPATH, "//button[contains(text(), 'Reservar turno')]").click()
-        time.sleep(3)
+        reprogramar.click()
 
-        turnos_actualizados = driver.find_elements(By.CSS_SELECTOR, ".rounded-lg.border.bg-white.p-4")
-        assert len(turnos_actualizados) > 0, "No aparecio ningun turno tras reprogramar"
-        print("OK - Turno reprogramado correctamente")
+        wait.until(lambda d: nueva_fecha.strftime("%d/%m/%Y") in card.text)
+        _report_result("Reprogramación de turno", True, "El turno quedó reprogramado")
 
     except AssertionError as e:
-        print(f"Test fallido: {e}")
+        _report_result("Reprogramación de turno", False, str(e))
     except Exception as e:
-        print(f"Error inesperado: {e}")
+        _report_result("Reprogramación de turno", False, f"Error inesperado: {e}")
     finally:
         driver.quit()
 

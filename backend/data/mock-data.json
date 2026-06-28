@@ -1031,6 +1031,13 @@
       "description": "Especialidad creada en pruebas de carga concurrentes",
       "durationMinutes": 20,
       "isActive": true
+    },
+    {
+      "id": "spc_b0kbhp93",
+      "name": "Neurolog\u00eda",
+      "description": "Especialidad de prueba",
+      "durationMinutes": 45,
+      "isActive": true
     }
   ],
   "sites": [
@@ -1050,6 +1057,12 @@
       "id": "site_sur",
       "name": "Sede Sur",
       "address": "Bv. Bienestar 789",
+      "isActive": true
+    },
+    {
+      "id": "ste_khi258tb",
+      "name": "Sede Test",
+      "address": "Av. Test 123",
       "isActive": true
     }
   ],
@@ -1201,10 +1214,11 @@
       "siteId": "site_centro",
       "startAt": "2026-06-10T15:00:00Z",
       "endAt": "2026-06-10T15:30:00Z",
-      "status": "PENDING",
+      "status": "COMPLETED",
       "notes": "Consulta de rutina test",
       "createdAt": "2026-06-08T17:29:07.796442Z",
-      "createdById": "usr_pat1"
+      "createdById": "usr_pat1",
+      "updatedById": "usr_doc1"
     },
     {
       "id": "apt_jwqd5suh",
@@ -1270,7 +1284,7 @@
   "settings": [
     {
       "key": "CANCELLATION_WINDOW_HOURS",
-      "value": "24"
+      "value": "48"
     }
   ],
   "audits": [
@@ -99177,6 +99191,386 @@
       "actorId": "usr_pat1",
       "metadata": null,
       "createdAt": "2026-06-08T17:33:21.547102Z"
+    },
+    {
+      "id": "adt_odp6x7o9",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_doc1",
+      "actorId": "usr_doc1",
+      "metadata": null,
+      "createdAt": "2026-06-28T21:10:40.127155Z"
+    },
+    {
+      "id": "adt_xsphjrsb",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_admin",
+      "actorId": "usr_admin",
+      "metadata": null,
+      "createdAt": "2026-06-28T21:13:14.006623Z"
+    },
+    {
+      "id": "adt_bhdp7x2r",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_doc1",
+      "actorId": "usr_doc1",
+      "metadata": null,
+      "createdAt": "2026-06-28T21:25:21.229288Z"
+    },
+    {
+      "id": "adt_1mqrqrk8",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_doc1",
+      "actorId": "usr_doc1",
+      "metadata": null,
+      "createdAt": "2026-06-28T21:25:38.633498Z"
+    },
+    {
+      "id": "adt_wrehxk75",
+      "action": "APPOINTMENT_STATUS_CONFIRMED",
+      "entity": "APPOINTMENT",
+      "entityId": "apt_ojg9sgs0",
+      "actorId": "usr_doc1",
+      "metadata": null,
+      "createdAt": "2026-06-28T21:25:42.973801Z"
+    },
+    {
+      "id": "adt_805655b7",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_doc1",
+      "actorId": "usr_doc1",
+      "metadata": null,
+      "createdAt": "2026-06-28T21:26:00.305444Z"
+    },
+    {
+      "id": "adt_8gwvu5hn",
+      "action": "APPOINTMENT_STATUS_COMPLETED",
+      "entity": "APPOINTMENT",
+      "entityId": "apt_ojg9sgs0",
+      "actorId": "usr_doc1",
+      "metadata": null,
+      "createdAt": "2026-06-28T21:26:04.606394Z"
+    },
+    {
+      "id": "adt_sbazutg8",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_admin",
+      "actorId": "usr_admin",
+      "metadata": null,
+      "createdAt": "2026-06-28T21:28:29.128991Z"
+    },
+    {
+      "id": "adt_4vunxf53",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_admin",
+      "actorId": "usr_admin",
+      "metadata": null,
+      "createdAt": "2026-06-28T21:28:46.080600Z"
+    },
+    {
+      "id": "adt_yevod58s",
+      "action": "SETTING_UPDATE",
+      "entity": "SYSTEM_SETTING",
+      "entityId": "CANCELLATION_WINDOW_HOURS",
+      "actorId": "usr_admin",
+      "metadata": {
+        "value": "48"
+      },
+      "createdAt": "2026-06-28T21:28:50.468433Z"
+    },
+    {
+      "id": "adt_ar1yrxk9",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_admin",
+      "actorId": "usr_admin",
+      "metadata": null,
+      "createdAt": "2026-06-28T21:29:05.068398Z"
+    },
+    {
+      "id": "adt_yyre76bh",
+      "action": "SPECIALTY_CREATE",
+      "entity": "SPECIALTY",
+      "entityId": "spc_b0kbhp93",
+      "actorId": "usr_admin",
+      "metadata": {
+        "name": "Neurolog\u00eda"
+      },
+      "createdAt": "2026-06-28T21:29:10.312526Z"
+    },
+    {
+      "id": "adt_eeloflq9",
+      "action": "SITE_CREATE",
+      "entity": "SITE",
+      "entityId": "ste_khi258tb",
+      "actorId": "usr_admin",
+      "metadata": null,
+      "createdAt": "2026-06-28T21:29:13.026310Z"
+    },
+    {
+      "id": "adt_xwgq7ggp",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-28T21:31:20.628794Z"
+    },
+    {
+      "id": "adt_zh86v2la",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-28T21:31:42.071218Z"
+    },
+    {
+      "id": "adt_t0uq3t42",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-28T21:32:02.658147Z"
+    },
+    {
+      "id": "adt_ge914nuy",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-28T21:32:20.414535Z"
+    },
+    {
+      "id": "adt_hjyn28b0",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-28T21:38:46.961966Z"
+    },
+    {
+      "id": "adt_m213pgdr",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-28T21:39:11.530707Z"
+    },
+    {
+      "id": "adt_bet8z83h",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-28T21:39:45.763834Z"
+    },
+    {
+      "id": "adt_7vwepph6",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-28T21:40:14.707893Z"
+    },
+    {
+      "id": "adt_wb5g74tq",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-28T21:46:27.377705Z"
+    },
+    {
+      "id": "adt_rqe6rfjs",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_doc1",
+      "actorId": "usr_doc1",
+      "metadata": null,
+      "createdAt": "2026-06-28T21:46:44.428852Z"
+    },
+    {
+      "id": "adt_h57dhyx4",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_admin",
+      "actorId": "usr_admin",
+      "metadata": null,
+      "createdAt": "2026-06-28T21:47:02.293826Z"
+    },
+    {
+      "id": "adt_xfisqsw0",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-28T21:47:31.048617Z"
+    },
+    {
+      "id": "adt_x3757oyq",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-28T21:49:49.811963Z"
+    },
+    {
+      "id": "adt_kdkgqoby",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-28T21:50:19.633935Z"
+    },
+    {
+      "id": "adt_yiqr6g8r",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-28T21:50:51.661710Z"
+    },
+    {
+      "id": "adt_hvdqf5dx",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-28T21:51:23.073389Z"
+    },
+    {
+      "id": "adt_upusstty",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-28T21:52:23.028362Z"
+    },
+    {
+      "id": "adt_j3i3p0i3",
+      "action": "PROFILE_UPDATE",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": {
+        "updatedFields": [
+          "firstName",
+          "lastName",
+          "phone",
+          "birthDate"
+        ]
+      },
+      "createdAt": "2026-06-28T21:52:29.724746Z"
+    },
+    {
+      "id": "adt_nfz55mbl",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-28T21:52:48.410370Z"
+    },
+    {
+      "id": "adt_bpeln7xc",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-28T21:54:36.882171Z"
+    },
+    {
+      "id": "adt_994eqlei",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_doc1",
+      "actorId": "usr_doc1",
+      "metadata": null,
+      "createdAt": "2026-06-28T21:54:54.276898Z"
+    },
+    {
+      "id": "adt_n1h529l1",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_admin",
+      "actorId": "usr_admin",
+      "metadata": null,
+      "createdAt": "2026-06-28T21:55:11.941592Z"
+    },
+    {
+      "id": "adt_i5bhfpa6",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-28T21:55:41.577377Z"
+    },
+    {
+      "id": "adt_ye2cr29u",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-28T22:00:09.398674Z"
+    },
+    {
+      "id": "adt_rx2v5dzu",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-28T22:00:36.788682Z"
+    },
+    {
+      "id": "adt_r2o0lpl2",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-28T22:01:05.819063Z"
+    },
+    {
+      "id": "adt_2vxy62f7",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-28T22:01:32.756173Z"
+    },
+    {
+      "id": "adt_3iawdq8u",
+      "action": "LOGIN",
+      "entity": "USER",
+      "entityId": "usr_pat1",
+      "actorId": "usr_pat1",
+      "metadata": null,
+      "createdAt": "2026-06-28T22:02:30.575420Z"
     }
   ]
 }
