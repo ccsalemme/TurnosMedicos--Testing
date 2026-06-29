@@ -98,20 +98,23 @@ def test_registro_paciente():
 
         wait.until(EC.presence_of_element_located((By.ID, "firstName")))
 
-        email_unico = f"test_paciente_{int(time.time())}@clinica.local"
+        ts = int(time.time())
+        email_unico = f"test_paciente_{ts}@clinica.local"
+        documento_unico = f"9{ts % 100000000}"
+        telefono_unico = f"11{ts % 100000000}"
 
         driver.find_element(By.ID, "firstName").send_keys("Juan")
         pause(0.3)
         driver.find_element(By.ID, "lastName").send_keys("Test")
         pause(0.3)
-        driver.find_element(By.ID, "document").send_keys("12345678")
+        driver.find_element(By.ID, "document").send_keys(documento_unico)
         pause(0.3)
 
         birth_date = driver.find_element(By.ID, "birthDate")
-        driver.execute_script("arguments[0].value = '1990-01-01'", birth_date)
+        birth_date.send_keys("01011990")
         pause(0.3)
 
-        driver.find_element(By.ID, "phone").send_keys("1122334455")
+        driver.find_element(By.ID, "phone").send_keys(telefono_unico)
         pause(0.3)
         driver.find_element(By.ID, "email").send_keys(email_unico)
         pause(0.3)
@@ -134,7 +137,6 @@ def test_registro_paciente():
 
 # RF-01.5: Verifica que el cierre de sesión deje al usuario fuera de la sesión activa.
 def test_cerrar_sesion():
-    import time
     from selenium.webdriver.common.by import By
     driver = crear_driver()
     wait = WebDriverWait(driver, 10)

@@ -308,6 +308,40 @@
         "birthDate": "1990-01-01T00:00:00Z",
         "phone": "1122334455"
       }
+    },
+    {
+      "id": "usr_w59ee2he",
+      "email": "pilarjimenagarcia@gmail.com",
+      "password": "Holacomoestas123",
+      "role": "PATIENT",
+      "isActive": true,
+      "firstName": "Pilar",
+      "lastName": "Garcia",
+      "phone": "44444444",
+      "patientProfile": {
+        "id": "pat_u6nn8rbp",
+        "userId": "usr_w59ee2he",
+        "document": "45234444",
+        "birthDate": "2005-02-09T00:00:00Z",
+        "phone": "44444444"
+      }
+    },
+    {
+      "id": "usr_xck9w2h7",
+      "email": "test_paciente_1782740071@clinica.local",
+      "password": "TestPass123!",
+      "role": "PATIENT",
+      "isActive": true,
+      "firstName": "Juan",
+      "lastName": "Test",
+      "phone": "1182740071",
+      "patientProfile": {
+        "id": "pat_qow3zlqt",
+        "userId": "usr_xck9w2h7",
+        "document": "982740071",
+        "birthDate": "1990-01-01T00:00:00Z",
+        "phone": "1182740071"
+      }
     }
   ],
   "specialties": [
@@ -99571,6 +99605,28 @@
       "actorId": "usr_pat1",
       "metadata": null,
       "createdAt": "2026-06-28T22:02:30.575420Z"
+    },
+    {
+      "id": "adt_m53hnhi1",
+      "action": "PATIENT_REGISTER",
+      "entity": "USER",
+      "entityId": "usr_w59ee2he",
+      "actorId": "usr_w59ee2he",
+      "metadata": {
+        "email": "pilarjimenagarcia@gmail.com"
+      },
+      "createdAt": "2026-06-29T13:25:15.821575Z"
+    },
+    {
+      "id": "adt_kqsnz48i",
+      "action": "PATIENT_REGISTER",
+      "entity": "USER",
+      "entityId": "usr_xck9w2h7",
+      "actorId": "usr_xck9w2h7",
+      "metadata": {
+        "email": "test_paciente_1782740071@clinica.local"
+      },
+      "createdAt": "2026-06-29T13:34:36.119682Z"
     }
   ]
 }
