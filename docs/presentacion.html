@@ -187,7 +187,7 @@
         <div class="team-chip"><span>PO</span> Lara Vitale</div>
         <div class="team-chip"><span>PM</span> Francisco Jarusz</div>
         <div class="team-chip"><span>QA</span> Pilar García</div>
-        <div class="team-chip me"><span>QA</span> Manuel Figuerero</div>
+        <div class="team-chip"><span>QA</span> Manuel Figuerero</div>
         <div class="team-chip"><span>DEV</span> Christian Salemme</div>
       </div>
     </div>
@@ -299,22 +299,78 @@
     </div>
   </section>
 
-  <!-- ══ 5 — MI ROL COMO TESTER ══ -->
+  <!-- ══ 5 — ROLES DEL EQUIPO ══ -->
   <section class="slide" id="s5">
     <div class="orb orb-1"></div><div class="orb orb-3"></div>
-    <div style="max-width:960px;width:100%">
-      <div class="slide-label">Mi aporte al proyecto</div>
-      <h2>Mi rol como Tester</h2>
-      <div class="grid-2" style="max-width:960px">
-        <div class="feature-card"><div class="feature-icon">📐</div><div><div class="feature-title">Diseñé casos de prueba</div><div class="feature-desc">A partir de RF y RNF, aplicando técnicas (clases de equivalencia, valores límite). Casos positivos y negativos.</div></div></div>
-        <div class="feature-card"><div class="feature-icon">🔌</div><div><div class="feature-title">Probé la API (Postman)</div><div class="feature-desc">Status codes, body, headers, roles, CORS y formato de respuesta sobre el backend FastAPI real.</div></div></div>
-        <div class="feature-card"><div class="feature-icon">⚡</div><div><div class="feature-title">Ejecuté carga con JMeter</div><div class="feature-desc">Escenarios de login masivo, flujo con token y seguridad. Medí tiempos y tasa de error.</div></div></div>
-        <div class="feature-card"><div class="feature-icon">🔍</div><div><div class="feature-title">Revisión de código</div><div class="feature-desc">Verifiqué atributos no observables desde afuera: hashing de passwords y configuración por .env.</div></div></div>
-        <div class="feature-card"><div class="feature-icon">🧬</div><div><div class="feature-title">Mantuve la trazabilidad</div><div class="feature-desc">Matriz que vincula cada RNF con su caso, herramienta, tipo y resultado. Detecté gaps.</div></div></div>
-        <div class="feature-card"><div class="feature-icon">🐞</div><div><div class="feature-title">Registré defectos</div><div class="feature-desc">Con pasos para reproducir, esperado vs obtenido, severidad/prioridad y evidencia.</div></div></div>
+    <div style="max-width:1020px;width:100%">
+      <div class="slide-label">Nuestro equipo</div>
+      <h2>Roles y Actividades</h2>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:0.75rem;align-items:start">
+
+        <!-- PO -->
+        <div class="stat-card" style="border-color:rgba(99,102,241,0.3);padding:1rem 0.85rem">
+          <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#a5b4fc;margin-bottom:0.5rem">PO</div>
+          <div style="font-size:0.82rem;font-weight:700;color:#e2e8f0;margin-bottom:0.6rem">Lara Vitale</div>
+          <ul style="font-size:0.68rem;color:rgba(255,255,255,0.55);line-height:1.85;padding-left:1rem;margin:0">
+            <li>Definió los requerimientos funcionales y no funcionales</li>
+            <li>Priorizó el backlog</li>
+            <li>Validó criterios de aceptación</li>
+            <li>Representó la visión del cliente</li>
+          </ul>
+        </div>
+
+        <!-- PM -->
+        <div class="stat-card" style="border-color:rgba(6,182,212,0.3);padding:1rem 0.85rem">
+          <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#67e8f9;margin-bottom:0.5rem">PM</div>
+          <div style="font-size:0.82rem;font-weight:700;color:#e2e8f0;margin-bottom:0.6rem">Francisco Jarusz</div>
+          <ul style="font-size:0.68rem;color:rgba(255,255,255,0.55);line-height:1.85;padding-left:1rem;margin:0">
+            <li>Coordinó sprints y entregas</li>
+            <li>Gestionó riesgos y dependencias</li>
+            <li>Facilitó ceremonias del equipo</li>
+            <li>Hizo seguimiento del avance</li>
+          </ul>
+        </div>
+
+        <!-- QA Pilar -->
+        <div class="stat-card" style="border-color:rgba(16,185,129,0.3);padding:1rem 0.85rem">
+          <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#6ee7b7;margin-bottom:0.5rem">QA</div>
+          <div style="font-size:0.82rem;font-weight:700;color:#e2e8f0;margin-bottom:0.6rem">Pilar García</div>
+          <ul style="font-size:0.68rem;color:rgba(255,255,255,0.55);line-height:1.85;padding-left:1rem;margin:0">
+            <li>Automatizó tests E2E con Selenium</li>
+            <li>Ejecutó pruebas funcionales de UI</li>
+            <li>Documentó evidencia de ejecución</li>
+            <li>Registró defectos hallados</li>
+          </ul>
+        </div>
+
+        <!-- QA Manuel -->
+        <div class="stat-card" style="border-color:rgba(139,92,246,0.3);padding:1rem 0.85rem">
+          <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#c4b5fd;margin-bottom:0.5rem">QA</div>
+          <div style="font-size:0.82rem;font-weight:700;color:#e2e8f0;margin-bottom:0.6rem">Manuel Figuerero</div>
+          <ul style="font-size:0.68rem;color:rgba(255,255,255,0.55);line-height:1.85;padding-left:1rem;margin:0">
+            <li>Diseñó casos de prueba (RF + RNF)</li>
+            <li>Probó la API con Postman</li>
+            <li>Ejecutó carga con JMeter</li>
+            <li>Mantuvo trazabilidad y registro de defectos</li>
+          </ul>
+        </div>
+
+        <!-- DEV -->
+        <div class="stat-card" style="border-color:rgba(245,158,11,0.3);padding:1rem 0.85rem">
+          <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#fcd34d;margin-bottom:0.5rem">DEV</div>
+          <div style="font-size:0.82rem;font-weight:700;color:#e2e8f0;margin-bottom:0.6rem">Christian Salemme</div>
+          <ul style="font-size:0.68rem;color:rgba(255,255,255,0.55);line-height:1.85;padding-left:1rem;margin:0">
+            <li>Desarrolló el backend con FastAPI</li>
+            <li>Implementó autenticación JWT y roles</li>
+            <li>Construyó el frontend en React</li>
+            <li>Mantuvo el mock-data y la API</li>
+          </ul>
+        </div>
+
       </div>
     </div>
   </section>
+
 
   <!-- ══ 6 — PLAN DE PRUEBAS ══ -->
   <section class="slide" id="s6">
@@ -364,23 +420,53 @@
   <!-- ══ 8 — CASOS DE PRUEBA ══ -->
   <section class="slide" id="s8">
     <div class="orb orb-2"></div>
-    <div style="max-width:940px;width:100%">
+    <div style="max-width:1060px;width:100%">
       <div class="slide-label">Entregable — Diseño de pruebas</div>
       <h2>Casos de Prueba</h2>
-      <div class="table-wrapper">
-        <table class="data-table">
-          <thead><tr><th>ID</th><th>Caso de prueba</th><th>Tipo</th><th>Herramienta</th><th>Estado</th></tr></thead>
-          <tbody>
-            <tr><td><span class="badge badge-purple">CP-01</span></td><td>Login por rol (admin / médico / paciente)</td><td>Positivo</td><td>Postman / Selenium</td><td><span class="badge badge-green">✓ Pasa</span></td></tr>
-            <tr><td><span class="badge badge-purple">CP-02</span></td><td>Reserva / cancelación / reprogramación de turno</td><td>Positivo</td><td>Selenium</td><td><span class="badge badge-green">✓ Pasa</span></td></tr>
-            <tr><td><span class="badge badge-purple">CP-RNF-01</span></td><td>Contraseñas hasheadas (revisión de código)</td><td>Seguridad</td><td>Revisión</td><td><span class="badge badge-red">✗ Defecto</span></td></tr>
-            <tr><td><span class="badge badge-purple">CP-RNF-02</span></td><td>Acceso sin token → 401 / con rol incorrecto → 403</td><td>Seguridad</td><td>Postman / JMeter</td><td><span class="badge badge-green">✓ Pasa</span></td></tr>
-            <tr><td><span class="badge badge-purple">CP-RNF-05</span></td><td>Rechazar campos desconocidos (espera 422)</td><td>Negativo</td><td>Postman</td><td><span class="badge badge-red">✗ Defecto</span></td></tr>
-            <tr><td><span class="badge badge-purple">CP08</span></td><td>Doble reserva del mismo médico (conflicto)</td><td>Negativo</td><td>Manual</td><td><span class="badge badge-yellow">⏳ A verificar</span></td></tr>
-          </tbody>
-        </table>
+      <div style="display:grid;grid-template-columns:1.15fr 1fr;gap:1.2rem;align-items:start">
+        <div>
+          <div style="font-size:0.72rem;font-weight:700;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.45rem">Funcionales · 18 casos</div>
+          <div class="table-wrapper">
+            <table class="data-table" style="font-size:0.69rem">
+              <thead><tr><th>ID</th><th>Nombre</th><th>Módulo</th><th>Estado</th></tr></thead>
+              <tbody>
+                <tr><td><span class="badge badge-purple" style="font-size:0.6rem">CP-001</span></td><td>Login por rol paciente</td><td>Autenticación</td><td><span class="badge badge-green" style="font-size:0.6rem">Pasó</span></td></tr>
+                <tr><td><span class="badge badge-purple" style="font-size:0.6rem">CP-002</span></td><td>Login por rol médico</td><td>Autenticación</td><td><span class="badge badge-green" style="font-size:0.6rem">Pasó</span></td></tr>
+                <tr><td><span class="badge badge-purple" style="font-size:0.6rem">CP-003</span></td><td>Login por rol admin</td><td>Autenticación</td><td><span class="badge badge-green" style="font-size:0.6rem">Pasó</span></td></tr>
+                <tr><td><span class="badge badge-purple" style="font-size:0.6rem">CP-004</span></td><td>Validación de credenciales</td><td>Autenticación</td><td><span class="badge badge-green" style="font-size:0.6rem">Pasó</span></td></tr>
+                <tr><td><span class="badge badge-purple" style="font-size:0.6rem">CP-005</span></td><td>Registro de pacientes</td><td>Registro</td><td><span class="badge badge-red" style="font-size:0.6rem">Falló</span></td></tr>
+                <tr><td><span class="badge badge-purple" style="font-size:0.6rem">CP-007</span></td><td>Edición del perfil</td><td>Perfil</td><td><span class="badge badge-green" style="font-size:0.6rem">Pasó</span></td></tr>
+                <tr><td><span class="badge badge-purple" style="font-size:0.6rem">CP-009</span></td><td>Reserva de turno exitoso</td><td>Turnos / Reserva</td><td><span class="badge badge-red" style="font-size:0.6rem">Falló</span></td></tr>
+                <tr><td><span class="badge badge-purple" style="font-size:0.6rem">CP-010</span></td><td>Reserva con fecha pasada</td><td>Turnos / Reserva</td><td><span class="badge badge-red" style="font-size:0.6rem">Falló</span></td></tr>
+                <tr><td><span class="badge badge-purple" style="font-size:0.6rem">CP-011</span></td><td>Cancelación desde panel</td><td>Turnos / Gestión</td><td><span class="badge badge-red" style="font-size:0.6rem">Falló</span></td></tr>
+                <tr><td><span class="badge badge-purple" style="font-size:0.6rem">CP-013</span></td><td>Turnos asignados al médico</td><td>Médico / Agenda</td><td><span class="badge badge-green" style="font-size:0.6rem">Pasó</span></td></tr>
+                <tr><td><span class="badge badge-purple" style="font-size:0.6rem">CP-014</span></td><td>Confirmar turno pendiente</td><td>Médico / Agenda</td><td><span class="badge badge-green" style="font-size:0.6rem">Pasó</span></td></tr>
+                <tr><td><span class="badge badge-purple" style="font-size:0.6rem">CP-016</span></td><td>Dashboard administrativo</td><td>Admin / Dashboard</td><td><span class="badge badge-green" style="font-size:0.6rem">Pasó</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:0.72rem;font-weight:700;color:var(--accent3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.45rem">No Funcionales · 9 casos</div>
+          <div class="table-wrapper">
+            <table class="data-table" style="font-size:0.69rem">
+              <thead><tr><th>ID</th><th>Nombre</th><th>Herramienta</th><th>Estado</th></tr></thead>
+              <tbody>
+                <tr><td><span class="badge badge-cyan" style="font-size:0.6rem">CP-RNF-01</span></td><td>Contraseñas seguras (bcrypt)</td><td>Manual / revisión</td><td><span class="badge badge-red" style="font-size:0.6rem">Falla</span></td></tr>
+                <tr><td><span class="badge badge-cyan" style="font-size:0.6rem">CP-RNF-02</span></td><td>Endpoints privados con JWT</td><td>Postman</td><td><span class="badge badge-green" style="font-size:0.6rem">Pasa</span></td></tr>
+                <tr><td><span class="badge badge-cyan" style="font-size:0.6rem">CP-RNF-03</span></td><td>Control de acceso por roles</td><td>Postman</td><td><span class="badge badge-green" style="font-size:0.6rem">Pasa</span></td></tr>
+                <tr><td><span class="badge badge-cyan" style="font-size:0.6rem">CP-RNF-04</span></td><td>Cabeceras de seguridad HTTP</td><td>Manual / curl</td><td><span class="badge badge-red" style="font-size:0.6rem">Falla</span></td></tr>
+                <tr><td><span class="badge badge-cyan" style="font-size:0.6rem">CP-RNF-05</span></td><td>Rechazo de campos desconocidos</td><td>Postman</td><td><span class="badge badge-red" style="font-size:0.6rem">Falla</span></td></tr>
+                <tr><td><span class="badge badge-cyan" style="font-size:0.6rem">CP-RNF-06</span></td><td>No exponer info interna en errores</td><td>Postman</td><td><span class="badge badge-green" style="font-size:0.6rem">Pasa</span></td></tr>
+                <tr><td><span class="badge badge-cyan" style="font-size:0.6rem">CP-RNF-07</span></td><td>Carga y concurrencia (JMeter)</td><td>JMeter</td><td><span class="badge badge-green" style="font-size:0.6rem">Pasa</span></td></tr>
+                <tr><td><span class="badge badge-cyan" style="font-size:0.6rem">CP-RNF-08</span></td><td>Diseño responsivo</td><td>DevTools</td><td><span class="badge badge-green" style="font-size:0.6rem">Pasa</span></td></tr>
+                <tr><td><span class="badge badge-cyan" style="font-size:0.6rem">CP-RNF-09</span></td><td>Mensajes de alerta del frontend</td><td>Manual</td><td><span class="badge badge-green" style="font-size:0.6rem">Pasa</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
-      <p style="margin-top:0.9rem;font-size:0.78rem;color:var(--muted)">Cada caso define <strong>precondición, pasos, datos, resultado esperado y obtenido</strong>. Los casos negativos (errores, accesos no autorizados) son tan importantes como los positivos.</p>
+      <p style="margin-top:0.7rem;font-size:0.73rem;color:var(--muted)">Cada caso documenta <strong>precondición, pasos, datos de entrada, resultado esperado y resultado obtenido</strong>. 27 casos en total.</p>
     </div>
   </section>
 
