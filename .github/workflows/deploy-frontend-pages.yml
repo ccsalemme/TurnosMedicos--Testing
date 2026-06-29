@@ -37,6 +37,9 @@ jobs:
           VITE_BASE_PATH: /${{ github.event.repository.name }}/
           VITE_ROUTER_MODE: hash
 
+      - name: Copy docs to build directory
+        run: cp -r docs frontend/dist/
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
