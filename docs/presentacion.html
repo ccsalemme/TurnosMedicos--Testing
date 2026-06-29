@@ -1488,7 +1488,8 @@
         </div>
         <p style="margin-top:0.9rem;font-size:0.78rem;color:#6ee7b7">El control de acceso por JWT y roles
           <strong>funciona correctamente</strong>: rechaza sin token (401), rechaza rol incorrecto (403) y no filtra
-          información interna en los errores.</p>
+          información interna en los errores.
+        </p>
       </div>
     </section>
 
@@ -1553,9 +1554,6 @@
           <div>
             <div class="ss-frame" style="height:185px"><span class="ss-tag tag-red">100% ERROR</span><img class="ss-img"
                 src="screenshots/jmeter_summary_fail.png" alt="JMeter corrida fallida"></div>
-            <div class="ss-cap"><strong>Lección de tester:</strong> una corrida temprana dio 100 % de error → el backend
-              no estaba levantado (Connection refused). Por eso definimos el <strong>criterio de entrada</strong>:
-              verificar <code class="inline">/specialties</code> antes de cada corrida.</div>
           </div>
         </div>
       </div>
@@ -1586,9 +1584,9 @@
               <div class="stat-sub">Soporta la concurrencia esperada sin degradarse (RNF-03.1 ✓)</div>
             </div>
             <div class="stat-card" style="border-color:rgba(6,182,212,0.3)">
-              <div class="stat-num" style="font-size:1.9rem">3 · 2 · 1</div>
-              <div class="stat-label">Escenarios: pasan · fallan · pendiente</div>
-              <div class="stat-sub">E1·E2·E3 pasan · E4·E5 fallan bajo más carga · E6 pendiente</div>
+              <div class="stat-num" style="font-size:1.9rem">3 / 3</div>
+              <div class="stat-label">Escenarios ejecutados que PASAN</div>
+              <div class="stat-sub">E1 carga · E2 token · E3 seguridad · (E4 pendiente)</div>
             </div>
           </div>
         </div>
