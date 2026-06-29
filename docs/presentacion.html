@@ -1,19 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TurnosMédicos — Presentación Final TPO</title>
   <meta name="description" content="Presentación final del TPO de Testing: Sistema de Gestión de Turnos Médicos">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     :root {
       --bg: #05070f;
-      --surface: rgba(255,255,255,0.04);
-      --border: rgba(255,255,255,0.08);
+      --surface: rgba(255, 255, 255, 0.04);
+      --border: rgba(255, 255, 255, 0.08);
       --accent: #6366f1;
       --accent2: #8b5cf6;
       --accent3: #06b6d4;
@@ -24,7 +33,8 @@
       --muted: #64748b;
     }
 
-    html, body {
+    html,
+    body {
       font-family: 'Inter', sans-serif;
       background: var(--bg);
       color: var(--text);
@@ -33,867 +43,1800 @@
       width: 100vw;
     }
 
-    .thiing-icon { width: 1.25em; height: 1.25em; vertical-align: middle; object-fit: contain; display: inline-block; }
-    .cover-logo .thiing-icon { width: 3.5rem; height: 3.5rem; margin: 0; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.4)); }
-    .feature-icon .thiing-icon { width: 2.2rem; height: 2.2rem; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2)); }
-    .tool-icon .thiing-icon { width: 2.8rem; height: 2.8rem; margin-bottom: 0.5rem; filter: drop-shadow(0 6px 12px rgba(0,0,0,0.3)); }
-    .table-icon { width: 1.3rem; height: 1.3rem; vertical-align: text-bottom; margin-right: 0.4rem; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
+    .thiing-icon {
+      width: 1.25em;
+      height: 1.25em;
+      vertical-align: middle;
+      object-fit: contain;
+      display: inline-block;
+    }
 
-    #progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent3)); width: 0%; z-index: 1000; transition: width 0.45s ease; box-shadow: 0 0 12px var(--accent); }
+    .cover-logo .thiing-icon {
+      width: 3.5rem;
+      height: 3.5rem;
+      margin: 0;
+      filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.4));
+    }
 
-    #deck { width: 100vw; height: 100vh; position: relative; overflow: hidden; }
-    .slide { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 3rem 5rem; pointer-events: none; opacity: 0; transform: translateX(80px) scale(0.97); }
-    .slide.active { pointer-events: auto; opacity: 1; transform: translateX(0) scale(1); }
-    .slide::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(99,102,241,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,0.035) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; }
+    .feature-icon .thiing-icon {
+      width: 2.2rem;
+      height: 2.2rem;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+    }
 
-    .orb { position: absolute; border-radius: 50%; filter: blur(100px); pointer-events: none; animation: float 8s ease-in-out infinite; }
-    .orb-1 { width:500px;height:500px;background:radial-gradient(circle,rgba(99,102,241,0.18),transparent 70%);top:-10%;left:-10%;animation-delay:0s; }
-    .orb-2 { width:400px;height:400px;background:radial-gradient(circle,rgba(139,92,246,0.15),transparent 70%);bottom:-5%;right:-5%;animation-delay:-4s; }
-    .orb-3 { width:300px;height:300px;background:radial-gradient(circle,rgba(6,182,212,0.12),transparent 70%);top:40%;right:15%;animation-delay:-2s; }
-    @keyframes float { 0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-28px) scale(1.04);} }
+    .tool-icon .thiing-icon {
+      width: 2.8rem;
+      height: 2.8rem;
+      margin-bottom: 0.5rem;
+      filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.3));
+    }
 
-    .glass { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.09); border-radius:20px; backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); }
+    .table-icon {
+      width: 1.3rem;
+      height: 1.3rem;
+      vertical-align: text-bottom;
+      margin-right: 0.4rem;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    }
 
-    .slide-label { font-size:0.72rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:0.9rem;display:flex;align-items:center;gap:0.5rem; }
-    .slide-label::before { content:'';display:block;width:22px;height:2px;background:var(--accent);border-radius:2px; }
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent3));
+      width: 0%;
+      z-index: 1000;
+      transition: width 0.45s ease;
+      box-shadow: 0 0 12px var(--accent);
+    }
 
-    h1 { font-family:'Space Grotesk',sans-serif;font-size:clamp(2.4rem,4.5vw,4.2rem);font-weight:700;line-height:1.1;background:linear-gradient(135deg,#fff 0%,rgba(255,255,255,0.55) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
-    h2 { font-family:'Space Grotesk',sans-serif;font-size:clamp(1.6rem,2.6vw,2.4rem);font-weight:700;line-height:1.2;background:linear-gradient(135deg,#fff 0%,rgba(255,255,255,0.65) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:1.4rem; }
-    p.lead { font-size:1.02rem;color:rgba(255,255,255,0.55);line-height:1.7;max-width:680px; }
+    #deck {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
 
-    .badge { display:inline-flex;align-items:center;gap:0.4rem;padding:0.28rem 0.75rem;border-radius:999px;font-size:0.7rem;font-weight:600;letter-spacing:0.04em;border:1px solid; }
-    .badge-purple{background:rgba(99,102,241,0.14);border-color:rgba(99,102,241,0.38);color:#a5b4fc;}
-    .badge-cyan{background:rgba(6,182,212,0.14);border-color:rgba(6,182,212,0.38);color:#67e8f9;}
-    .badge-green{background:rgba(16,185,129,0.14);border-color:rgba(16,185,129,0.38);color:#6ee7b7;}
-    .badge-yellow{background:rgba(245,158,11,0.14);border-color:rgba(245,158,11,0.38);color:#fcd34d;}
-    .badge-red{background:rgba(239,68,68,0.14);border-color:rgba(239,68,68,0.38);color:#fca5a5;}
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 3rem 5rem;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateX(80px) scale(0.97);
+    }
 
-    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem;width:100%;max-width:980px;}
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;width:100%;max-width:1050px;}
-    .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;width:100%;max-width:1050px;}
+    .slide.active {
+      pointer-events: auto;
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
 
-    .stat-card { padding:1.3rem;border-radius:16px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);position:relative;overflow:hidden;transition:border-color 0.25s,background 0.25s; }
-    .stat-card:hover{background:rgba(255,255,255,0.07);border-color:rgba(99,102,241,0.28);}
-    .stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:0.55;}
-    .stat-num{font-family:'Space Grotesk',sans-serif;font-size:2.2rem;font-weight:700;background:linear-gradient(135deg,var(--accent),var(--accent3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-    .stat-label{font-size:0.72rem;color:var(--muted);margin-top:0.25rem;font-weight:500;text-transform:uppercase;letter-spacing:0.08em;}
-    .stat-sub{font-size:0.78rem;color:rgba(255,255,255,0.45);margin-top:0.4rem;}
+    .slide::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(99, 102, 241, 0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(99, 102, 241, 0.035) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
 
-    .data-table{width:100%;border-collapse:collapse;font-size:0.8rem;}
-    .data-table th{text-align:left;padding:0.5rem 1rem;color:var(--muted);font-size:0.66rem;text-transform:uppercase;letter-spacing:0.1em;border-bottom:1px solid var(--border);}
-    .data-table td{padding:0.5rem 1rem;border-bottom:1px solid rgba(255,255,255,0.035);color:rgba(255,255,255,0.8);}
-    .data-table tr:last-child td{border-bottom:none;}
-    .data-table tr:hover td{background:rgba(255,255,255,0.03);}
-    .table-wrapper{width:100%;max-width:900px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
-    code.inline{background:rgba(255,255,255,0.08);padding:0.1rem 0.4rem;border-radius:4px;font-size:0.78rem;font-family:monospace;}
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      pointer-events: none;
+      animation: float 8s ease-in-out infinite;
+    }
 
-    .rf-list{display:flex;flex-direction:column;gap:0.6rem;width:100%;max-width:920px;}
-    .rf-item{display:flex;align-items:center;gap:1.1rem;padding:0.75rem 1.1rem;border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);transition:all 0.2s;}
-    .rf-item:hover{background:rgba(99,102,241,0.07);border-color:rgba(99,102,241,0.2);transform:translateX(4px);}
-    .rf-id{font-family:'Space Grotesk',sans-serif;font-size:0.68rem;font-weight:700;color:var(--accent);background:rgba(99,102,241,0.12);padding:0.2rem 0.5rem;border-radius:6px;white-space:nowrap;}
-    .rf-title{font-weight:600;font-size:0.86rem;}
-    .rf-desc{font-size:0.75rem;color:var(--muted);}
-    .rf-cov{margin-left:auto;}
+    .orb-1 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.18), transparent 70%);
+      top: -10%;
+      left: -10%;
+      animation-delay: 0s;
+    }
 
-    .tool-card{padding:1.3rem;border-radius:16px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);text-align:center;}
-    .tool-icon{display:block;}
-    .tool-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1rem;margin-bottom:0.3rem;}
-    .tool-count{font-size:1.6rem;font-weight:800;font-family:'Space Grotesk',sans-serif;background:linear-gradient(135deg,var(--accent),var(--accent3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-    .tool-desc{font-size:0.74rem;color:var(--muted);margin-top:0.25rem;}
+    .orb-2 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.15), transparent 70%);
+      bottom: -5%;
+      right: -5%;
+      animation-delay: -4s;
+    }
 
-    .bug-item{display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:1rem;padding:0.8rem 1.1rem;border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);}
-    .bug-id{font-size:0.7rem;font-weight:700;color:var(--red);font-family:'Space Grotesk',sans-serif;white-space:nowrap;}
-    .bug-desc{font-size:0.8rem;color:rgba(255,255,255,0.8);}
-    .bug-status{font-size:0.68rem;padding:0.2rem 0.55rem;border-radius:999px;font-weight:600;white-space:nowrap;}
-    .status-open{background:rgba(245,158,11,0.15);color:#fcd34d;}
-    .status-verify{background:rgba(6,182,212,0.15);color:#67e8f9;}
+    .orb-3 {
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(6, 182, 212, 0.12), transparent 70%);
+      top: 40%;
+      right: 15%;
+      animation-delay: -2s;
+    }
 
-    .arch{display:flex;flex-direction:column;align-items:center;gap:0;width:100%;max-width:680px;}
-    .arch-layer{width:100%;padding:0.9rem 1.4rem;border-radius:14px;text-align:center;}
-    .arch-layer-name{font-weight:700;font-size:0.9rem;}
-    .arch-layer-detail{font-size:0.75rem;color:var(--muted);margin-top:0.15rem;}
-    .arch-arrow{font-size:1.1rem;color:var(--muted);margin:0.25rem 0;animation:pulse 2s ease-in-out infinite;}
-    @keyframes pulse{0%,100%{opacity:0.35;}50%{opacity:1;}}
+    @keyframes float {
 
-    .cov-bar-wrap{width:100%;display:flex;flex-direction:column;gap:0.7rem;max-width:780px;}
-    .cov-row{display:flex;align-items:center;gap:1rem;}
-    .cov-label{font-size:0.78rem;font-weight:600;width:90px;flex-shrink:0;}
-    .cov-track{flex:1;height:7px;background:rgba(255,255,255,0.06);border-radius:999px;overflow:hidden;}
-    .cov-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent3));width:0%;transition:width 1.4s cubic-bezier(0.4,0,0.2,1);box-shadow:0 0 8px rgba(99,102,241,0.4);}
-    .cov-pct{font-size:0.76rem;font-weight:700;color:var(--accent);width:38px;text-align:right;}
+      0%,
+      100% {
+        transform: translateY(0) scale(1);
+      }
+
+      50% {
+        transform: translateY(-28px) scale(1.04);
+      }
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 20px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .slide-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .slide-label::before {
+      content: '';
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.4rem, 4.5vw, 4.2rem);
+      font-weight: 700;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.55) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+      font-weight: 700;
+      line-height: 1.2;
+      background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.65) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.4rem;
+    }
+
+    p.lead {
+      font-size: 1.02rem;
+      color: rgba(255, 255, 255, 0.55);
+      line-height: 1.7;
+      max-width: 680px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.28rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      border: 1px solid;
+    }
+
+    .badge-purple {
+      background: rgba(99, 102, 241, 0.14);
+      border-color: rgba(99, 102, 241, 0.38);
+      color: #a5b4fc;
+    }
+
+    .badge-cyan {
+      background: rgba(6, 182, 212, 0.14);
+      border-color: rgba(6, 182, 212, 0.38);
+      color: #67e8f9;
+    }
+
+    .badge-green {
+      background: rgba(16, 185, 129, 0.14);
+      border-color: rgba(16, 185, 129, 0.38);
+      color: #6ee7b7;
+    }
+
+    .badge-yellow {
+      background: rgba(245, 158, 11, 0.14);
+      border-color: rgba(245, 158, 11, 0.38);
+      color: #fcd34d;
+    }
+
+    .badge-red {
+      background: rgba(239, 68, 68, 0.14);
+      border-color: rgba(239, 68, 68, 0.38);
+      color: #fca5a5;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.3rem;
+      width: 100%;
+      max-width: 980px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.1rem;
+      width: 100%;
+      max-width: 1050px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      width: 100%;
+      max-width: 1050px;
+    }
+
+    .stat-card {
+      padding: 1.3rem;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.25s, background 0.25s;
+    }
+
+    .stat-card:hover {
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(99, 102, 241, 0.28);
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      opacity: 0.55;
+    }
+
+    .stat-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent), var(--accent3));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .stat-sub {
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.45);
+      margin-top: 0.4rem;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+    }
+
+    .data-table th {
+      text-align: left;
+      padding: 0.5rem 1rem;
+      color: var(--muted);
+      font-size: 0.66rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .data-table td {
+      padding: 0.5rem 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.035);
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .data-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .data-table tr:hover td {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .table-wrapper {
+      width: 100%;
+      max-width: 900px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    code.inline {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.78rem;
+      font-family: monospace;
+    }
+
+    .rf-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      width: 100%;
+      max-width: 920px;
+    }
+
+    .rf-item {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+      padding: 0.75rem 1.1rem;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      transition: all 0.2s;
+    }
+
+    .rf-item:hover {
+      background: rgba(99, 102, 241, 0.07);
+      border-color: rgba(99, 102, 241, 0.2);
+      transform: translateX(4px);
+    }
+
+    .rf-id {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: rgba(99, 102, 241, 0.12);
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
+    .rf-title {
+      font-weight: 600;
+      font-size: 0.86rem;
+    }
+
+    .rf-desc {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .rf-cov {
+      margin-left: auto;
+    }
+
+    .tool-card {
+      padding: 1.3rem;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      text-align: center;
+    }
+
+    .tool-icon {
+      display: block;
+    }
+
+    .tool-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .tool-count {
+      font-size: 1.6rem;
+      font-weight: 800;
+      font-family: 'Space Grotesk', sans-serif;
+      background: linear-gradient(135deg, var(--accent), var(--accent3));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .tool-desc {
+      font-size: 0.74rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+    }
+
+    .bug-item {
+      display: grid;
+      grid-template-columns: auto 1fr auto auto;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.8rem 1.1rem;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .bug-id {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--red);
+      font-family: 'Space Grotesk', sans-serif;
+      white-space: nowrap;
+    }
+
+    .bug-desc {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .bug-status {
+      font-size: 0.68rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .status-open {
+      background: rgba(245, 158, 11, 0.15);
+      color: #fcd34d;
+    }
+
+    .status-verify {
+      background: rgba(6, 182, 212, 0.15);
+      color: #67e8f9;
+    }
+
+    .arch {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      width: 100%;
+      max-width: 680px;
+    }
+
+    .arch-layer {
+      width: 100%;
+      padding: 0.9rem 1.4rem;
+      border-radius: 14px;
+      text-align: center;
+    }
+
+    .arch-layer-name {
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .arch-layer-detail {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 0.15rem;
+    }
+
+    .arch-arrow {
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin: 0.25rem 0;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 0.35;
+      }
+
+      50% {
+        opacity: 1;
+      }
+    }
 
     /* ─── REAL SCREENSHOTS ─── */
-    .ss-frame{position:relative;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.12);background:#0a0d18;box-shadow:0 8px 30px rgba(0,0,0,0.45);}
-    .ss-img{width:100%;height:100%;object-fit:contain;object-position:center;display:block;background:#0a0d18;}
-    .ss-tag{position:absolute;top:8px;left:8px;z-index:2;font-size:0.6rem;font-weight:700;letter-spacing:0.03em;padding:0.2rem 0.5rem;border-radius:6px;backdrop-filter:blur(6px);}
-    .tag-green{background:rgba(16,185,129,0.85);color:#04130d;}
-    .tag-red{background:rgba(239,68,68,0.85);color:#1a0606;}
-    .tag-yellow{background:rgba(245,158,11,0.9);color:#1a1003;}
-    .tag-cyan{background:rgba(6,182,212,0.85);color:#04141a;}
-    .ss-cap{font-size:0.72rem;color:rgba(255,255,255,0.55);margin-top:0.4rem;text-align:center;line-height:1.35;}
-    .ss-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;width:100%;max-width:1020px;}
-    .ss-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;width:100%;max-width:1080px;}
-    .ss-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:0.8rem;width:100%;max-width:1100px;}
+    .ss-frame {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: #0a0d18;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+    }
 
-    #s1 { background:radial-gradient(ellipse at 20% 50%,rgba(99,102,241,0.15) 0%,transparent 60%),radial-gradient(ellipse at 80% 50%,rgba(139,92,246,0.1) 0%,transparent 60%); }
-    .cover-logo{width:80px;height:80px;border-radius:24px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;margin:0 auto 1.8rem;box-shadow:0 0 38px rgba(99,102,241,0.2);}
-    .team-grid{display:flex;flex-wrap:wrap;gap:0.7rem;justify-content:center;}
-    .team-chip{padding:0.35rem 0.85rem;border-radius:999px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);font-size:0.75rem;color:rgba(255,255,255,0.65);}
-    .team-chip span{color:rgba(255,255,255,0.35);margin-right:0.3rem;font-size:0.67rem;}
-    .team-chip.me{background:rgba(99,102,241,0.16);border-color:rgba(99,102,241,0.4);color:#c7d2fe;}
+    .ss-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+      background: #0a0d18;
+    }
 
-    .feature-card{padding:1rem 1.2rem;border-radius:14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);display:flex;gap:1.1rem;align-items:flex-start;transition:all 0.2s;}
-    .feature-card:hover{background:rgba(99,102,241,0.07);border-color:rgba(99,102,241,0.25);transform:translateY(-2px);}
-    .feature-icon{flex-shrink:0;margin-top:0.1rem;}
-    .feature-title{font-weight:700;font-size:0.86rem;margin-bottom:0.25rem;}
-    .feature-desc{font-size:0.75rem;color:var(--muted);line-height:1.5;}
+    .ss-tag {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      z-index: 2;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      backdrop-filter: blur(6px);
+    }
 
-    #nav{position:fixed;bottom:1.6rem;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:0.9rem;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);backdrop-filter:blur(20px);border-radius:999px;padding:0.5rem 1.1rem;z-index:999;}
-    .nav-btn{width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,0.14);background:rgba(255,255,255,0.05);color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.95rem;transition:all 0.2s;}
-    .nav-btn:hover:not(:disabled){background:var(--accent);border-color:var(--accent);box-shadow:0 0 12px rgba(99,102,241,0.45);}
-    .nav-btn:disabled{opacity:0.28;cursor:not-allowed;}
-    #slide-counter{font-size:0.78rem;color:var(--muted);min-width:55px;text-align:center;font-weight:600;}
+    .tag-green {
+      background: rgba(16, 185, 129, 0.85);
+      color: #04130d;
+    }
 
-    #dots{position:fixed;right:1.4rem;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:0.4rem;z-index:999;}
-    .dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.18);cursor:pointer;transition:all 0.3s;}
-    .dot.active{background:var(--accent);box-shadow:0 0 8px var(--accent);transform:scale(1.6);}
+    .tag-red {
+      background: rgba(239, 68, 68, 0.85);
+      color: #1a0606;
+    }
 
-    #slide-num{position:fixed;top:1.3rem;left:1.6rem;font-size:0.7rem;color:var(--muted);font-family:'Space Grotesk',sans-serif;font-weight:600;}
-    #kbd-hint{position:fixed;top:1.3rem;right:1.6rem;font-size:0.68rem;color:var(--muted);background:rgba(255,255,255,0.04);border:1px solid var(--border);padding:0.35rem 0.7rem;border-radius:7px;backdrop-filter:blur(10px);}
+    .tag-yellow {
+      background: rgba(245, 158, 11, 0.9);
+      color: #1a1003;
+    }
 
-    @media (prefers-reduced-motion: reduce){ .orb{animation:none;} .arch-arrow{animation:none;} .cov-fill{transition:none;} }
+    .tag-cyan {
+      background: rgba(6, 182, 212, 0.85);
+      color: #04141a;
+    }
+
+    .ss-cap {
+      font-size: 0.72rem;
+      color: rgba(255, 255, 255, 0.55);
+      margin-top: 0.4rem;
+      text-align: center;
+      line-height: 1.35;
+    }
+
+    .ss-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      width: 100%;
+      max-width: 1020px;
+    }
+
+    .ss-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      width: 100%;
+      max-width: 1080px;
+    }
+
+    .ss-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.8rem;
+      width: 100%;
+      max-width: 1100px;
+    }
+
+    #s1 {
+      background: radial-gradient(ellipse at 20% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 60%), radial-gradient(ellipse at 80% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 60%);
+    }
+
+    .cover-logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.8rem;
+      box-shadow: 0 0 38px rgba(99, 102, 241, 0.2);
+    }
+
+    .team-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      justify-content: center;
+    }
+
+    .team-chip {
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    .team-chip span {
+      color: rgba(255, 255, 255, 0.35);
+      margin-right: 0.3rem;
+      font-size: 0.67rem;
+    }
+
+    .team-chip.me {
+      background: rgba(99, 102, 241, 0.16);
+      border-color: rgba(99, 102, 241, 0.4);
+      color: #c7d2fe;
+    }
+
+    .feature-card {
+      padding: 1rem 1.2rem;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      gap: 1.1rem;
+      align-items: flex-start;
+      transition: all 0.2s;
+    }
+
+    .feature-card:hover {
+      background: rgba(99, 102, 241, 0.07);
+      border-color: rgba(99, 102, 241, 0.25);
+      transform: translateY(-2px);
+    }
+
+    .feature-icon {
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .feature-title {
+      font-weight: 700;
+      font-size: 0.86rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .feature-desc {
+      font-size: 0.75rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    #nav {
+      position: fixed;
+      bottom: 1.6rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      border-radius: 999px;
+      padding: 0.5rem 1.1rem;
+      z-index: 999;
+    }
+
+    .nav-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.05);
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover:not(:disabled) {
+      background: var(--accent);
+      border-color: var(--accent);
+      box-shadow: 0 0 12px rgba(99, 102, 241, 0.45);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.28;
+      cursor: not-allowed;
+    }
+
+    #slide-counter {
+      font-size: 0.78rem;
+      color: var(--muted);
+      min-width: 55px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    #dots {
+      position: fixed;
+      right: 1.4rem;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      z-index: 999;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.18);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .dot.active {
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+      transform: scale(1.6);
+    }
+
+    #slide-num {
+      position: fixed;
+      top: 1.3rem;
+      left: 1.6rem;
+      font-size: 0.7rem;
+      color: var(--muted);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+    }
+
+    #kbd-hint {
+      position: fixed;
+      top: 1.3rem;
+      right: 1.6rem;
+      font-size: 0.68rem;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.7rem;
+      border-radius: 7px;
+      backdrop-filter: blur(10px);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .orb {
+        animation: none;
+      }
+
+      .arch-arrow {
+        animation: none;
+      }
+    }
   </style>
 </head>
+
 <body>
 
-<div id="progress-bar"></div>
-<div id="slide-num">01 / 18</div>
-<div id="kbd-hint">← → teclado · scroll · swipe</div>
-<div id="dots"></div>
+  <div id="progress-bar"></div>
+  <div id="slide-num">01 / 14</div>
+  <div id="kbd-hint">← → teclado · scroll · swipe</div>
+  <div id="dots"></div>
 
-<div id="deck">
+  <div id="deck">
 
-  <!-- ══ 1 — PORTADA ══ -->
-  <section class="slide active" id="s1">
-    <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
-    <div style="text-align:center;max-width:860px">
-      <div class="cover-logo">
-        <img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-rW3KN717rl4aTnOGRIuS82n0gSwwLQ.png" class="thiing-icon" alt="Hospital">
-      </div>
-      <div class="slide-label" style="justify-content:center">TPO — Técnicas y Herramientas de Testing</div>
-      <h1 style="margin-bottom:1.2rem">Sistema de Gestión<br>de Turnos Médicos</h1>
-      <p style="font-size:0.85rem;color:rgba(255,255,255,0.38);margin-bottom:2.2rem;letter-spacing:0.12em;text-transform:uppercase">Presentación Final · Junio 2026</p>
-      <div class="team-grid">
-        <div class="team-chip"><span>PO</span> Lara Vitale</div>
-        <div class="team-chip"><span>PM</span> Francisco Jarusz</div>
-        <div class="team-chip"><span>QA</span> Pilar García</div>
-        <div class="team-chip"><span>QA</span> Manuel Figuerero</div>
-        <div class="team-chip"><span>DEV</span> Christian Salemme</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══ 2 — LA APLICACIÓN ══ -->
-  <section class="slide" id="s2">
-    <div class="orb orb-1"></div><div class="orb orb-3"></div>
-    <div style="max-width:980px;width:100%">
-      <div class="slide-label">Lo que construimos</div>
-      <h2>La Aplicación</h2>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.8rem">
-        <div class="feature-card">
-          <div class="feature-icon"><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-bvJNHPc0tIkrnBQsWtfPI7Q1YIE9xO.png" class="thiing-icon" alt="Auth"></div>
-          <div><div class="feature-title">Autenticación con roles</div><div class="feature-desc">Registro de pacientes y login para 3 roles (Paciente, Médico, Admin) con JWT y control de acceso por endpoint.</div></div>
+    <!-- ══ 1 — PORTADA ══ -->
+    <section class="slide active" id="s1">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+      <div style="text-align:center;max-width:860px">
+        <div class="cover-logo">
+          <img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-rW3KN717rl4aTnOGRIuS82n0gSwwLQ.png"
+            class="thiing-icon" alt="Hospital">
         </div>
-        <div class="feature-card">
-          <div class="feature-icon"><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-ij7GEZhfmzLNlLgDJVhkST8FIm5rJV.png" class="thiing-icon" alt="Reserva"></div>
-          <div><div class="feature-title">Reserva de turnos</div><div class="feature-desc">Especialidad → médico → fecha/hora → notas. Validación de fechas futuras y flujo de estados completo.</div></div>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-YM427q0rp7oBdrNFxZLbdSyYBZNTjA.png" class="thiing-icon" alt="Doctor"></div>
-          <div><div class="feature-title">Panel del Médico</div><div class="feature-desc">Agenda propia, confirmación de turnos, registro de completados y no-shows, disponibilidad semanal.</div></div>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-E6UN0DhtLJwxusfI6hIZaLplYkWH2W.png" class="thiing-icon" alt="Admin"></div>
-          <div><div class="feature-title">Panel de Administrador</div><div class="feature-desc">Dashboard con métricas, gestión de médicos, especialidades, sedes, usuarios y log de auditoría.</div></div>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-dae1lHATNY8hkh3GxeAnScrtd34Ii5.png" class="thiing-icon" alt="Perfil"></div>
-          <div><div class="feature-title">Perfil de paciente</div><div class="feature-desc">Edición de datos, historial de turnos con filtros, cancelación (ventana 24 h) y reprogramación.</div></div>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-UsyTZyMk2er8VfZu1T68Z4BbnfHYL1.png" class="thiing-icon" alt="API"></div>
-          <div><div class="feature-title">API REST documentada</div><div class="feature-desc">25+ endpoints en módulos, respuesta estándar JSON (success/data/timestamp/path), logging y auditoría.</div></div>
+        <div class="slide-label" style="justify-content:center">TPO — Técnicas y Herramientas de Testing</div>
+        <h1 style="margin-bottom:1.2rem">Sistema de Gestión<br>de Turnos Médicos</h1>
+        <p
+          style="font-size:0.85rem;color:rgba(255,255,255,0.38);margin-bottom:2.2rem;letter-spacing:0.12em;text-transform:uppercase">
+          Presentación Final · Junio 2026</p>
+        <div class="team-grid">
+          <div class="team-chip"><span>PO</span> Lara Vitale</div>
+          <div class="team-chip"><span>PM</span> Francisco Jarusz</div>
+          <div class="team-chip"><span>QA</span> Pilar García</div>
+          <div class="team-chip"><span>QA</span> Manuel Figuerero</div>
+          <div class="team-chip"><span>DEV</span> Christian Salemme</div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ══ 3 — ARQUITECTURA ══ -->
-  <section class="slide" id="s3">
-    <div class="orb orb-1"></div><div class="orb orb-3"></div>
-    <div style="display:flex;gap:4rem;align-items:center;max-width:1000px;width:100%">
-      <div style="flex:1">
-        <div class="slide-label">Stack técnico</div>
-        <h2>Arquitectura</h2>
-        <p class="lead" style="margin-bottom:1.4rem">Sistema full-stack con separación de capas y API REST. El backend real fue el <strong>sistema bajo prueba</strong>.</p>
-        <div style="display:flex;flex-direction:column;gap:0.55rem">
-          <div class="badge badge-cyan" style="width:fit-content;font-size:0.76rem;padding:0.4rem 0.9rem">🌐 React + Vite · localhost:5173</div>
-          <div class="badge badge-purple" style="width:fit-content;font-size:0.76rem;padding:0.4rem 0.9rem">⚙️ FastAPI Python · /api/v1 · :3000</div>
-          <div class="badge badge-green" style="width:fit-content;font-size:0.76rem;padding:0.4rem 0.9rem">💾 Persistencia mock · mock-data.json</div>
-        </div>
-        <div style="margin-top:1.3rem;display:flex;gap:0.6rem;flex-wrap:wrap">
-          <span class="badge badge-yellow">PATIENT</span>
-          <span class="badge badge-purple">DOCTOR</span>
-          <span class="badge badge-cyan">ADMIN</span>
-        </div>
-      </div>
-      <div style="flex:1">
-        <div class="arch">
-          <div class="arch-layer glass" style="border-color:rgba(6,182,212,0.3);background:rgba(6,182,212,0.06)">
-            <div class="arch-layer-name" style="color:#67e8f9">🌐 Frontend</div>
-            <div class="arch-layer-detail">React + Vite · puerto 5173</div>
+    <!-- ══ 2 — ROLES DEL EQUIPO ══ -->
+    <section class="slide" id="s2">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-3"></div>
+      <div style="max-width:1020px;width:100%">
+        <div class="slide-label">Nuestro equipo</div>
+        <h2>Roles y Actividades</h2>
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:0.75rem;align-items:start">
+
+          <!-- PO -->
+          <div class="stat-card" style="border-color:rgba(99,102,241,0.3);padding:1rem 0.85rem">
+            <div
+              style="font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#a5b4fc;margin-bottom:0.5rem">
+              PO</div>
+            <div style="font-size:0.82rem;font-weight:700;color:#e2e8f0;margin-bottom:0.6rem">Lara Vitale</div>
+            <ul style="font-size:0.68rem;color:rgba(255,255,255,0.55);line-height:1.85;padding-left:1rem;margin:0">
+              <li>Definió los requerimientos funcionales y no funcionales</li>
+              <li>Priorizó el backlog</li>
+              <li>Validó criterios de aceptación</li>
+              <li>Representó la visión del cliente</li>
+            </ul>
           </div>
-          <div class="arch-arrow">↕ HTTP / REST / JWT</div>
-          <div class="arch-layer glass" style="border-color:rgba(99,102,241,0.3);background:rgba(99,102,241,0.06)">
-            <div class="arch-layer-name" style="color:#a5b4fc">⚙️ Backend</div>
-            <div class="arch-layer-detail">FastAPI Python · /api/v1 · puerto 3000</div>
+
+          <!-- PM -->
+          <div class="stat-card" style="border-color:rgba(6,182,212,0.3);padding:1rem 0.85rem">
+            <div
+              style="font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#67e8f9;margin-bottom:0.5rem">
+              PM</div>
+            <div style="font-size:0.82rem;font-weight:700;color:#e2e8f0;margin-bottom:0.6rem">Francisco Jarusz</div>
+            <ul style="font-size:0.68rem;color:rgba(255,255,255,0.55);line-height:1.85;padding-left:1rem;margin:0">
+              <li>Coordinó sprints y entregas</li>
+              <li>Gestionó riesgos y dependencias</li>
+              <li>Facilitó ceremonias del equipo</li>
+              <li>Hizo seguimiento del avance</li>
+            </ul>
           </div>
-          <div class="arch-arrow">↕ I/O archivo</div>
-          <div class="arch-layer glass" style="border-color:rgba(16,185,129,0.3);background:rgba(16,185,129,0.06)">
-            <div class="arch-layer-name" style="color:#6ee7b7">💾 Persistencia</div>
-            <div class="arch-layer-detail">JSON local · mock-data.json</div>
+
+          <!-- QA Pilar -->
+          <div class="stat-card" style="border-color:rgba(16,185,129,0.3);padding:1rem 0.85rem">
+            <div
+              style="font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#6ee7b7;margin-bottom:0.5rem">
+              QA</div>
+            <div style="font-size:0.82rem;font-weight:700;color:#e2e8f0;margin-bottom:0.6rem">Pilar García</div>
+            <ul style="font-size:0.68rem;color:rgba(255,255,255,0.55);line-height:1.85;padding-left:1rem;margin:0">
+              <li>Automatizó tests E2E con Selenium</li>
+              <li>Ejecutó pruebas funcionales de UI</li>
+              <li>Documentó evidencia de ejecución</li>
+              <li>Registró defectos hallados</li>
+            </ul>
+          </div>
+
+          <!-- QA Manuel -->
+          <div class="stat-card" style="border-color:rgba(139,92,246,0.3);padding:1rem 0.85rem">
+            <div
+              style="font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#c4b5fd;margin-bottom:0.5rem">
+              QA</div>
+            <div style="font-size:0.82rem;font-weight:700;color:#e2e8f0;margin-bottom:0.6rem">Manuel Figuerero</div>
+            <ul style="font-size:0.68rem;color:rgba(255,255,255,0.55);line-height:1.85;padding-left:1rem;margin:0">
+              <li>Diseñó casos de prueba (RF + RNF)</li>
+              <li>Probó la API con Postman</li>
+              <li>Ejecutó carga con JMeter</li>
+              <li>Mantuvo trazabilidad y registro de defectos</li>
+            </ul>
+          </div>
+
+          <!-- DEV -->
+          <div class="stat-card" style="border-color:rgba(245,158,11,0.3);padding:1rem 0.85rem">
+            <div
+              style="font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#fcd34d;margin-bottom:0.5rem">
+              DEV</div>
+            <div style="font-size:0.82rem;font-weight:700;color:#e2e8f0;margin-bottom:0.6rem">Christian Salemme</div>
+            <ul style="font-size:0.68rem;color:rgba(255,255,255,0.55);line-height:1.85;padding-left:1rem;margin:0">
+              <li>Desarrolló el backend con FastAPI</li>
+              <li>Implementó autenticación JWT y roles</li>
+              <li>Construyó el frontend en React</li>
+              <li>Mantuvo el mock-data y la API</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 3 — LA APLICACIÓN ══ -->
+    <section class="slide" id="s3">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-3"></div>
+      <div style="max-width:980px;width:100%">
+        <div class="slide-label">Lo que construimos</div>
+        <h2>La Aplicación</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.8rem">
+          <div class="feature-card">
+            <div class="feature-icon"><img
+                src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-bvJNHPc0tIkrnBQsWtfPI7Q1YIE9xO.png"
+                class="thiing-icon" alt="Auth"></div>
+            <div>
+              <div class="feature-title">Autenticación con roles</div>
+              <div class="feature-desc">Registro de pacientes y login para 3 roles (Paciente, Médico, Admin) con JWT y
+                control de acceso por endpoint.</div>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"><img
+                src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-ij7GEZhfmzLNlLgDJVhkST8FIm5rJV.png"
+                class="thiing-icon" alt="Reserva"></div>
+            <div>
+              <div class="feature-title">Reserva de turnos</div>
+              <div class="feature-desc">Especialidad → médico → fecha/hora → notas. Validación de fechas futuras y flujo
+                de estados completo.</div>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"><img
+                src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-YM427q0rp7oBdrNFxZLbdSyYBZNTjA.png"
+                class="thiing-icon" alt="Doctor"></div>
+            <div>
+              <div class="feature-title">Panel del Médico</div>
+              <div class="feature-desc">Agenda propia, confirmación de turnos, registro de completados y no-shows,
+                disponibilidad semanal.</div>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"><img
+                src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-E6UN0DhtLJwxusfI6hIZaLplYkWH2W.png"
+                class="thiing-icon" alt="Admin"></div>
+            <div>
+              <div class="feature-title">Panel de Administrador</div>
+              <div class="feature-desc">Dashboard con métricas, gestión de médicos, especialidades, sedes, usuarios y
+                log de auditoría.</div>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"><img
+                src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-dae1lHATNY8hkh3GxeAnScrtd34Ii5.png"
+                class="thiing-icon" alt="Perfil"></div>
+            <div>
+              <div class="feature-title">Perfil de paciente</div>
+              <div class="feature-desc">Edición de datos, historial de turnos con filtros, cancelación (ventana 24 h) y
+                reprogramación.</div>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"><img
+                src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-UsyTZyMk2er8VfZu1T68Z4BbnfHYL1.png"
+                class="thiing-icon" alt="API"></div>
+            <div>
+              <div class="feature-title">API REST documentada</div>
+              <div class="feature-desc">25+ endpoints en módulos, respuesta estándar JSON (success/data/timestamp/path),
+                logging y auditoría.</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ══ 4 — REQUERIMIENTOS ══ -->
-  <section class="slide" id="s4">
-    <div class="orb orb-2"></div>
-    <div style="max-width:940px;width:100%">
-      <div class="slide-label">Punto de partida del testing</div>
-      <h2>Requerimientos: Funcionales + No Funcionales</h2>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.4rem">
-        <div>
-          <div class="badge badge-purple" style="margin-bottom:0.7rem">Funcionales — QUÉ hace</div>
-          <div class="rf-list">
-            <div class="rf-item"><div class="rf-id">RF-01</div><div><div class="rf-title">Autenticación y roles</div><div class="rf-desc">Registro, login, JWT, control por endpoint</div></div></div>
-            <div class="rf-item"><div class="rf-id">RF-02</div><div><div class="rf-title">Perfil del paciente</div><div class="rf-desc">Ver/editar datos, historial</div></div></div>
-            <div class="rf-item"><div class="rf-id">RF-03</div><div><div class="rf-title">Reserva de turnos</div><div class="rf-desc">Especialidad→médico→fecha</div></div></div>
-            <div class="rf-item"><div class="rf-id">RF-04</div><div><div class="rf-title">Gestión de turnos</div><div class="rf-desc">Cancelar, reprogramar, estados</div></div></div>
-            <div class="rf-item"><div class="rf-id">RF-05</div><div><div class="rf-title">Panel del médico / Admin</div><div class="rf-desc">Agenda, dashboard, auditoría</div></div></div>
+    <!-- ══ 4 — ARQUITECTURA ══ -->
+    <section class="slide" id="s4">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-3"></div>
+      <div style="display:flex;gap:4rem;align-items:center;max-width:1000px;width:100%">
+        <div style="flex:1">
+          <div class="slide-label">Stack técnico</div>
+          <h2>Arquitectura</h2>
+          <p class="lead" style="margin-bottom:1.4rem">Sistema full-stack con separación de capas y API REST. El backend
+            real fue el <strong>sistema bajo prueba</strong>.</p>
+          <div style="display:flex;flex-direction:column;gap:0.55rem">
+            <div class="badge badge-cyan" style="width:fit-content;font-size:0.76rem;padding:0.4rem 0.9rem">🌐 React +
+              Vite · localhost:5173</div>
+            <div class="badge badge-purple" style="width:fit-content;font-size:0.76rem;padding:0.4rem 0.9rem">⚙️ FastAPI
+              Python · /api/v1 · :3000</div>
+            <div class="badge badge-green" style="width:fit-content;font-size:0.76rem;padding:0.4rem 0.9rem">💾
+              Persistencia mock · mock-data.json</div>
+          </div>
+          <div style="margin-top:1.3rem;display:flex;gap:0.6rem;flex-wrap:wrap">
+            <span class="badge badge-yellow">PATIENT</span>
+            <span class="badge badge-purple">DOCTOR</span>
+            <span class="badge badge-cyan">ADMIN</span>
           </div>
         </div>
-        <div>
-          <div class="badge badge-cyan" style="margin-bottom:0.7rem">No Funcionales — QUÉ TAN BIEN</div>
-          <div class="rf-list">
-            <div class="rf-item"><div class="rf-id">RNF-01</div><div><div class="rf-title">Seguridad</div><div class="rf-desc">JWT, roles, hashing, headers, validación</div></div></div>
-            <div class="rf-item"><div class="rf-id">RNF-03</div><div><div class="rf-title">Rendimiento</div><div class="rf-desc">Usuarios concurrentes sin degradar</div></div></div>
-            <div class="rf-item"><div class="rf-id">RNF-04</div><div><div class="rf-title">Usabilidad</div><div class="rf-desc">Responsive, mensajes claros</div></div></div>
-            <div class="rf-item"><div class="rf-id">RNF-05/06</div><div><div class="rf-title">Auditoría / Compatibilidad</div><div class="rf-desc">Logging, CORS, JSON</div></div></div>
-            <div class="rf-item"><div class="rf-id">RNF-07</div><div><div class="rf-title">Configurabilidad</div><div class="rf-desc">Variables de entorno (.env)</div></div></div>
+        <div style="flex:1">
+          <div class="arch">
+            <div class="arch-layer glass" style="border-color:rgba(6,182,212,0.3);background:rgba(6,182,212,0.06)">
+              <div class="arch-layer-name" style="color:#67e8f9">🌐 Frontend</div>
+              <div class="arch-layer-detail">React + Vite · puerto 5173</div>
+            </div>
+            <div class="arch-arrow">↕ HTTP / REST / JWT</div>
+            <div class="arch-layer glass" style="border-color:rgba(99,102,241,0.3);background:rgba(99,102,241,0.06)">
+              <div class="arch-layer-name" style="color:#a5b4fc">⚙️ Backend</div>
+              <div class="arch-layer-detail">FastAPI Python · /api/v1 · puerto 3000</div>
+            </div>
+            <div class="arch-arrow">↕ I/O archivo</div>
+            <div class="arch-layer glass" style="border-color:rgba(16,185,129,0.3);background:rgba(16,185,129,0.06)">
+              <div class="arch-layer-name" style="color:#6ee7b7">💾 Persistencia</div>
+              <div class="arch-layer-detail">JSON local · mock-data.json</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ══ 5 — ROLES DEL EQUIPO ══ -->
-  <section class="slide" id="s5">
-    <div class="orb orb-1"></div><div class="orb orb-3"></div>
-    <div style="max-width:1020px;width:100%">
-      <div class="slide-label">Nuestro equipo</div>
-      <h2>Roles y Actividades</h2>
-      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:0.75rem;align-items:start">
-
-        <!-- PO -->
-        <div class="stat-card" style="border-color:rgba(99,102,241,0.3);padding:1rem 0.85rem">
-          <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#a5b4fc;margin-bottom:0.5rem">PO</div>
-          <div style="font-size:0.82rem;font-weight:700;color:#e2e8f0;margin-bottom:0.6rem">Lara Vitale</div>
-          <ul style="font-size:0.68rem;color:rgba(255,255,255,0.55);line-height:1.85;padding-left:1rem;margin:0">
-            <li>Definió los requerimientos funcionales y no funcionales</li>
-            <li>Priorizó el backlog</li>
-            <li>Validó criterios de aceptación</li>
-            <li>Representó la visión del cliente</li>
-          </ul>
-        </div>
-
-        <!-- PM -->
-        <div class="stat-card" style="border-color:rgba(6,182,212,0.3);padding:1rem 0.85rem">
-          <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#67e8f9;margin-bottom:0.5rem">PM</div>
-          <div style="font-size:0.82rem;font-weight:700;color:#e2e8f0;margin-bottom:0.6rem">Francisco Jarusz</div>
-          <ul style="font-size:0.68rem;color:rgba(255,255,255,0.55);line-height:1.85;padding-left:1rem;margin:0">
-            <li>Coordinó sprints y entregas</li>
-            <li>Gestionó riesgos y dependencias</li>
-            <li>Facilitó ceremonias del equipo</li>
-            <li>Hizo seguimiento del avance</li>
-          </ul>
-        </div>
-
-        <!-- QA Pilar -->
-        <div class="stat-card" style="border-color:rgba(16,185,129,0.3);padding:1rem 0.85rem">
-          <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#6ee7b7;margin-bottom:0.5rem">QA</div>
-          <div style="font-size:0.82rem;font-weight:700;color:#e2e8f0;margin-bottom:0.6rem">Pilar García</div>
-          <ul style="font-size:0.68rem;color:rgba(255,255,255,0.55);line-height:1.85;padding-left:1rem;margin:0">
-            <li>Automatizó tests E2E con Selenium</li>
-            <li>Ejecutó pruebas funcionales de UI</li>
-            <li>Documentó evidencia de ejecución</li>
-            <li>Registró defectos hallados</li>
-          </ul>
-        </div>
-
-        <!-- QA Manuel -->
-        <div class="stat-card" style="border-color:rgba(139,92,246,0.3);padding:1rem 0.85rem">
-          <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#c4b5fd;margin-bottom:0.5rem">QA</div>
-          <div style="font-size:0.82rem;font-weight:700;color:#e2e8f0;margin-bottom:0.6rem">Manuel Figuerero</div>
-          <ul style="font-size:0.68rem;color:rgba(255,255,255,0.55);line-height:1.85;padding-left:1rem;margin:0">
-            <li>Diseñó casos de prueba (RF + RNF)</li>
-            <li>Probó la API con Postman</li>
-            <li>Ejecutó carga con JMeter</li>
-            <li>Mantuvo trazabilidad y registro de defectos</li>
-          </ul>
-        </div>
-
-        <!-- DEV -->
-        <div class="stat-card" style="border-color:rgba(245,158,11,0.3);padding:1rem 0.85rem">
-          <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#fcd34d;margin-bottom:0.5rem">DEV</div>
-          <div style="font-size:0.82rem;font-weight:700;color:#e2e8f0;margin-bottom:0.6rem">Christian Salemme</div>
-          <ul style="font-size:0.68rem;color:rgba(255,255,255,0.55);line-height:1.85;padding-left:1rem;margin:0">
-            <li>Desarrolló el backend con FastAPI</li>
-            <li>Implementó autenticación JWT y roles</li>
-            <li>Construyó el frontend en React</li>
-            <li>Mantuvo el mock-data y la API</li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ══ 6 — PLAN DE PRUEBAS ══ -->
-  <section class="slide" id="s6">
-    <div class="orb orb-1"></div><div class="orb orb-3"></div>
-    <div style="max-width:940px;width:100%">
-      <div class="slide-label">Entregable — Documento maestro</div>
-      <h2>Plan de Pruebas</h2>
-      <div class="grid-4" style="margin-bottom:1.3rem">
-        <div class="tool-card"><span class="tool-icon"><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-JLGCwuVRfvOMwVMpimP9wXFiu6Nw4x.png" class="thiing-icon" alt="Robot"></span><div class="tool-name">Selenium</div><div class="tool-count">UI</div><div class="tool-desc">Flujos funcionales</div></div>
-        <div class="tool-card"><span class="tool-icon"><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-UsyTZyMk2er8VfZu1T68Z4BbnfHYL1.png" class="thiing-icon" alt="Laptop"></span><div class="tool-name">Postman</div><div class="tool-count">API</div><div class="tool-desc">Endpoints y seguridad</div></div>
-        <div class="tool-card"><span class="tool-icon"><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-GClCrIcEoGpc5hw6WOgnjy6Xh0NLzw.png" class="thiing-icon" alt="Warning"></span><div class="tool-name">JMeter 5.6.3</div><div class="tool-count">Carga</div><div class="tool-desc">Concurrencia</div></div>
-        <div class="tool-card"><span class="tool-icon"><img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-Tu0liR9bpDlPqjqWsJOwGAB7UoCnPg.png" class="thiing-icon" alt="Eye"></span><div class="tool-name">Revisión</div><div class="tool-count">Código</div><div class="tool-desc">Hashing, .env, logging</div></div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.7rem">
-        <div class="badge badge-purple" style="justify-content:flex-start">✓ Objetivo, alcance (incluido / excluido)</div>
-        <div class="badge badge-cyan" style="justify-content:flex-start">✓ Entorno local documentado (:3000 / :5173)</div>
-        <div class="badge badge-green" style="justify-content:flex-start">✓ Criterios de entrada y de salida</div>
-        <div class="badge badge-yellow" style="justify-content:flex-start">✓ Riesgos y mitigaciones identificados</div>
-      </div>
-      <p style="margin-top:1rem;font-size:0.76rem;color:var(--muted)">Criterio de salida: casos críticos en PASA · RNF de seguridad y rendimiento ejecutados · defectos de severidad alta resueltos o documentados con decisión del equipo · evidencia adjunta.</p>
-    </div>
-  </section>
-
-  <!-- ══ 7 — VISTAS DEL SISTEMA (UI REAL) ══ -->
-  <section class="slide" id="s7">
-    <div class="orb orb-2"></div>
-    <div style="max-width:1080px;width:100%">
-      <div class="slide-label">Capturas reales · Pruebas de usabilidad (RNF-04)</div>
-      <h2>Vistas del sistema</h2>
-      <div class="ss-grid-3" style="align-items:start">
-        <div>
-          <div class="ss-frame" style="height:310px"><span class="ss-tag tag-cyan">RESPONSIVE</span><img class="ss-img" src="screenshots/ui_landing_responsive.png" alt="Landing responsive"></div>
-          <div class="ss-cap">Landing responsive en DevTools (iPhone 12 Pro 390×844) — RNF-04.1 ✓</div>
-        </div>
-        <div>
-          <div class="ss-frame" style="height:310px"><span class="ss-tag tag-green">MENSAJE CLARO</span><img class="ss-img" src="screenshots/ui_login_error_mobile.png" alt="Login error mobile"></div>
-          <div class="ss-cap">Login móvil: error “Credenciales inválidas” visible al usuario — RNF-04.2 ✓</div>
-        </div>
-        <div>
-          <div class="ss-frame" style="height:310px"><span class="ss-tag tag-green">200 OK</span><img class="ss-img" src="screenshots/browser_specialties_json.png" alt="Specialties JSON"></div>
-          <div class="ss-cap">GET /specialties en el navegador — respuesta JSON con especialidades</div>
+    <!-- ══ 5 — REQUERIMIENTOS ══ -->
+    <section class="slide" id="s5">
+      <div class="orb orb-2"></div>
+      <div style="max-width:940px;width:100%">
+        <div class="slide-label">Punto de partida del testing</div>
+        <h2>Requerimientos: Funcionales + No Funcionales</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.4rem">
+          <div>
+            <div class="badge badge-purple" style="margin-bottom:0.7rem">Funcionales — QUÉ hace</div>
+            <div class="rf-list">
+              <div class="rf-item">
+                <div class="rf-id">RF-01</div>
+                <div>
+                  <div class="rf-title">Autenticación y roles</div>
+                  <div class="rf-desc">Registro, login, JWT, control por endpoint</div>
+                </div>
+              </div>
+              <div class="rf-item">
+                <div class="rf-id">RF-02</div>
+                <div>
+                  <div class="rf-title">Perfil del paciente</div>
+                  <div class="rf-desc">Ver/editar datos, historial</div>
+                </div>
+              </div>
+              <div class="rf-item">
+                <div class="rf-id">RF-03</div>
+                <div>
+                  <div class="rf-title">Reserva de turnos</div>
+                  <div class="rf-desc">Especialidad→médico→fecha</div>
+                </div>
+              </div>
+              <div class="rf-item">
+                <div class="rf-id">RF-04</div>
+                <div>
+                  <div class="rf-title">Gestión de turnos</div>
+                  <div class="rf-desc">Cancelar, reprogramar, estados</div>
+                </div>
+              </div>
+              <div class="rf-item">
+                <div class="rf-id">RF-05</div>
+                <div>
+                  <div class="rf-title">Panel del médico / Admin</div>
+                  <div class="rf-desc">Agenda, dashboard, auditoría</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="badge badge-cyan" style="margin-bottom:0.7rem">No Funcionales — QUÉ TAN BIEN</div>
+            <div class="rf-list">
+              <div class="rf-item">
+                <div class="rf-id">RNF-01</div>
+                <div>
+                  <div class="rf-title">Seguridad</div>
+                  <div class="rf-desc">JWT, roles, hashing, headers, validación</div>
+                </div>
+              </div>
+              <div class="rf-item">
+                <div class="rf-id">RNF-03</div>
+                <div>
+                  <div class="rf-title">Rendimiento</div>
+                  <div class="rf-desc">Usuarios concurrentes sin degradar</div>
+                </div>
+              </div>
+              <div class="rf-item">
+                <div class="rf-id">RNF-04</div>
+                <div>
+                  <div class="rf-title">Usabilidad</div>
+                  <div class="rf-desc">Responsive, mensajes claros</div>
+                </div>
+              </div>
+              <div class="rf-item">
+                <div class="rf-id">RNF-05/06</div>
+                <div>
+                  <div class="rf-title">Auditoría / Compatibilidad</div>
+                  <div class="rf-desc">Logging, CORS, JSON</div>
+                </div>
+              </div>
+              <div class="rf-item">
+                <div class="rf-id">RNF-07</div>
+                <div>
+                  <div class="rf-title">Configurabilidad</div>
+                  <div class="rf-desc">Variables de entorno (.env)</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ══ 8 — CASOS DE PRUEBA ══ -->
-  <section class="slide" id="s8">
-    <div class="orb orb-2"></div>
-    <div style="max-width:1060px;width:100%">
-      <div class="slide-label">Entregable — Diseño de pruebas</div>
-      <h2>Casos de Prueba</h2>
-      <div style="display:grid;grid-template-columns:1.15fr 1fr;gap:1.2rem;align-items:start">
-        <div>
-          <div style="font-size:0.72rem;font-weight:700;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.45rem">Funcionales · 18 casos</div>
+    <!-- ══ 6 — PLAN DE PRUEBAS ══ -->
+    <section class="slide" id="s6">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-3"></div>
+      <div style="max-width:940px;width:100%">
+        <div class="slide-label">Entregable — Documento maestro</div>
+        <h2>Plan de Pruebas</h2>
+        <div class="grid-4" style="margin-bottom:1.3rem">
+          <div class="tool-card"><span class="tool-icon"><img
+                src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-JLGCwuVRfvOMwVMpimP9wXFiu6Nw4x.png"
+                class="thiing-icon" alt="Robot"></span>
+            <div class="tool-name">Selenium</div>
+            <div class="tool-count">UI</div>
+            <div class="tool-desc">Flujos funcionales</div>
+          </div>
+          <div class="tool-card"><span class="tool-icon"><img
+                src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-UsyTZyMk2er8VfZu1T68Z4BbnfHYL1.png"
+                class="thiing-icon" alt="Laptop"></span>
+            <div class="tool-name">Postman</div>
+            <div class="tool-count">API</div>
+            <div class="tool-desc">Endpoints y seguridad</div>
+          </div>
+          <div class="tool-card"><span class="tool-icon"><img
+                src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-GClCrIcEoGpc5hw6WOgnjy6Xh0NLzw.png"
+                class="thiing-icon" alt="Warning"></span>
+            <div class="tool-name">JMeter 5.6.3</div>
+            <div class="tool-count">Carga</div>
+            <div class="tool-desc">Concurrencia</div>
+          </div>
+          <div class="tool-card"><span class="tool-icon"><img
+                src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-Tu0liR9bpDlPqjqWsJOwGAB7UoCnPg.png"
+                class="thiing-icon" alt="Eye"></span>
+            <div class="tool-name">Revisión</div>
+            <div class="tool-count">Código</div>
+            <div class="tool-desc">Hashing, .env, logging</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.7rem">
+          <div class="badge badge-purple" style="justify-content:flex-start">✓ Objetivo, alcance (incluido / excluido)
+          </div>
+          <div class="badge badge-cyan" style="justify-content:flex-start">✓ Entorno local documentado (:3000 / :5173)
+          </div>
+          <div class="badge badge-green" style="justify-content:flex-start">✓ Criterios de entrada y de salida</div>
+          <div class="badge badge-yellow" style="justify-content:flex-start">✓ Riesgos y mitigaciones identificados
+          </div>
+        </div>
+        <p style="margin-top:1rem;font-size:0.76rem;color:var(--muted)">Criterio de salida: casos críticos en PASA · RNF
+          de seguridad y rendimiento ejecutados · defectos de severidad alta resueltos o documentados con decisión del
+          equipo · evidencia adjunta.</p>
+      </div>
+    </section>
+
+    <!-- ══ 7 — VISTAS DEL SISTEMA (UI REAL) ══ -->
+    <section class="slide" id="s7">
+      <div class="orb orb-2"></div>
+      <div style="max-width:1080px;width:100%">
+        <div class="slide-label">Capturas reales · Pruebas de usabilidad (RNF-04)</div>
+        <h2>Vistas del sistema</h2>
+        <div class="ss-grid-3" style="align-items:start">
+          <div>
+            <div class="ss-frame" style="height:310px"><span class="ss-tag tag-cyan">RESPONSIVE</span><img
+                class="ss-img" src="screenshots/ui_landing_responsive.png" alt="Landing responsive"></div>
+            <div class="ss-cap">Landing responsive en DevTools (iPhone 12 Pro 390×844) — RNF-04.1 ✓</div>
+          </div>
+          <div>
+            <div class="ss-frame" style="height:310px"><span class="ss-tag tag-green">MENSAJE CLARO</span><img
+                class="ss-img" src="screenshots/ui_login_error_mobile.png" alt="Login error mobile"></div>
+            <div class="ss-cap">Login móvil: error “Credenciales inválidas” visible al usuario — RNF-04.2 ✓</div>
+          </div>
+          <div>
+            <div class="ss-frame" style="height:310px"><span class="ss-tag tag-green">200 OK</span><img class="ss-img"
+                src="screenshots/browser_specialties_json.png" alt="Specialties JSON"></div>
+            <div class="ss-cap">GET /specialties en el navegador — respuesta JSON con especialidades</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 8 — CASOS DE PRUEBA ══ -->
+    <section class="slide" id="s8">
+      <div class="orb orb-2"></div>
+      <div style="max-width:1060px;width:100%">
+        <div class="slide-label">Entregable — Diseño de pruebas</div>
+        <h2>Casos de Prueba</h2>
+        <div style="display:grid;grid-template-columns:1.15fr 1fr;gap:1.2rem;align-items:start">
+          <div>
+            <div
+              style="font-size:0.72rem;font-weight:700;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.45rem">
+              Funcionales · 18 casos</div>
+            <div class="table-wrapper">
+              <table class="data-table" style="font-size:0.69rem">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Módulo</th>
+                    <th>Estado</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="badge badge-purple" style="font-size:0.6rem">CP-001</span></td>
+                    <td>Login por rol paciente</td>
+                    <td>Autenticación</td>
+                    <td><span class="badge badge-green" style="font-size:0.6rem">Pasó</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-purple" style="font-size:0.6rem">CP-002</span></td>
+                    <td>Login por rol médico</td>
+                    <td>Autenticación</td>
+                    <td><span class="badge badge-green" style="font-size:0.6rem">Pasó</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-purple" style="font-size:0.6rem">CP-003</span></td>
+                    <td>Login por rol admin</td>
+                    <td>Autenticación</td>
+                    <td><span class="badge badge-green" style="font-size:0.6rem">Pasó</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-purple" style="font-size:0.6rem">CP-004</span></td>
+                    <td>Validación de credenciales</td>
+                    <td>Autenticación</td>
+                    <td><span class="badge badge-green" style="font-size:0.6rem">Pasó</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-purple" style="font-size:0.6rem">CP-005</span></td>
+                    <td>Registro de pacientes</td>
+                    <td>Registro</td>
+                    <td><span class="badge badge-red" style="font-size:0.6rem">Falló</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-purple" style="font-size:0.6rem">CP-007</span></td>
+                    <td>Edición del perfil</td>
+                    <td>Perfil</td>
+                    <td><span class="badge badge-green" style="font-size:0.6rem">Pasó</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-purple" style="font-size:0.6rem">CP-009</span></td>
+                    <td>Reserva de turno exitoso</td>
+                    <td>Turnos / Reserva</td>
+                    <td><span class="badge badge-red" style="font-size:0.6rem">Falló</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-purple" style="font-size:0.6rem">CP-010</span></td>
+                    <td>Reserva con fecha pasada</td>
+                    <td>Turnos / Reserva</td>
+                    <td><span class="badge badge-red" style="font-size:0.6rem">Falló</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-purple" style="font-size:0.6rem">CP-011</span></td>
+                    <td>Cancelación desde panel</td>
+                    <td>Turnos / Gestión</td>
+                    <td><span class="badge badge-red" style="font-size:0.6rem">Falló</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-purple" style="font-size:0.6rem">CP-013</span></td>
+                    <td>Turnos asignados al médico</td>
+                    <td>Médico / Agenda</td>
+                    <td><span class="badge badge-green" style="font-size:0.6rem">Pasó</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-purple" style="font-size:0.6rem">CP-014</span></td>
+                    <td>Confirmar turno pendiente</td>
+                    <td>Médico / Agenda</td>
+                    <td><span class="badge badge-green" style="font-size:0.6rem">Pasó</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-purple" style="font-size:0.6rem">CP-016</span></td>
+                    <td>Dashboard administrativo</td>
+                    <td>Admin / Dashboard</td>
+                    <td><span class="badge badge-green" style="font-size:0.6rem">Pasó</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div>
+            <div
+              style="font-size:0.72rem;font-weight:700;color:var(--accent3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.45rem">
+              No Funcionales · 9 casos</div>
+            <div class="table-wrapper">
+              <table class="data-table" style="font-size:0.69rem">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Herramienta</th>
+                    <th>Estado</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="badge badge-cyan" style="font-size:0.6rem">CP-RNF-01</span></td>
+                    <td>Contraseñas seguras (bcrypt)</td>
+                    <td>Manual / revisión</td>
+                    <td><span class="badge badge-red" style="font-size:0.6rem">Falla</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-cyan" style="font-size:0.6rem">CP-RNF-02</span></td>
+                    <td>Endpoints privados con JWT</td>
+                    <td>Postman</td>
+                    <td><span class="badge badge-green" style="font-size:0.6rem">Pasa</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-cyan" style="font-size:0.6rem">CP-RNF-03</span></td>
+                    <td>Control de acceso por roles</td>
+                    <td>Postman</td>
+                    <td><span class="badge badge-green" style="font-size:0.6rem">Pasa</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-cyan" style="font-size:0.6rem">CP-RNF-04</span></td>
+                    <td>Cabeceras de seguridad HTTP</td>
+                    <td>Manual / curl</td>
+                    <td><span class="badge badge-red" style="font-size:0.6rem">Falla</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-cyan" style="font-size:0.6rem">CP-RNF-05</span></td>
+                    <td>Rechazo de campos desconocidos</td>
+                    <td>Postman</td>
+                    <td><span class="badge badge-red" style="font-size:0.6rem">Falla</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-cyan" style="font-size:0.6rem">CP-RNF-06</span></td>
+                    <td>No exponer info interna en errores</td>
+                    <td>Postman</td>
+                    <td><span class="badge badge-green" style="font-size:0.6rem">Pasa</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-cyan" style="font-size:0.6rem">CP-RNF-07</span></td>
+                    <td>Carga y concurrencia (JMeter)</td>
+                    <td>JMeter</td>
+                    <td><span class="badge badge-green" style="font-size:0.6rem">Pasa</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-cyan" style="font-size:0.6rem">CP-RNF-08</span></td>
+                    <td>Diseño responsivo</td>
+                    <td>DevTools</td>
+                    <td><span class="badge badge-green" style="font-size:0.6rem">Pasa</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-cyan" style="font-size:0.6rem">CP-RNF-09</span></td>
+                    <td>Mensajes de alerta del frontend</td>
+                    <td>Manual</td>
+                    <td><span class="badge badge-green" style="font-size:0.6rem">Pasa</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <p style="margin-top:0.7rem;font-size:0.73rem;color:var(--muted)">Cada caso documenta <strong>precondición,
+            pasos, datos de entrada, resultado esperado y resultado obtenido</strong>. 27 casos en total.</p>
+      </div>
+    </section>
+
+    <!-- ══ 9 — POSTMAN (REAL) ══ -->
+    <section class="slide" id="s9">
+      <div class="orb orb-2"></div>
+      <div style="max-width:1080px;width:100%">
+        <div class="slide-label">Capturas reales · Pruebas de endpoints (API)</div>
+        <h2>Pruebas funcionales de la API — Postman</h2>
+        <div class="ss-grid-4" style="align-items:start">
+          <div>
+            <div class="ss-frame" style="height:240px"><span class="ss-tag tag-green">200 · 67 ms</span><img
+                class="ss-img" src="screenshots/postman_login_admin_200.png" alt="Login admin 200"></div>
+            <div class="ss-cap">POST /auth/login (admin) → 200 + token JWT</div>
+          </div>
+          <div>
+            <div class="ss-frame" style="height:240px"><span class="ss-tag tag-green">200 · 14 ms</span><img
+                class="ss-img" src="screenshots/postman_list_users_200.png" alt="List users 200"></div>
+            <div class="ss-cap">GET /admin/users con token admin → 200</div>
+          </div>
+          <div>
+            <div class="ss-frame" style="height:240px"><span class="ss-tag tag-green">200 · 7 ms</span><img
+                class="ss-img" src="screenshots/postman_specialties_200.png" alt="Specialties 200"></div>
+            <div class="ss-cap">GET /specialties → 200 lista pública</div>
+          </div>
+          <div>
+            <div class="ss-frame" style="height:240px"><span class="ss-tag tag-green">200 · AUDIT</span><img
+                class="ss-img" src="screenshots/postman_audit_200.png" alt="Audit 200"></div>
+            <div class="ss-cap">GET /audit → registra LOGIN y acciones (RNF-05.1 ✓)</div>
+          </div>
+        </div>
+        <p style="margin-top:0.9rem;font-size:0.76rem;color:var(--muted)">Colección <strong>TurnosMedicos Mock
+            API</strong>: Auth · Users · Specialties · Doctors · Availability · Appointments · Admin · Audit — 24+
+          requests verificadas.</p>
+      </div>
+    </section>
+
+    <!-- ══ 10 — SEGURIDAD (REAL) ══ -->
+    <section class="slide" id="s10">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-3"></div>
+      <div style="max-width:1080px;width:100%">
+        <div class="slide-label">Capturas reales · Pruebas de seguridad (RNF-01)</div>
+        <h2>Pruebas de Seguridad — control de acceso</h2>
+        <div class="ss-grid-4" style="align-items:start">
+          <div>
+            <div class="ss-frame" style="height:235px"><span class="ss-tag tag-red">401</span><img class="ss-img"
+                src="screenshots/postman_no_token_401.png" alt="401 sin token"></div>
+            <div class="ss-cap">GET /admin/users <strong>sin token</strong> → 401 “Token requerido” (RNF-01.2 ✓)</div>
+          </div>
+          <div>
+            <div class="ss-frame" style="height:235px"><span class="ss-tag tag-red">403</span><img class="ss-img"
+                src="screenshots/postman_patient_403.png" alt="403 paciente"></div>
+            <div class="ss-cap">Paciente → /admin/users → 403 “No autorizado” (RNF-01.3 ✓)</div>
+          </div>
+          <div>
+            <div class="ss-frame" style="height:235px"><span class="ss-tag tag-red">401</span><img class="ss-img"
+                src="screenshots/postman_wrong_pass_401.png" alt="401 password mal"></div>
+            <div class="ss-cap">Login con password incorrecto → 401 genérico, sin stacktrace (RNF-01.6 ✓)</div>
+          </div>
+          <div>
+            <div class="ss-frame" style="height:235px"><span class="ss-tag tag-green">CORS</span><img class="ss-img"
+                src="screenshots/curl_cors_preflight.png" alt="CORS preflight"></div>
+            <div class="ss-cap">OPTIONS preflight → Access-Control-Allow-Origin :5173 (RNF-06.1 ✓)</div>
+          </div>
+        </div>
+        <p style="margin-top:0.9rem;font-size:0.78rem;color:#6ee7b7">El control de acceso por JWT y roles
+          <strong>funciona correctamente</strong>: rechaza sin token (401), rechaza rol incorrecto (403) y no filtra
+          información interna en los errores.</p>
+      </div>
+    </section>
+
+    <!-- ══ 11 — JMETER ESTRATEGIA + CRITERIO ENTRADA ══ -->
+    <section class="slide" id="s11">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-3"></div>
+      <div style="max-width:1000px;width:100%">
+        <div class="slide-label">No funcionales · Rendimiento (RNF-03)</div>
+        <h2>Pruebas de Carga — Estrategia JMeter</h2>
+        <div style="display:grid;grid-template-columns:1.25fr 1fr;gap:1.6rem;align-items:center">
           <div class="table-wrapper">
-            <table class="data-table" style="font-size:0.69rem">
-              <thead><tr><th>ID</th><th>Nombre</th><th>Módulo</th><th>Estado</th></tr></thead>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Escenario</th>
+                  <th>Endpoint</th>
+                  <th>Hilos</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
               <tbody>
-                <tr><td><span class="badge badge-purple" style="font-size:0.6rem">CP-001</span></td><td>Login por rol paciente</td><td>Autenticación</td><td><span class="badge badge-green" style="font-size:0.6rem">Pasó</span></td></tr>
-                <tr><td><span class="badge badge-purple" style="font-size:0.6rem">CP-002</span></td><td>Login por rol médico</td><td>Autenticación</td><td><span class="badge badge-green" style="font-size:0.6rem">Pasó</span></td></tr>
-                <tr><td><span class="badge badge-purple" style="font-size:0.6rem">CP-003</span></td><td>Login por rol admin</td><td>Autenticación</td><td><span class="badge badge-green" style="font-size:0.6rem">Pasó</span></td></tr>
-                <tr><td><span class="badge badge-purple" style="font-size:0.6rem">CP-004</span></td><td>Validación de credenciales</td><td>Autenticación</td><td><span class="badge badge-green" style="font-size:0.6rem">Pasó</span></td></tr>
-                <tr><td><span class="badge badge-purple" style="font-size:0.6rem">CP-005</span></td><td>Registro de pacientes</td><td>Registro</td><td><span class="badge badge-red" style="font-size:0.6rem">Falló</span></td></tr>
-                <tr><td><span class="badge badge-purple" style="font-size:0.6rem">CP-007</span></td><td>Edición del perfil</td><td>Perfil</td><td><span class="badge badge-green" style="font-size:0.6rem">Pasó</span></td></tr>
-                <tr><td><span class="badge badge-purple" style="font-size:0.6rem">CP-009</span></td><td>Reserva de turno exitoso</td><td>Turnos / Reserva</td><td><span class="badge badge-red" style="font-size:0.6rem">Falló</span></td></tr>
-                <tr><td><span class="badge badge-purple" style="font-size:0.6rem">CP-010</span></td><td>Reserva con fecha pasada</td><td>Turnos / Reserva</td><td><span class="badge badge-red" style="font-size:0.6rem">Falló</span></td></tr>
-                <tr><td><span class="badge badge-purple" style="font-size:0.6rem">CP-011</span></td><td>Cancelación desde panel</td><td>Turnos / Gestión</td><td><span class="badge badge-red" style="font-size:0.6rem">Falló</span></td></tr>
-                <tr><td><span class="badge badge-purple" style="font-size:0.6rem">CP-013</span></td><td>Turnos asignados al médico</td><td>Médico / Agenda</td><td><span class="badge badge-green" style="font-size:0.6rem">Pasó</span></td></tr>
-                <tr><td><span class="badge badge-purple" style="font-size:0.6rem">CP-014</span></td><td>Confirmar turno pendiente</td><td>Médico / Agenda</td><td><span class="badge badge-green" style="font-size:0.6rem">Pasó</span></td></tr>
-                <tr><td><span class="badge badge-purple" style="font-size:0.6rem">CP-016</span></td><td>Dashboard administrativo</td><td>Admin / Dashboard</td><td><span class="badge badge-green" style="font-size:0.6rem">Pasó</span></td></tr>
+                <tr>
+                  <td>E1 — Login masivo</td>
+                  <td>POST /auth/login</td>
+                  <td>50</td>
+                  <td><span class="badge badge-green">PASA</span></td>
+                </tr>
+                <tr>
+                  <td>E2 — Flujo con token</td>
+                  <td>GET /appointments/my</td>
+                  <td>token</td>
+                  <td><span class="badge badge-green">PASA</span></td>
+                </tr>
+                <tr>
+                  <td>E3 — Seguridad</td>
+                  <td>sin token / pass mal</td>
+                  <td>—</td>
+                  <td><span class="badge badge-green">PASA</span></td>
+                </tr>
+                <tr>
+                  <td>E4 — Especialidades</td>
+                  <td>CRUD admin</td>
+                  <td>—</td>
+                  <td><span class="badge badge-yellow">PEND.</span></td>
+                </tr>
               </tbody>
             </table>
           </div>
-        </div>
-        <div>
-          <div style="font-size:0.72rem;font-weight:700;color:var(--accent3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.45rem">No Funcionales · 9 casos</div>
-          <div class="table-wrapper">
-            <table class="data-table" style="font-size:0.69rem">
-              <thead><tr><th>ID</th><th>Nombre</th><th>Herramienta</th><th>Estado</th></tr></thead>
-              <tbody>
-                <tr><td><span class="badge badge-cyan" style="font-size:0.6rem">CP-RNF-01</span></td><td>Contraseñas seguras (bcrypt)</td><td>Manual / revisión</td><td><span class="badge badge-red" style="font-size:0.6rem">Falla</span></td></tr>
-                <tr><td><span class="badge badge-cyan" style="font-size:0.6rem">CP-RNF-02</span></td><td>Endpoints privados con JWT</td><td>Postman</td><td><span class="badge badge-green" style="font-size:0.6rem">Pasa</span></td></tr>
-                <tr><td><span class="badge badge-cyan" style="font-size:0.6rem">CP-RNF-03</span></td><td>Control de acceso por roles</td><td>Postman</td><td><span class="badge badge-green" style="font-size:0.6rem">Pasa</span></td></tr>
-                <tr><td><span class="badge badge-cyan" style="font-size:0.6rem">CP-RNF-04</span></td><td>Cabeceras de seguridad HTTP</td><td>Manual / curl</td><td><span class="badge badge-red" style="font-size:0.6rem">Falla</span></td></tr>
-                <tr><td><span class="badge badge-cyan" style="font-size:0.6rem">CP-RNF-05</span></td><td>Rechazo de campos desconocidos</td><td>Postman</td><td><span class="badge badge-red" style="font-size:0.6rem">Falla</span></td></tr>
-                <tr><td><span class="badge badge-cyan" style="font-size:0.6rem">CP-RNF-06</span></td><td>No exponer info interna en errores</td><td>Postman</td><td><span class="badge badge-green" style="font-size:0.6rem">Pasa</span></td></tr>
-                <tr><td><span class="badge badge-cyan" style="font-size:0.6rem">CP-RNF-07</span></td><td>Carga y concurrencia (JMeter)</td><td>JMeter</td><td><span class="badge badge-green" style="font-size:0.6rem">Pasa</span></td></tr>
-                <tr><td><span class="badge badge-cyan" style="font-size:0.6rem">CP-RNF-08</span></td><td>Diseño responsivo</td><td>DevTools</td><td><span class="badge badge-green" style="font-size:0.6rem">Pasa</span></td></tr>
-                <tr><td><span class="badge badge-cyan" style="font-size:0.6rem">CP-RNF-09</span></td><td>Mensajes de alerta del frontend</td><td>Manual</td><td><span class="badge badge-green" style="font-size:0.6rem">Pasa</span></td></tr>
-              </tbody>
-            </table>
+          <div>
+            <div class="ss-frame" style="height:185px"><span class="ss-tag tag-red">100% ERROR</span><img class="ss-img"
+                src="screenshots/jmeter_summary_fail.png" alt="JMeter corrida fallida"></div>
+            <div class="ss-cap"><strong>Lección de tester:</strong> una corrida temprana dio 100 % de error → el backend
+              no estaba levantado (Connection refused). Por eso definimos el <strong>criterio de entrada</strong>:
+              verificar <code class="inline">/specialties</code> antes de cada corrida.</div>
           </div>
         </div>
       </div>
-      <p style="margin-top:0.7rem;font-size:0.73rem;color:var(--muted)">Cada caso documenta <strong>precondición, pasos, datos de entrada, resultado esperado y resultado obtenido</strong>. 27 casos en total.</p>
-    </div>
-  </section>
+    </section>
 
-  <!-- ══ 9 — POSTMAN (REAL) ══ -->
-  <section class="slide" id="s9">
-    <div class="orb orb-2"></div>
-    <div style="max-width:1080px;width:100%">
-      <div class="slide-label">Capturas reales · Pruebas de endpoints (API)</div>
-      <h2>Pruebas funcionales de la API — Postman</h2>
-      <div class="ss-grid-4" style="align-items:start">
-        <div>
-          <div class="ss-frame" style="height:240px"><span class="ss-tag tag-green">200 · 67 ms</span><img class="ss-img" src="screenshots/postman_login_admin_200.png" alt="Login admin 200"></div>
-          <div class="ss-cap">POST /auth/login (admin) → 200 + token JWT</div>
-        </div>
-        <div>
-          <div class="ss-frame" style="height:240px"><span class="ss-tag tag-green">200 · 14 ms</span><img class="ss-img" src="screenshots/postman_list_users_200.png" alt="List users 200"></div>
-          <div class="ss-cap">GET /admin/users con token admin → 200</div>
-        </div>
-        <div>
-          <div class="ss-frame" style="height:240px"><span class="ss-tag tag-green">200 · 7 ms</span><img class="ss-img" src="screenshots/postman_specialties_200.png" alt="Specialties 200"></div>
-          <div class="ss-cap">GET /specialties → 200 lista pública</div>
-        </div>
-        <div>
-          <div class="ss-frame" style="height:240px"><span class="ss-tag tag-green">200 · AUDIT</span><img class="ss-img" src="screenshots/postman_audit_200.png" alt="Audit 200"></div>
-          <div class="ss-cap">GET /audit → registra LOGIN y acciones (RNF-05.1 ✓)</div>
+    <!-- ══ 12 — RESULTADOS PERFORMANCE (REAL) ══ -->
+    <section class="slide" id="s12">
+      <div class="orb orb-2"></div>
+      <div style="max-width:1060px;width:100%">
+        <div class="slide-label">No funcionales · Resultados reales</div>
+        <h2>Resultados de Performance</h2>
+        <div class="grid-2">
+          <div>
+            <div class="ss-frame" style="height:240px"><span class="ss-tag tag-green">200 OK</span><img class="ss-img"
+                src="screenshots/jmeter_results_esc2.png" alt="JMeter Esc2"></div>
+            <div class="ss-cap">Escenario 2 — flujo autenticado con token: respuestas 200 OK (View Results Tree)</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:0.9rem;justify-content:center">
+            <div class="stat-card" style="border-color:rgba(16,185,129,0.3)">
+              <div class="stat-num"
+                style="font-size:1.9rem;color:#6ee7b7;background:none;-webkit-text-fill-color:#6ee7b7">1146 ms</div>
+              <div class="stat-label">Tiempo de respuesta promedio (E1 login)</div>
+              <div class="stat-sub">50 hilos concurrentes sobre /auth/login</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num" style="font-size:1.9rem">0,00 %</div>
+              <div class="stat-label">Tasa de error · 500 samples</div>
+              <div class="stat-sub">Soporta la concurrencia esperada sin degradarse (RNF-03.1 ✓)</div>
+            </div>
+            <div class="stat-card" style="border-color:rgba(6,182,212,0.3)">
+              <div class="stat-num" style="font-size:1.9rem">3 / 3</div>
+              <div class="stat-label">Escenarios ejecutados que PASAN</div>
+              <div class="stat-sub">E1 carga · E2 token · E3 seguridad · (E4 pendiente)</div>
+            </div>
+          </div>
         </div>
       </div>
-      <p style="margin-top:0.9rem;font-size:0.76rem;color:var(--muted)">Colección <strong>TurnosMedicos Mock API</strong>: Auth · Users · Specialties · Doctors · Availability · Appointments · Admin · Audit — 24+ requests verificadas.</p>
-    </div>
-  </section>
+    </section>
 
-  <!-- ══ 10 — SEGURIDAD (REAL) ══ -->
-  <section class="slide" id="s10">
-    <div class="orb orb-1"></div><div class="orb orb-3"></div>
-    <div style="max-width:1080px;width:100%">
-      <div class="slide-label">Capturas reales · Pruebas de seguridad (RNF-01)</div>
-      <h2>Pruebas de Seguridad — control de acceso</h2>
-      <div class="ss-grid-4" style="align-items:start">
-        <div>
-          <div class="ss-frame" style="height:235px"><span class="ss-tag tag-red">401</span><img class="ss-img" src="screenshots/postman_no_token_401.png" alt="401 sin token"></div>
-          <div class="ss-cap">GET /admin/users <strong>sin token</strong> → 401 “Token requerido” (RNF-01.2 ✓)</div>
-        </div>
-        <div>
-          <div class="ss-frame" style="height:235px"><span class="ss-tag tag-red">403</span><img class="ss-img" src="screenshots/postman_patient_403.png" alt="403 paciente"></div>
-          <div class="ss-cap">Paciente → /admin/users → 403 “No autorizado” (RNF-01.3 ✓)</div>
-        </div>
-        <div>
-          <div class="ss-frame" style="height:235px"><span class="ss-tag tag-red">401</span><img class="ss-img" src="screenshots/postman_wrong_pass_401.png" alt="401 password mal"></div>
-          <div class="ss-cap">Login con password incorrecto → 401 genérico, sin stacktrace (RNF-01.6 ✓)</div>
-        </div>
-        <div>
-          <div class="ss-frame" style="height:235px"><span class="ss-tag tag-green">CORS</span><img class="ss-img" src="screenshots/curl_cors_preflight.png" alt="CORS preflight"></div>
-          <div class="ss-cap">OPTIONS preflight → Access-Control-Allow-Origin :5173 (RNF-06.1 ✓)</div>
-        </div>
-      </div>
-      <p style="margin-top:0.9rem;font-size:0.78rem;color:#6ee7b7">El control de acceso por JWT y roles <strong>funciona correctamente</strong>: rechaza sin token (401), rechaza rol incorrecto (403) y no filtra información interna en los errores.</p>
-    </div>
-  </section>
-
-  <!-- ══ 11 — JMETER ESTRATEGIA + CRITERIO ENTRADA ══ -->
-  <section class="slide" id="s11">
-    <div class="orb orb-1"></div><div class="orb orb-3"></div>
-    <div style="max-width:1000px;width:100%">
-      <div class="slide-label">No funcionales · Rendimiento (RNF-03)</div>
-      <h2>Pruebas de Carga — Estrategia JMeter</h2>
-      <div style="display:grid;grid-template-columns:1.25fr 1fr;gap:1.6rem;align-items:center">
-        <div class="table-wrapper">
+    <!-- ══ 13 — MATRIZ DE TRAZABILIDAD ══ -->
+    <section class="slide" id="s13">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-3"></div>
+      <div style="max-width:980px;width:100%">
+        <div class="slide-label">Entregable — Trazabilidad</div>
+        <h2>Matriz de Trazabilidad (RNF)</h2>
+        <p class="lead" style="font-size:0.86rem;margin-bottom:1rem">Vincula cada requisito no funcional con su caso,
+          herramienta, tipo y resultado. Asegura cobertura y <strong>hace visibles los gaps</strong>.</p>
+        <div class="table-wrapper" style="max-width:980px">
           <table class="data-table">
-            <thead><tr><th>Escenario</th><th>Endpoint</th><th>Hilos</th><th>Estado</th></tr></thead>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Requisito</th>
+                <th>Herramienta</th>
+                <th>Resultado</th>
+              </tr>
+            </thead>
             <tbody>
-              <tr><td>E1 — Login masivo</td><td>POST /auth/login</td><td>50</td><td><span class="badge badge-green">PASA</span></td></tr>
-              <tr><td>E2 — Flujo con token</td><td>GET /appointments/my</td><td>token</td><td><span class="badge badge-green">PASA</span></td></tr>
-              <tr><td>E3 — Seguridad</td><td>sin token / pass mal</td><td>—</td><td><span class="badge badge-green">PASA</span></td></tr>
-              <tr><td>E4 — Especialidades</td><td>CRUD admin</td><td>—</td><td><span class="badge badge-yellow">PEND.</span></td></tr>
+              <tr>
+                <td>RNF-01.1</td>
+                <td>Contraseñas hasheadas con bcrypt</td>
+                <td>Revisión de código</td>
+                <td><span class="badge badge-red">✗ Texto plano</span></td>
+              </tr>
+              <tr>
+                <td>RNF-01.2/.3</td>
+                <td>JWT válido · control de acceso por roles</td>
+                <td>Postman / JMeter</td>
+                <td><span class="badge badge-green">✓ Cumple</span></td>
+              </tr>
+              <tr>
+                <td>RNF-01.4</td>
+                <td>Cabeceras de seguridad HTTP</td>
+                <td>curl / revisión</td>
+                <td><span class="badge badge-red">✗ Ausentes</span></td>
+              </tr>
+              <tr>
+                <td>RNF-01.5</td>
+                <td>Rechazar campos desconocidos (422)</td>
+                <td>Postman</td>
+                <td><span class="badge badge-red">✗ Da 200</span></td>
+              </tr>
+              <tr>
+                <td>RNF-03.1</td>
+                <td>Concurrencia sin degradación</td>
+                <td>JMeter</td>
+                <td><span class="badge badge-green">✓ 0% error</span></td>
+              </tr>
+              <tr>
+                <td>RNF-04.1/.2</td>
+                <td>Responsive · mensajes claros</td>
+                <td>Manual / DevTools</td>
+                <td><span class="badge badge-green">✓ Cumple</span></td>
+              </tr>
+              <tr>
+                <td>RNF-05/06/07</td>
+                <td>Auditoría · CORS/JSON · .env</td>
+                <td>Postman / revisión</td>
+                <td><span class="badge badge-green">✓ Cumple</span></td>
+              </tr>
             </tbody>
           </table>
         </div>
-        <div>
-          <div class="ss-frame" style="height:185px"><span class="ss-tag tag-red">100% ERROR</span><img class="ss-img" src="screenshots/jmeter_summary_fail.png" alt="JMeter corrida fallida"></div>
-          <div class="ss-cap"><strong>Lección de tester:</strong> una corrida temprana dio 100 % de error → el backend no estaba levantado (Connection refused). Por eso definimos el <strong>criterio de entrada</strong>: verificar <code class="inline">/specialties</code> antes de cada corrida.</div>
+        <div style="display:flex;gap:0.7rem;margin-top:1rem;flex-wrap:wrap">
+          <span class="badge badge-green">11 cumplen</span>
+          <span class="badge badge-red">3 defectos</span>
+          <span class="badge badge-yellow">2 pendientes (UI)</span>
+          <span class="badge badge-purple">RNF-02 no definido → gap visible</span>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ══ 12 — RESULTADOS PERFORMANCE (REAL) ══ -->
-  <section class="slide" id="s12">
-    <div class="orb orb-2"></div>
-    <div style="max-width:1060px;width:100%">
-      <div class="slide-label">No funcionales · Resultados reales</div>
-      <h2>Resultados de Performance</h2>
-      <div class="grid-2">
-        <div>
-          <div class="ss-frame" style="height:240px"><span class="ss-tag tag-green">200 OK</span><img class="ss-img" src="screenshots/jmeter_results_esc2.png" alt="JMeter Esc2"></div>
-          <div class="ss-cap">Escenario 2 — flujo autenticado con token: respuestas 200 OK (View Results Tree)</div>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:0.9rem;justify-content:center">
-          <div class="stat-card" style="border-color:rgba(16,185,129,0.3)">
-            <div class="stat-num" style="font-size:1.9rem;color:#6ee7b7;background:none;-webkit-text-fill-color:#6ee7b7">1146 ms</div>
-            <div class="stat-label">Tiempo de respuesta promedio (E1 login)</div>
-            <div class="stat-sub">50 hilos concurrentes sobre /auth/login</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-num" style="font-size:1.9rem">0,00 %</div>
-            <div class="stat-label">Tasa de error · 500 samples</div>
-            <div class="stat-sub">Soporta la concurrencia esperada sin degradarse (RNF-03.1 ✓)</div>
-          </div>
-          <div class="stat-card" style="border-color:rgba(6,182,212,0.3)">
-            <div class="stat-num" style="font-size:1.9rem">3 / 3</div>
-            <div class="stat-label">Escenarios ejecutados que PASAN</div>
-            <div class="stat-sub">E1 carga · E2 token · E3 seguridad · (E4 pendiente)</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══ 13 — MATRIZ DE TRAZABILIDAD ══ -->
-  <section class="slide" id="s13">
-    <div class="orb orb-1"></div><div class="orb orb-3"></div>
-    <div style="max-width:980px;width:100%">
-      <div class="slide-label">Entregable — Trazabilidad</div>
-      <h2>Matriz de Trazabilidad (RNF)</h2>
-      <p class="lead" style="font-size:0.86rem;margin-bottom:1rem">Vincula cada requisito no funcional con su caso, herramienta, tipo y resultado. Asegura cobertura y <strong>hace visibles los gaps</strong>.</p>
-      <div class="table-wrapper" style="max-width:980px">
-        <table class="data-table">
-          <thead><tr><th>ID</th><th>Requisito</th><th>Herramienta</th><th>Resultado</th></tr></thead>
-          <tbody>
-            <tr><td>RNF-01.1</td><td>Contraseñas hasheadas con bcrypt</td><td>Revisión de código</td><td><span class="badge badge-red">✗ Texto plano</span></td></tr>
-            <tr><td>RNF-01.2/.3</td><td>JWT válido · control de acceso por roles</td><td>Postman / JMeter</td><td><span class="badge badge-green">✓ Cumple</span></td></tr>
-            <tr><td>RNF-01.4</td><td>Cabeceras de seguridad HTTP</td><td>curl / revisión</td><td><span class="badge badge-red">✗ Ausentes</span></td></tr>
-            <tr><td>RNF-01.5</td><td>Rechazar campos desconocidos (422)</td><td>Postman</td><td><span class="badge badge-red">✗ Da 200</span></td></tr>
-            <tr><td>RNF-03.1</td><td>Concurrencia sin degradación</td><td>JMeter</td><td><span class="badge badge-green">✓ 0% error</span></td></tr>
-            <tr><td>RNF-04.1/.2</td><td>Responsive · mensajes claros</td><td>Manual / DevTools</td><td><span class="badge badge-green">✓ Cumple</span></td></tr>
-            <tr><td>RNF-05/06/07</td><td>Auditoría · CORS/JSON · .env</td><td>Postman / revisión</td><td><span class="badge badge-green">✓ Cumple</span></td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div style="display:flex;gap:0.7rem;margin-top:1rem;flex-wrap:wrap">
-        <span class="badge badge-green">11 cumplen</span>
-        <span class="badge badge-red">3 defectos</span>
-        <span class="badge badge-yellow">2 pendientes (UI)</span>
-        <span class="badge badge-purple">RNF-02 no definido → gap visible</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══ 14 — REGISTRO DE DEFECTOS (REAL) ══ -->
-  <section class="slide" id="s14">
-    <div class="orb orb-2"></div>
-    <div style="max-width:1080px;width:100%">
-      <div class="slide-label">Entregable — Registro de Defectos del producto</div>
-      <h2>Defectos detectados</h2>
-      <div style="display:grid;grid-template-columns:1.05fr 1fr;gap:1.4rem;align-items:start">
-        <div style="display:flex;flex-direction:column;gap:0.6rem">
-          <div class="bug-item">
-            <div class="bug-id">DEF-01</div>
-            <div><div class="bug-desc">Contraseñas en <strong>texto plano</strong> (sin bcrypt)</div><div style="font-size:0.7rem;color:var(--muted)">Seguridad · CP-RNF-01</div></div>
-            <span class="badge badge-red">Alta</span>
-            <div class="bug-status status-open">Abierto</div>
-          </div>
-          <div class="bug-item">
-            <div class="bug-id">DEF-02</div>
-            <div><div class="bug-desc">Sin cabeceras de seguridad HTTP</div><div style="font-size:0.7rem;color:var(--muted)">Seguridad · CP-RNF-04</div></div>
-            <span class="badge badge-yellow">Media</span>
-            <div class="bug-status status-open">Abierto</div>
-          </div>
-          <div class="bug-item">
-            <div class="bug-id">DEF-03</div>
-            <div><div class="bug-desc">La API acepta <strong>campos desconocidos</strong> (da 200 en vez de 422)</div><div style="font-size:0.7rem;color:var(--muted)">Validación · CP-RNF-05</div></div>
-            <span class="badge badge-yellow">Media</span>
-            <div class="bug-status status-open">Abierto</div>
-          </div>
-          <div class="bug-item">
-            <div class="bug-id">DEF-04</div>
-            <div><div class="bug-desc">Doble reserva del médico (CP08)</div><div style="font-size:0.7rem;color:var(--muted)">Turnos · posible mal precondicionado</div></div>
-            <span class="badge badge-cyan">A determinar</span>
-            <div class="bug-status status-verify">A verificar</div>
-          </div>
-          <p style="font-size:0.72rem;color:var(--muted);margin-top:0.3rem">Severidad = impacto técnico · Prioridad = urgencia. DEF-01 es alta porque expone datos sensibles de pacientes.</p>
-        </div>
-        <div>
-          <div class="ss-grid-2">
-            <div>
-              <div class="ss-frame" style="height:150px"><span class="ss-tag tag-red">DEF-01</span><img class="ss-img" src="screenshots/mockdata_passwords_plain.png" alt="passwords plain"></div>
-              <div class="ss-cap">mock-data.json: “Admin123!” en claro</div>
+    <!-- ══ 14 — REGISTRO DE DEFECTOS (REAL) ══ -->
+    <section class="slide" id="s14">
+      <div class="orb orb-2"></div>
+      <div style="max-width:1080px;width:100%">
+        <div class="slide-label">Entregable — Registro de Defectos del producto</div>
+        <h2>Defectos detectados</h2>
+        <div style="display:grid;grid-template-columns:1.05fr 1fr;gap:1.4rem;align-items:start">
+          <div style="display:flex;flex-direction:column;gap:0.6rem">
+            <div class="bug-item">
+              <div class="bug-id">DEF-01</div>
+              <div>
+                <div class="bug-desc">Contraseñas en <strong>texto plano</strong> (sin bcrypt)</div>
+                <div style="font-size:0.7rem;color:var(--muted)">Seguridad · CP-RNF-01</div>
+              </div>
+              <span class="badge badge-red">Alta</span>
+              <div class="bug-status status-open">Abierto</div>
             </div>
-            <div>
-              <div class="ss-frame" style="height:150px"><span class="ss-tag tag-red">DEF-01</span><img class="ss-img" src="screenshots/store_py_password_compare.png" alt="store.py compare"></div>
-              <div class="ss-cap">store.py: compara password sin hash</div>
+            <div class="bug-item">
+              <div class="bug-id">DEF-02</div>
+              <div>
+                <div class="bug-desc">Sin cabeceras de seguridad HTTP</div>
+                <div style="font-size:0.7rem;color:var(--muted)">Seguridad · CP-RNF-04</div>
+              </div>
+              <span class="badge badge-yellow">Media</span>
+              <div class="bug-status status-open">Abierto</div>
             </div>
-            <div>
-              <div class="ss-frame" style="height:150px"><span class="ss-tag tag-red">DEF-02</span><img class="ss-img" src="screenshots/curl_head_nosec.png" alt="curl headers"></div>
-              <div class="ss-cap">curl -I: sin X-Frame-Options/CSP/HSTS</div>
+            <div class="bug-item">
+              <div class="bug-id">DEF-03</div>
+              <div>
+                <div class="bug-desc">La API acepta <strong>campos desconocidos</strong> (da 200 en vez de 422)</div>
+                <div style="font-size:0.7rem;color:var(--muted)">Validación · CP-RNF-05</div>
+              </div>
+              <span class="badge badge-yellow">Media</span>
+              <div class="bug-status status-open">Abierto</div>
             </div>
-            <div>
-              <div class="ss-frame" style="height:150px"><span class="ss-tag tag-red">DEF-03</span><img class="ss-img" src="screenshots/postman_login_extras_200.png" alt="login extras 200"></div>
-              <div class="ss-cap">Login con campo extra → 200 (debía ser 422)</div>
+            <div class="bug-item">
+              <div class="bug-id">DEF-04</div>
+              <div>
+                <div class="bug-desc">Doble reserva del médico (CP08)</div>
+                <div style="font-size:0.7rem;color:var(--muted)">Turnos · posible mal precondicionado</div>
+              </div>
+              <span class="badge badge-cyan">A determinar</span>
+              <div class="bug-status status-verify">A verificar</div>
+            </div>
+            <p style="font-size:0.72rem;color:var(--muted);margin-top:0.3rem">Severidad = impacto técnico · Prioridad =
+              urgencia. DEF-01 es alta porque expone datos sensibles de pacientes.</p>
+          </div>
+          <div>
+            <div class="ss-grid-2">
+              <div>
+                <div class="ss-frame" style="height:150px"><span class="ss-tag tag-red">DEF-01</span><img class="ss-img"
+                    src="screenshots/mockdata_passwords_plain.png" alt="passwords plain"></div>
+                <div class="ss-cap">mock-data.json: “Admin123!” en claro</div>
+              </div>
+              <div>
+                <div class="ss-frame" style="height:150px"><span class="ss-tag tag-red">DEF-01</span><img class="ss-img"
+                    src="screenshots/store_py_password_compare.png" alt="store.py compare"></div>
+                <div class="ss-cap">store.py: compara password sin hash</div>
+              </div>
+              <div>
+                <div class="ss-frame" style="height:150px"><span class="ss-tag tag-red">DEF-02</span><img class="ss-img"
+                    src="screenshots/curl_head_nosec.png" alt="curl headers"></div>
+                <div class="ss-cap">curl -I: sin X-Frame-Options/CSP/HSTS</div>
+              </div>
+              <div>
+                <div class="ss-frame" style="height:150px"><span class="ss-tag tag-red">DEF-03</span><img class="ss-img"
+                    src="screenshots/postman_login_extras_200.png" alt="login extras 200"></div>
+                <div class="ss-cap">Login con campo extra → 200 (debía ser 422)</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ══ 15 — DIFERENCIAS CLAVE ══ -->
-  <section class="slide" id="s15">
-    <div class="orb orb-1"></div><div class="orb orb-3"></div>
-    <div style="max-width:1000px;width:100%">
-      <div class="slide-label">Conceptos que defiendo en el examen</div>
-      <h2>Diferencias clave</h2>
-      <div class="grid-2" style="max-width:1000px">
-        <div class="stat-card">
-          <div style="font-weight:700;color:#a5b4fc;margin-bottom:0.5rem;font-size:0.92rem">Caso de Uso vs Caso de Prueba</div>
-          <div style="font-size:0.8rem;color:rgba(255,255,255,0.7);line-height:1.6">El <strong>caso de uso</strong> describe la interacción (qué hace el usuario). El <strong>caso de prueba</strong> la verifica con pasos y resultado esperado. El de prueba <strong>se deriva</strong> del de uso.</div>
-        </div>
-        <div class="stat-card">
-          <div style="font-weight:700;color:#67e8f9;margin-bottom:0.5rem;font-size:0.92rem">Carga vs Estrés</div>
-          <div style="font-size:0.8rem;color:rgba(255,255,255,0.7);line-height:1.6"><strong>Carga</strong> = la carga esperada (¿soporta el uso normal/pico?). <strong>Estrés</strong> = excede la capacidad para hallar el punto de ruptura y ver si se recupera.</div>
-        </div>
-        <div class="stat-card">
-          <div style="font-weight:700;color:#fcd34d;margin-bottom:0.5rem;font-size:0.92rem">Severidad vs Prioridad</div>
-          <div style="font-size:0.8rem;color:rgba(255,255,255,0.7);line-height:1.6"><strong>Severidad</strong> = impacto técnico del defecto. <strong>Prioridad</strong> = urgencia de corregirlo. Pueden no coincidir.</div>
-        </div>
-        <div class="stat-card">
-          <div style="font-weight:700;color:#6ee7b7;margin-bottom:0.5rem;font-size:0.92rem">Funcional vs No Funcional</div>
-          <div style="font-size:0.8rem;color:rgba(255,255,255,0.7);line-height:1.6"><strong>Funcional</strong> = ¿hace lo que debe? <strong>No funcional</strong> = ¿lo hace bien? (rápido, seguro, usable, confiable).</div>
-        </div>
-      </div>
-    </div>
-  </section>
+  </div>
 
-  <!-- ══ 16 — COBERTURA / TRAZABILIDAD ══ -->
-  <section class="slide" id="s16">
-    <div class="orb orb-1"></div><div class="orb orb-3"></div>
-    <div style="max-width:880px;width:100%">
-      <div class="slide-label">Cierre del testing</div>
-      <h2>Cobertura de Requerimientos No Funcionales</h2>
-      <div class="cov-bar-wrap" style="margin-bottom:1.8rem" id="cov-bars">
-        <div class="cov-row"><div class="cov-label">Seguridad</div><div class="cov-track"><div class="cov-fill" data-w="67%" style="background:linear-gradient(90deg,var(--yellow),var(--accent))"></div></div><div class="cov-pct">67%</div></div>
-        <div class="cov-row"><div class="cov-label">Rendimiento</div><div class="cov-track"><div class="cov-fill" data-w="100%"></div></div><div class="cov-pct">100%</div></div>
-        <div class="cov-row"><div class="cov-label">Usabilidad</div><div class="cov-track"><div class="cov-fill" data-w="100%"></div></div><div class="cov-pct">100%</div></div>
-        <div class="cov-row"><div class="cov-label">Auditoría/Compat.</div><div class="cov-track"><div class="cov-fill" data-w="100%"></div></div><div class="cov-pct">100%</div></div>
-        <div class="cov-row"><div class="cov-label">Configurabilidad</div><div class="cov-track"><div class="cov-fill" data-w="100%"></div></div><div class="cov-pct">100%</div></div>
-      </div>
-      <div class="grid-4">
-        <div class="stat-card"><div class="stat-num">14</div><div class="stat-label">RNF verificables</div></div>
-        <div class="stat-card"><div class="stat-num" style="background:linear-gradient(135deg,#10b981,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">11</div><div class="stat-label">Cumplen</div></div>
-        <div class="stat-card"><div class="stat-num" style="background:linear-gradient(135deg,#ef4444,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">3</div><div class="stat-label">Defectos</div></div>
-        <div class="stat-card"><div class="stat-num">2</div><div class="stat-label">Pendientes UI</div></div>
-      </div>
-    </div>
-  </section>
+  <div id="nav">
+    <button class="nav-btn" id="btn-prev" onclick="prev()">←</button>
+    <span id="slide-counter">01 / 14</span>
+    <button class="nav-btn" id="btn-next" onclick="next()">→</button>
+  </div>
 
-  <!-- ══ 17 — RETROSPECTIVA ══ -->
-  <section class="slide" id="s17">
-    <div class="orb orb-2"></div>
-    <div style="max-width:960px;width:100%">
-      <div class="slide-label">Retrospectiva</div>
-      <h2>Aprendizajes del equipo</h2>
-      <div class="grid-3">
-        <div class="stat-card" style="border-color:rgba(16,185,129,0.25)">
-          <div style="font-weight:700;color:#6ee7b7;margin-bottom:0.6rem;font-size:0.86rem">✓ Lo que funcionó</div>
-          <ul style="font-size:0.74rem;color:rgba(255,255,255,0.55);line-height:1.8;padding-left:1rem">
-            <li>Postman cubrió toda la API y la seguridad</li>
-            <li>JMeter validó la concurrencia (0% error)</li>
-            <li>La revisión de código detectó el texto plano</li>
-            <li>Roles separados facilitaron el testing</li>
-          </ul>
-        </div>
-        <div class="stat-card" style="border-color:rgba(245,158,11,0.25)">
-          <div style="font-weight:700;color:#fcd34d;margin-bottom:0.6rem;font-size:0.86rem">⚠ Dificultades</div>
-          <ul style="font-size:0.74rem;color:rgba(255,255,255,0.55);line-height:1.8;padding-left:1rem">
-            <li>JMeter sin backend → Connection refused</li>
-            <li>Estado del JSON mock entre corridas</li>
-            <li>Distinguir defecto real de mal precondicionado (DEF-04)</li>
-            <li>RNF-02 no estaba definido</li>
-          </ul>
-        </div>
-        <div class="stat-card" style="border-color:rgba(99,102,241,0.25)">
-          <div style="font-weight:700;color:#a5b4fc;margin-bottom:0.6rem;font-size:0.86rem">💡 Aprendizajes</div>
-          <ul style="font-size:0.74rem;color:rgba(255,255,255,0.55);line-height:1.8;padding-left:1rem">
-            <li>Definir criterios de entrada antes de ejecutar</li>
-            <li>Separar severidad de prioridad</li>
-            <li>La trazabilidad muestra los gaps, no solo lo OK</li>
-            <li>No reportar falsos positivos</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+  <script>
+    const TOTAL = 14;
+    let cur = 0;
+    let animating = false;
 
-  <!-- ══ 18 — CONCLUSIONES ══ -->
-  <section class="slide" id="s18">
-    <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
-    <div style="max-width:880px;width:100%;text-align:center">
-      <div class="slide-label" style="justify-content:center">Cierre</div>
-      <h2>Conclusiones</h2>
-      <div style="display:flex;flex-direction:column;gap:0.6rem;margin-bottom:1.6rem;text-align:left">
-        <div class="rf-item" style="border-color:rgba(16,185,129,0.2)"><div>✅</div><div>El sistema cumple los requerimientos funcionales principales y <strong>11 de 14 RNF</strong> verificados.</div></div>
-        <div class="rf-item" style="border-color:rgba(16,185,129,0.2)"><div>✅</div><div>Seguridad de acceso (JWT + roles) <strong>correcta</strong>: 401 sin token, 403 rol incorrecto, errores genéricos.</div></div>
-        <div class="rf-item" style="border-color:rgba(16,185,129,0.2)"><div>✅</div><div>Rendimiento bajo carga <strong>sin degradación</strong>: 50 hilos en login, 0,00 % de error.</div></div>
-        <div class="rf-item" style="border-color:rgba(239,68,68,0.2)"><div>⚠️</div><div><strong>3 defectos</strong> documentados (1 alta: contraseñas en texto plano) con decisión del equipo; el mock podría justificarlo, pero la trazabilidad lo deja visible.</div></div>
-      </div>
-      <div style="display:flex;gap:0.7rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem">
-        <span class="badge badge-red">Hashear con bcrypt</span>
-        <span class="badge badge-yellow">Agregar headers de seguridad</span>
-        <span class="badge badge-purple">extra='forbid' en schemas</span>
-        <span class="badge badge-cyan">Verificar CP08 con disponibilidad</span>
-      </div>
-      <div style="font-size:1.7rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-family:'Space Grotesk',sans-serif;display:flex;align-items:center;justify-content:center;gap:0.5rem;">
-        ¡Gracias! <img src="https://lftz25oez4aqbxpq.public.blob.vercel-storage.com/image-rW3KN717rl4aTnOGRIuS82n0gSwwLQ.png" class="thiing-icon" alt="Hospital" style="width:2.1rem;height:2.1rem">
-      </div>
-    </div>
-  </section>
+    const slides = document.querySelectorAll('.slide');
 
-</div>
-
-<div id="nav">
-  <button class="nav-btn" id="btn-prev" onclick="prev()">←</button>
-  <span id="slide-counter">01 / 18</span>
-  <button class="nav-btn" id="btn-next" onclick="next()">→</button>
-</div>
-
-<script>
-  const TOTAL = 18;
-  let cur = 0;
-  let animating = false;
-  let covDone = false;
-
-  const slides = document.querySelectorAll('.slide');
-
-  const dotsEl = document.getElementById('dots');
-  for (let i = 0; i < TOTAL; i++) {
-    const d = document.createElement('div');
-    d.className = 'dot' + (i === 0 ? ' active' : '');
-    d.onclick = () => goTo(i);
-    dotsEl.appendChild(d);
-  }
-  const dots = dotsEl.querySelectorAll('.dot');
-
-  slides.forEach((s, i) => {
-    if (i !== 0) {
-      s.style.opacity = '0';
-      s.style.transform = 'translateX(80px) scale(0.97)';
-      s.classList.remove('active');
+    const dotsEl = document.getElementById('dots');
+    for (let i = 0; i < TOTAL; i++) {
+      const d = document.createElement('div');
+      d.className = 'dot' + (i === 0 ? ' active' : '');
+      d.onclick = () => goTo(i);
+      dotsEl.appendChild(d);
     }
-  });
+    const dots = dotsEl.querySelectorAll('.dot');
 
-  function goTo(idx) {
-    if (idx === cur || idx < 0 || idx >= TOTAL || animating) return;
-    animating = true;
-    const dir = idx > cur ? 1 : -1;
-    const leaving = cur;
-    cur = idx;
-    const lv = slides[leaving];
-    const en = slides[cur];
-    en.style.transition = 'none';
-    en.style.opacity = '0';
-    en.style.transform = `translateX(${dir * 80}px) scale(0.97)`;
-    en.classList.add('active');
-    en.offsetHeight;
-    const ease = 'cubic-bezier(0.4, 0, 0.2, 1)';
-    const dur  = '0.48s';
-    lv.style.transition = `opacity ${dur} ${ease}, transform ${dur} ${ease}`;
-    lv.style.opacity = '0';
-    lv.style.transform = `translateX(${dir * -80}px) scale(0.97)`;
-    en.style.transition = `opacity ${dur} ${ease}, transform ${dur} ${ease}`;
-    en.style.opacity = '1';
-    en.style.transform = 'translateX(0) scale(1)';
-    setTimeout(() => {
-      lv.classList.remove('active');
-      lv.style.transition = 'none';
+    slides.forEach((s, i) => {
+      if (i !== 0) {
+        s.style.opacity = '0';
+        s.style.transform = 'translateX(80px) scale(0.97)';
+        s.classList.remove('active');
+      }
+    });
+
+    function goTo(idx) {
+      if (idx === cur || idx < 0 || idx >= TOTAL || animating) return;
+      animating = true;
+      const dir = idx > cur ? 1 : -1;
+      const leaving = cur;
+      cur = idx;
+      const lv = slides[leaving];
+      const en = slides[cur];
+      en.style.transition = 'none';
+      en.style.opacity = '0';
+      en.style.transform = `translateX(${dir * 80}px) scale(0.97)`;
+      en.classList.add('active');
+      en.offsetHeight;
+      const ease = 'cubic-bezier(0.4, 0, 0.2, 1)';
+      const dur = '0.48s';
+      lv.style.transition = `opacity ${dur} ${ease}, transform ${dur} ${ease}`;
       lv.style.opacity = '0';
-      lv.style.transform = 'translateX(80px) scale(0.97)';
-      en.style.transition = '';
-      en.style.opacity = '';
-      en.style.transform = '';
-      animating = false;
-      updateUI();
-    }, 500);
-    updateUI(true);
-    if (cur === 15 && !covDone) {
-      covDone = true;
+      lv.style.transform = `translateX(${dir * -80}px) scale(0.97)`;
+      en.style.transition = `opacity ${dur} ${ease}, transform ${dur} ${ease}`;
+      en.style.opacity = '1';
+      en.style.transform = 'translateX(0) scale(1)';
       setTimeout(() => {
-        document.querySelectorAll('.cov-fill').forEach(b => { if(b.dataset.w) b.style.width = b.dataset.w; });
-      }, 250);
+        lv.classList.remove('active');
+        lv.style.transition = 'none';
+        lv.style.opacity = '0';
+        lv.style.transform = 'translateX(80px) scale(0.97)';
+        en.style.transition = '';
+        en.style.opacity = '';
+        en.style.transform = '';
+        animating = false;
+        updateUI();
+      }, 500);
+      updateUI(true);
     }
-  }
 
-  function updateUI() {
-    const pct = ((cur + 1) / TOTAL) * 100;
-    document.getElementById('progress-bar').style.width = pct + '%';
-    const label = `${String(cur + 1).padStart(2, '0')} / ${String(TOTAL).padStart(2, '0')}`;
-    document.getElementById('slide-counter').textContent = label;
-    document.getElementById('slide-num').textContent = label;
-    document.getElementById('btn-prev').disabled = cur === 0;
-    document.getElementById('btn-next').disabled = cur === TOTAL - 1;
-    dots.forEach((d, i) => d.classList.toggle('active', i === cur));
-  }
+    function updateUI() {
+      const pct = ((cur + 1) / TOTAL) * 100;
+      document.getElementById('progress-bar').style.width = pct + '%';
+      const label = `${String(cur + 1).padStart(2, '0')} / ${String(TOTAL).padStart(2, '0')}`;
+      document.getElementById('slide-counter').textContent = label;
+      document.getElementById('slide-num').textContent = label;
+      document.getElementById('btn-prev').disabled = cur === 0;
+      document.getElementById('btn-next').disabled = cur === TOTAL - 1;
+      dots.forEach((d, i) => d.classList.toggle('active', i === cur));
+    }
 
-  function next() { goTo(cur + 1); }
-  function prev() { goTo(cur - 1); }
+    function next() { goTo(cur + 1); }
+    function prev() { goTo(cur - 1); }
 
-  document.addEventListener('keydown', e => {
-    if (['ArrowRight', 'ArrowDown', ' '].includes(e.key)) { e.preventDefault(); next(); }
-    if (['ArrowLeft', 'ArrowUp'].includes(e.key)) { e.preventDefault(); prev(); }
-    if (e.key === 'Home') goTo(0);
-    if (e.key === 'End') goTo(TOTAL - 1);
-  });
+    document.addEventListener('keydown', e => {
+      if (['ArrowRight', 'ArrowDown', ' '].includes(e.key)) { e.preventDefault(); next(); }
+      if (['ArrowLeft', 'ArrowUp'].includes(e.key)) { e.preventDefault(); prev(); }
+      if (e.key === 'Home') goTo(0);
+      if (e.key === 'End') goTo(TOTAL - 1);
+    });
 
-  let tx = 0;
-  document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
-  document.addEventListener('touchend', e => {
-    const d = tx - e.changedTouches[0].clientX;
-    if (Math.abs(d) > 45) d > 0 ? next() : prev();
-  });
+    let tx = 0;
+    document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+    document.addEventListener('touchend', e => {
+      const d = tx - e.changedTouches[0].clientX;
+      if (Math.abs(d) > 45) d > 0 ? next() : prev();
+    });
 
-  let wLock = false;
-  document.addEventListener('wheel', e => {
-    if (wLock) return;
-    wLock = true;
-    e.deltaY > 0 ? next() : prev();
-    setTimeout(() => { wLock = false; }, 850);
-  }, { passive: true });
+    let wLock = false;
+    document.addEventListener('wheel', e => {
+      if (wLock) return;
+      wLock = true;
+      e.deltaY > 0 ? next() : prev();
+      setTimeout(() => { wLock = false; }, 850);
+    }, { passive: true });
 
-  updateUI();
-</script>
+    updateUI();
+  </script>
 </body>
+
 </html>
